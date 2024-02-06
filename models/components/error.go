@@ -12,6 +12,7 @@ type ErrorTag string
 
 const (
 	ErrorTagUnauthorized         ErrorTag = "unauthorized"
+	ErrorTagForbidden            ErrorTag = "forbidden"
 	ErrorTagUnprocessableRequest ErrorTag = "unprocessable_request"
 	ErrorTagNotFound             ErrorTag = "not_found"
 )
@@ -27,6 +28,8 @@ func (e *ErrorTag) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "unauthorized":
+		fallthrough
+	case "forbidden":
 		fallthrough
 	case "unprocessable_request":
 		fallthrough

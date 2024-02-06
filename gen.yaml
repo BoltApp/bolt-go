@@ -7,8 +7,9 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
 go:
-  version: 0.0.1
+  version: 0.1.0
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:

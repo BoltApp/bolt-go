@@ -8,5 +8,6 @@ The type of error returned
 | Name                           | Value                          |
 | ------------------------------ | ------------------------------ |
 | `ErrorTagUnauthorized`         | unauthorized                   |
+| `ErrorTagForbidden`            | forbidden                      |
 | `ErrorTagUnprocessableRequest` | unprocessable_request          |
 | `ErrorTagNotFound`             | not_found                      |
