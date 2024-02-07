@@ -120,7 +120,7 @@ func CreatePaymentMethodKlarnaPaynow(klarnaPaynow PaymentMethodKlarnaPaynowOutpu
 func (u *PaymentMethod) UnmarshalJSON(data []byte) error {
 
 	type discriminator struct {
-		DotTag string
+		DotTag string `json:".tag"`
 	}
 
 	dis := new(discriminator)

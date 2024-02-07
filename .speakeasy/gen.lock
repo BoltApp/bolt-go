@@ -4,9 +4,9 @@ management:
   docChecksum: 01276287da5e729b01c2886897fe6bbf
   docVersion: 3.0.1
   speakeasyVersion: internal
-  generationVersion: 2.250.2
-  releaseVersion: 0.1.0
-  configChecksum: f75ae5f3551d69211de9c0dea7ecbe71
+  generationVersion: 2.250.15
+  releaseVersion: 0.2.0
+  configChecksum: afbb4d5c04944ef071156c343f7c787f
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -22,7 +22,7 @@ features:
     inputOutputModels: 2.83.0
     methodSecurity: 2.82.2
     nameOverrides: 2.81.1
-    unions: 2.85.2
+    unions: 2.85.3
 generatedFiles:
   - account.go
   - guest.go

@@ -50,7 +50,7 @@ func CreatePaymentResponsePending(pending PaymentResponsePending) PaymentRespons
 func (u *PaymentResponse) UnmarshalJSON(data []byte) error {
 
 	type discriminator struct {
-		DotTag string
+		DotTag string `json:".tag"`
 	}
 
 	dis := new(discriminator)
