@@ -4,7 +4,7 @@ management:
   docChecksum: 01276287da5e729b01c2886897fe6bbf
   docVersion: 3.0.1
   speakeasyVersion: internal
-  generationVersion: 2.250.15
+  generationVersion: 2.253.0
   releaseVersion: 0.2.0
   configChecksum: afbb4d5c04944ef071156c343f7c787f
   repoURL: https://github.com/BoltApp/bolt-go.git
