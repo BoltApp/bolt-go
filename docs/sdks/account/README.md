@@ -40,7 +40,7 @@ func main() {
     )
 
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     ctx := context.Background()
     res, err := s.Account.GetDetails(ctx, xPublishableKey)
@@ -94,7 +94,7 @@ func main() {
     )
 
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     addressListing := components.AddressListingInput{
         FirstName: "Alice",
@@ -168,7 +168,7 @@ func main() {
 
     var id string = "D4g3h5tBuVYK9"
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     addressListing := components.AddressListingInput{
         FirstName: "Alice",
@@ -243,7 +243,7 @@ func main() {
 
     var id string = "D4g3h5tBuVYK9"
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     ctx := context.Background()
     res, err := s.Account.DeleteAddress(ctx, id, xPublishableKey)
@@ -302,7 +302,7 @@ func main() {
     )
 
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     var paymentMethod components.PaymentMethodInput = components.CreatePaymentMethodInputPaymentMethodAffirm(
             components.PaymentMethodAffirm{
@@ -369,7 +369,7 @@ func main() {
 
     var id string = "D4g3h5tBuVYK9"
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, id, xPublishableKey)

@@ -32,7 +32,7 @@ func main() {
     s := boltgo.New()
 
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     order := components.Order{
         Profile: components.Profile{

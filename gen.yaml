@@ -10,7 +10,7 @@ generation:
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
 go:
-  version: 0.2.0
+  version: 0.3.0
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:

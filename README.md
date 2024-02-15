@@ -36,7 +36,7 @@ func main() {
 		}),
 	)
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
@@ -122,7 +122,7 @@ func main() {
 		}),
 	)
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
@@ -176,7 +176,7 @@ func main() {
 		}),
 	)
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
@@ -217,7 +217,7 @@ func main() {
 		}),
 	)
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
@@ -292,7 +292,7 @@ func main() {
 		}),
 	)
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
@@ -324,7 +324,7 @@ import (
 func main() {
 	s := boltgo.New()
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	guestPaymentInitializeRequest := components.GuestPaymentInitializeRequest{
 		Profile: components.ProfileCreationData{
@@ -350,8 +350,8 @@ func main() {
 		PaymentMethod: components.CreatePaymentMethodInputPaymentMethodPaypal(
 			components.PaymentMethodPaypal{
 				DotTag:     components.PaymentMethodPaypalTagPaypal,
-				SuccessURL: "www.example.com/handle_paypal_success",
-				CancelURL:  "www.example.com/handle_paypal_cancel",
+				SuccessURL: "https://www.example.com/paypal-callback/success",
+				CancelURL:  "https://www.example.com/paypal-callback/cancel",
 			},
 		),
 	}

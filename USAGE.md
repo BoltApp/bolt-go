@@ -16,7 +16,7 @@ func main() {
 		}),
 	)
 
-	var xPublishableKey string = "string"
+	var xPublishableKey string = "<value>"
 
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)

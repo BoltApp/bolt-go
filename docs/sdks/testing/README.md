@@ -34,7 +34,7 @@ func main() {
     s := boltgo.New()
 
 
-    var xPublishableKey string = "string"
+    var xPublishableKey string = "<value>"
 
     accountTestCreationData := components.AccountTestCreationData{
         EmailState: components.EmailStateUnverified,
