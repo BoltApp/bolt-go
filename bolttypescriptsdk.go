@@ -201,9 +201,9 @@ func New(opts ...SDKOption) *BoltTypescriptSDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.1",
-			SDKVersion:        "0.3.0",
-			GenVersion:        "2.258.0",
-			UserAgent:         "speakeasy-sdk/go 0.3.0 2.258.0 3.0.1 github.com/BoltApp/bolt-go",
+			SDKVersion:        "0.3.1",
+			GenVersion:        "2.263.3",
+			UserAgent:         "speakeasy-sdk/go 0.3.1 2.263.3 3.0.1 github.com/BoltApp/bolt-go",
 			ServerDefaults: []map[string]string{
 				{
 					"environment": "api-sandbox",
