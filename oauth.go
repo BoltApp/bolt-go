@@ -32,7 +32,7 @@ func newOAuth(sdkConfig sdkConfiguration) *OAuth {
 
 // GetToken - Get OAuth token
 // Retrieve a new or refresh an existing OAuth token.
-func (s *OAuth) GetToken(ctx context.Context, request components.GetAccessTokenRequest) (*operations.OauthGetTokenResponse, error) {
+func (s *OAuth) GetToken(ctx context.Context, request components.TokenRequest) (*operations.OauthGetTokenResponse, error) {
 	hookCtx := hooks.HookContext{OperationID: "oauthGetToken"}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())

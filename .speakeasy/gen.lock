@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 6a4f47a32772ac402e83efcd9d8d007d
-  docVersion: 3.0.1
+  docChecksum: bc06a11b6267820dda5725a5536b1a6e
+  docVersion: 3.0.2
   speakeasyVersion: internal
   generationVersion: 2.263.3
-  releaseVersion: 0.3.1
-  configChecksum: a4f44a25ac6ef536406c9f0b3326060a
+  releaseVersion: 0.3.2
+  configChecksum: fdc7dc0742cb4fe0b61e9c8bbd888958
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -105,7 +105,9 @@ generatedFiles:
   - /models/components/paymentmethodextended.go
   - /models/components/paymentmethodreference.go
   - /models/components/getaccesstokenresponse.go
-  - /models/components/getaccesstokenrequest.go
+  - /models/components/tokenrequest.go
+  - /models/components/authorizationcoderequest.go
+  - /models/components/refreshtokenrequest.go
   - /models/components/orderresponse.go
   - /models/components/order.go
   - /models/components/accounttestcreationdataoutput.go
@@ -234,9 +236,13 @@ generatedFiles:
   - docs/models/components/paymentmethodreferencetag.md
   - docs/models/components/paymentmethodreference.md
   - docs/models/components/getaccesstokenresponse.md
+  - docs/models/components/tokenrequest.md
   - docs/models/components/granttype.md
   - docs/models/components/scope.md
-  - docs/models/components/getaccesstokenrequest.md
+  - docs/models/components/authorizationcoderequest.md
+  - docs/models/components/refreshtokenrequestgranttype.md
+  - docs/models/components/refreshtokenrequestscope.md
+  - docs/models/components/refreshtokenrequest.md
   - docs/models/components/orderresponse.md
   - docs/models/components/order.md
   - docs/models/components/emailstate.md

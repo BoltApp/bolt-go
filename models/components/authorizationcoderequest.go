@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// GrantType - The type of OAuth 2.0 grant being utilized. The only supported grant is `authorization_code`.
+// GrantType - The type of OAuth 2.0 grant being utilized.
 type GrantType string
 
 const (
@@ -62,7 +62,9 @@ func (e *Scope) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type GetAccessTokenRequest struct {
+type AuthorizationCodeRequest struct {
+	// The type of OAuth 2.0 grant being utilized.
+	GrantType GrantType `form:"name=grant_type"`
 	// Fetched value using OTP value from the Authorization Modal.
 	Code string `form:"name=code"`
 	// The OAuth client ID, which corresponds to the merchant publishable key, which can be retrieved
@@ -73,9 +75,7 @@ type GetAccessTokenRequest struct {
 	// Merchant Dashboard.
 	//
 	ClientSecret string `form:"name=client_secret"`
-	// The type of OAuth 2.0 grant being utilized. The only supported grant is `authorization_code`.
-	GrantType GrantType `form:"name=grant_type"`
-	// The scope issued to the merchant when receiving an authorization code.
+	// The requested scopes. If the request is successful, the OAuth client will be able to perform operations requiring these scopes.
 	//
 	Scope []Scope `form:"name=scope"`
 	// A randomly generated string sent along with an authorization code. This must be included, if provided,
@@ -84,42 +84,42 @@ type GetAccessTokenRequest struct {
 	State *string `form:"name=state"`
 }
 
-func (o *GetAccessTokenRequest) GetCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.Code
-}
-
-func (o *GetAccessTokenRequest) GetClientID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ClientID
-}
-
-func (o *GetAccessTokenRequest) GetClientSecret() string {
-	if o == nil {
-		return ""
-	}
-	return o.ClientSecret
-}
-
-func (o *GetAccessTokenRequest) GetGrantType() GrantType {
+func (o *AuthorizationCodeRequest) GetGrantType() GrantType {
 	if o == nil {
 		return GrantType("")
 	}
 	return o.GrantType
 }
 
-func (o *GetAccessTokenRequest) GetScope() []Scope {
+func (o *AuthorizationCodeRequest) GetCode() string {
+	if o == nil {
+		return ""
+	}
+	return o.Code
+}
+
+func (o *AuthorizationCodeRequest) GetClientID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientID
+}
+
+func (o *AuthorizationCodeRequest) GetClientSecret() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientSecret
+}
+
+func (o *AuthorizationCodeRequest) GetScope() []Scope {
 	if o == nil {
 		return []Scope{}
 	}
 	return o.Scope
 }
 
-func (o *GetAccessTokenRequest) GetState() *string {
+func (o *AuthorizationCodeRequest) GetState() *string {
 	if o == nil {
 		return nil
 	}
