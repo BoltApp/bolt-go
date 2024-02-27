@@ -4,9 +4,9 @@ management:
   docChecksum: bc06a11b6267820dda5725a5536b1a6e
   docVersion: 3.0.2
   speakeasyVersion: internal
-  generationVersion: 2.272.4
-  releaseVersion: 0.3.3
-  configChecksum: 1128367b5e72affd6b99ce071f71b8e2
+  generationVersion: 2.272.7
+  releaseVersion: 0.3.4
+  configChecksum: c4fdfed7c1d5983606c3f909a112934d
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -15,7 +15,7 @@ features:
   go:
     core: 3.4.3
     flattening: 2.81.1
-    globalSecurity: 2.82.7
+    globalSecurity: 2.82.8
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
