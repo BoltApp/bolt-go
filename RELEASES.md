@@ -99,3 +99,13 @@ Based on:
 - [go v0.3.5] .
 ### Releases
 - [Go v0.3.5] https://github.com/BoltApp/bolt-go/releases/tag/v0.3.5 - .
+
+## 2024-03-08 00:18:59
+### Changes
+Based on:
+- OpenAPI Doc 3.0.2 
+- Speakeasy CLI 1.204.1 (2.279.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.4.0] .
+### Releases
+- [Go v0.4.0] https://github.com/BoltApp/bolt-go/releases/tag/v0.4.0 - .

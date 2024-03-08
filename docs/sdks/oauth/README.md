@@ -47,7 +47,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.GetAccessTokenResponse != nil {
         // handle response
     }

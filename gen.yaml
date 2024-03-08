@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 go:
-  version: 0.3.5
+  version: 0.4.0
   additionalDependencies: {}
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
@@ -28,3 +28,4 @@ go:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: github.com/BoltApp/bolt-go
+  responseFormat: envelope
