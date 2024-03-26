@@ -23,7 +23,7 @@ jobs:
       mode: direct
       openapi_docs: |
         - https://api-docs.bolt.com/api.bundle.yaml
-      speakeasy_version: latest
+      speakeasy_version: 1.210.0
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
