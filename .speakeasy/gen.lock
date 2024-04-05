@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: bc06a11b6267820dda5725a5536b1a6e
-  docVersion: 3.0.2
-  speakeasyVersion: 1.207.1
-  generationVersion: 2.280.6
-  releaseVersion: 0.4.1
-  configChecksum: 736c08532756933f25d8f52bb6069ac9
+  docChecksum: 52a4491de6268327ef41bf826024fc20
+  docVersion: 3.0.3
+  speakeasyVersion: 1.210.0
+  generationVersion: 2.281.2
+  releaseVersion: 0.4.2
+  configChecksum: 89875697fc2f8eb01e1ee529e074051d
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -65,6 +65,7 @@ generatedFiles:
   - /models/operations/oauthgettoken.go
   - /models/operations/orderscreate.go
   - /models/operations/testingaccountcreate.go
+  - /models/operations/testingaccountphoneget.go
   - /models/operations/testingcreditcardget.go
   - /models/components/account.go
   - /models/components/profile.go
@@ -112,6 +113,7 @@ generatedFiles:
   - /models/components/orderresponse.go
   - /models/components/order.go
   - /models/components/accounttestcreationdataoutput.go
+  - /models/components/accounttestphonedata.go
   - /models/components/testcreditcard.go
   - /models/components/security.go
   - /models/sdkerrors/accountget.go
@@ -129,6 +131,7 @@ generatedFiles:
   - /models/sdkerrors/oauthgettoken.go
   - /models/sdkerrors/orderscreate.go
   - /models/sdkerrors/testingaccountcreate.go
+  - /models/sdkerrors/testingaccountphoneget.go
   - /models/sdkerrors/testingcreditcardget.go
   - docs/models/operations/accountgetrequest.md
   - docs/models/operations/accountgetresponse.md
@@ -164,6 +167,9 @@ generatedFiles:
   - docs/models/operations/testingaccountcreatesecurity.md
   - docs/models/operations/testingaccountcreaterequest.md
   - docs/models/operations/testingaccountcreateresponse.md
+  - docs/models/operations/testingaccountphonegetsecurity.md
+  - docs/models/operations/testingaccountphonegetrequest.md
+  - docs/models/operations/testingaccountphonegetresponse.md
   - docs/models/operations/testingcreditcardgetsecurity.md
   - docs/models/operations/type.md
   - docs/models/operations/testingcreditcardgetrequestbody.md
@@ -250,6 +256,7 @@ generatedFiles:
   - docs/models/components/phonestate.md
   - docs/models/components/accounttestcreationdataoutput.md
   - docs/models/components/accounttestcreationdata.md
+  - docs/models/components/accounttestphonedata.md
   - docs/models/components/testcreditcard.md
   - docs/models/components/security.md
   - docs/models/sdkerrors/accountgetresponsebody.md
@@ -267,6 +274,7 @@ generatedFiles:
   - docs/models/sdkerrors/oauthgettokenresponsebody.md
   - docs/models/sdkerrors/orderscreateresponsebody.md
   - docs/models/sdkerrors/testingaccountcreateresponsebody.md
+  - docs/models/sdkerrors/testingaccountphonegetresponsebody.md
   - docs/models/sdkerrors/testingcreditcardgetresponsebody.md
   - docs/sdks/bolttypescriptsdk/README.md
   - docs/sdks/account/README.md

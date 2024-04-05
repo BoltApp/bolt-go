@@ -10,6 +10,7 @@ flows in non-production environments.
 ### Available Operations
 
 * [CreateAccount](#createaccount) - Create a test account
+* [TestingAccountPhoneGet](#testingaccountphoneget) - Get a random phone number
 * [GetCreditCard](#getcreditcard) - Retrieve a test credit card, including its token
 
 ## CreateAccount
@@ -76,6 +77,61 @@ func main() {
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | sdkerrors.TestingAccountCreateResponseBody | 4XX                                        | application/json                           |
 | sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+
+## TestingAccountPhoneGet
+
+Get a random, fictitious phone number that is not assigned to any existing account.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := boltgo.New()
+
+
+    var xPublishableKey string = "<value>"
+
+    operationSecurity := operations.TestingAccountPhoneGetSecurity{
+            APIKey: "<YOUR_API_KEY_HERE>",
+        }
+
+    ctx := context.Background()
+    res, err := s.Testing.TestingAccountPhoneGet(ctx, operationSecurity, xPublishableKey)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.AccountTestPhoneData != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `security`                                                                                             | [operations.TestingAccountPhoneGetSecurity](../../models/operations/testingaccountphonegetsecurity.md) | :heavy_check_mark:                                                                                     | The security requirements to use for the request.                                                      |
+| `xPublishableKey`                                                                                      | *string*                                                                                               | :heavy_check_mark:                                                                                     | The publicly viewable identifier used to identify a merchant division.                                 |
+
+
+### Response
+
+**[*operations.TestingAccountPhoneGetResponse](../../models/operations/testingaccountphonegetresponse.md), error**
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.TestingAccountPhoneGetResponseBody | 4XX                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
 
 ## GetCreditCard
 
