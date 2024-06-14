@@ -4,7 +4,7 @@ sources:
         inputs:
             - location: https://api-docs.bolt.com/api.bundle.yaml
         overlays:
-            - ./default_error_overlay.yaml
+            - location: ./default_error_overlay.yaml
 targets:
     bolt-go:
         target: go
