@@ -1,6 +1,6 @@
 workflowVersion: 1.0.0
 sources:
-    my-source:
+    my-go-source:
         inputs:
             - location: https://api-docs.bolt.com/api.bundle.yaml
         overlays:
@@ -8,4 +8,4 @@ sources:
 targets:
     bolt-go:
         target: go
-        source: my-source
+        source: my-go-source
