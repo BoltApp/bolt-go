@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: Overlay api.bundle.yaml => api.bundle2.yaml
+  version: 0.0.0
+actions:
+  - target: $["components"]["responses"]["response-4xx"]["content"]["application/json"]["schema"]["oneOf"][0]["$ref"]
+    update: '#/components/schemas/default_error'
+  - target: $["components"]["responses"]["response-address-error"]["content"]["application/json"]["schema"]["oneOf"][0]["$ref"]
+    update: '#/components/schemas/default_error'
+  - target: $["components"]["responses"]["response-payment-method-error"]["content"]["application/json"]["schema"]["oneOf"][0]["$ref"]
+    update: '#/components/schemas/default_error'
+  - target: $["components"]["responses"]["response-payment-error"]["content"]["application/json"]["schema"]["oneOf"][0]["$ref"]
+    update: '#/components/schemas/default_error'
+  - target: $["components"]["schemas"]
+    update:
+      default_error:
+        type: object
+        required:
+          - .tag
+          - message
+        properties:
+          .tag:
+            type: string
+            enum:
+              - unauthorized
+              - forbidden
+              - unprocessable_request
+              - not_found
+            description: The type of error returned
+            example: unprocessable_request
+          message:
+            type: string
+            description: |
+              A human-readable error message, which might include information specific to
+              the request that was made.
+            example: We were unable to process your request.
+  - target: $["components"]["schemas"]["error"]
+    remove: true
