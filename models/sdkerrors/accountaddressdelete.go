@@ -4,18 +4,91 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/BoltApp/bolt-go/internal/utils"
+	"github.com/BoltApp/bolt-go/models/components"
 	"net/http"
+)
+
+type AccountAddressDeleteResponseBodyType string
+
+const (
+	AccountAddressDeleteResponseBodyTypeGenericError AccountAddressDeleteResponseBodyType = "generic-error"
+	AccountAddressDeleteResponseBodyTypeFieldError   AccountAddressDeleteResponseBodyType = "field-error"
 )
 
 // AccountAddressDeleteResponseBody - An error has occurred, and further details are contained in the response
 type AccountAddressDeleteResponseBody struct {
+	GenericError *components.GenericError
+	FieldError   *components.FieldError
+
+	Type AccountAddressDeleteResponseBodyType
+
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
 var _ error = &AccountAddressDeleteResponseBody{}
 
-func (e *AccountAddressDeleteResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
+func CreateAccountAddressDeleteResponseBodyGenericError(genericError components.GenericError) AccountAddressDeleteResponseBody {
+	typ := AccountAddressDeleteResponseBodyTypeGenericError
+
+	return AccountAddressDeleteResponseBody{
+		GenericError: &genericError,
+		Type:         typ,
+	}
+}
+
+func CreateAccountAddressDeleteResponseBodyFieldError(fieldError components.FieldError) AccountAddressDeleteResponseBody {
+	typ := AccountAddressDeleteResponseBodyTypeFieldError
+
+	return AccountAddressDeleteResponseBody{
+		FieldError: &fieldError,
+		Type:       typ,
+	}
+}
+
+func (u *AccountAddressDeleteResponseBody) UnmarshalJSON(data []byte) error {
+
+	var genericError components.GenericError = components.GenericError{}
+	if err := utils.UnmarshalJSON(data, &genericError, "", true, true); err == nil {
+		u.GenericError = &genericError
+		u.Type = AccountAddressDeleteResponseBodyTypeGenericError
+		return nil
+	}
+
+	var fieldError components.FieldError = components.FieldError{}
+	if err := utils.UnmarshalJSON(data, &fieldError, "", true, true); err == nil {
+		u.FieldError = &fieldError
+		u.Type = AccountAddressDeleteResponseBodyTypeFieldError
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AccountAddressDeleteResponseBody", string(data))
+}
+
+func (u AccountAddressDeleteResponseBody) MarshalJSON() ([]byte, error) {
+	if u.GenericError != nil {
+		return utils.MarshalJSON(u.GenericError, "", true)
+	}
+
+	if u.FieldError != nil {
+		return utils.MarshalJSON(u.FieldError, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type AccountAddressDeleteResponseBody: all fields are null")
+}
+
+func (u AccountAddressDeleteResponseBody) Error() string {
+	switch u.Type {
+	case AccountAddressDeleteResponseBodyTypeGenericError:
+		data, _ := json.Marshal(u.GenericError)
+		return string(data)
+	case AccountAddressDeleteResponseBodyTypeFieldError:
+		data, _ := json.Marshal(u.FieldError)
+		return string(data)
+	default:
+		return "unknown error"
+	}
 }

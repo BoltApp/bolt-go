@@ -22,46 +22,82 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-
+    security := operations.OrdersCreateSecurity{
+            APIKey: "<YOUR_API_KEY_HERE>",
+        }
 
     var xPublishableKey string = "<value>"
 
     order := components.Order{
         Profile: components.Profile{
-            FirstName: "Alice",
-            LastName: "Baker",
-            Email: "alice@example.com",
-            Phone: boltgo.String("+14155550199"),
+            FirstName: "Charlie",
+            LastName: "Dunn",
+            Email: "charlie@example.com",
+            Phone: boltgo.String("+14085551111"),
         },
         Cart: components.Cart{
-            OrderReference: "order_100",
-            OrderDescription: boltgo.String("Order #1234567890"),
-            DisplayID: boltgo.String("215614191"),
+            OrderReference: "instore_20240116-878",
+            OrderDescription: boltgo.String("Order #878"),
+            DisplayID: boltgo.String("20240116-878"),
+            Shipments: []components.CartShipment{
+                components.CartShipment{
+                    Address: components.CreateAddressReferenceInputAddressReferenceID(
+                            components.AddressReferenceID{
+                                DotTag: components.AddressReferenceIDTagID,
+                                ID: "D4g3h5tBuVYK9",
+                            },
+                    ),
+                    Cost: &components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 10000,
+                    },
+                    Carrier: boltgo.String("FedEx"),
+                },
+            },
+            Discounts: []components.CartDiscount{
+                components.CartDiscount{
+                    Amount: components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 900,
+                    },
+                    Code: boltgo.String("SUMMER10DISCOUNT"),
+                    DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
+                },
+            },
+            Items: []components.CartItem{
+                components.CartItem{
+                    Name: "Red Fidget Spinner",
+                    Reference: "sku-984",
+                    Description: boltgo.String("Single-packed fidget spinner, red"),
+                    TotalAmount: components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 1000,
+                    },
+                    UnitPrice: 1000,
+                    Quantity: 1,
+                    ImageURL: boltgo.String("https://www.example.com/products/984/image.png"),
+                },
+            },
             Total: components.Amount{
                 Currency: components.CurrencyUsd,
-                Units: 900,
+                Units: 1000,
             },
             Tax: components.Amount{
                 Currency: components.CurrencyUsd,
-                Units: 900,
+                Units: 100,
             },
         },
     }
-
-    operationSecurity := operations.OrdersCreateSecurity{
-            APIKey: "<YOUR_API_KEY_HERE>",
-        }
-
     ctx := context.Background()
-    res, err := s.Orders.OrdersCreate(ctx, operationSecurity, xPublishableKey, order)
+    res, err := s.Orders.OrdersCreate(ctx, security, xPublishableKey, order)
     if err != nil {
         log.Fatal(err)
     }

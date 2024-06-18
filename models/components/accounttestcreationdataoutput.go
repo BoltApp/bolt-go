@@ -18,7 +18,6 @@ const (
 func (e EmailState) ToPointer() *EmailState {
 	return &e
 }
-
 func (e *EmailState) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -48,7 +47,6 @@ const (
 func (e PhoneState) ToPointer() *PhoneState {
 	return &e
 }
-
 func (e *PhoneState) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

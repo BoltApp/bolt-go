@@ -3,8 +3,17 @@
 An error has occurred, and further details are contained in the response
 
 
-## Fields
+## Supported Types
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `RawResponse`                                           | [*http.Response](https://pkg.go.dev/net/http#Response)  | :heavy_minus_sign:                                      | Raw HTTP response; suitable for custom response parsing |
+### GenericError
+
+```go
+guestPaymentsUpdateResponseBody := sdkerrors.CreateGuestPaymentsUpdateResponseBodyGenericError(components.GenericError{/* values here */})
+```
+
+### FieldError
+
+```go
+guestPaymentsUpdateResponseBody := sdkerrors.CreateGuestPaymentsUpdateResponseBodyFieldError(components.FieldError{/* values here */})
+```
+

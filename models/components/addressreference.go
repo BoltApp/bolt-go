@@ -61,8 +61,8 @@ func (u *AddressReference) UnmarshalJSON(data []byte) error {
 	switch dis.DotTag {
 	case "id":
 		addressReferenceID := new(AddressReferenceID)
-		if err := utils.UnmarshalJSON(data, &addressReferenceID, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &addressReferenceID, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == id) type AddressReferenceID within AddressReference: %w", string(data), err)
 		}
 
 		u.AddressReferenceID = addressReferenceID
@@ -70,8 +70,8 @@ func (u *AddressReference) UnmarshalJSON(data []byte) error {
 		return nil
 	case "explicit":
 		addressReferenceExplicit := new(AddressReferenceExplicit)
-		if err := utils.UnmarshalJSON(data, &addressReferenceExplicit, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &addressReferenceExplicit, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == explicit) type AddressReferenceExplicit within AddressReference: %w", string(data), err)
 		}
 
 		u.AddressReferenceExplicit = addressReferenceExplicit
@@ -79,7 +79,7 @@ func (u *AddressReference) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AddressReference", string(data))
 }
 
 func (u AddressReference) MarshalJSON() ([]byte, error) {
@@ -91,5 +91,5 @@ func (u AddressReference) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AddressReferenceExplicit, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type AddressReference: all fields are null")
 }

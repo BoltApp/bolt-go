@@ -4,18 +4,91 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/BoltApp/bolt-go/internal/utils"
+	"github.com/BoltApp/bolt-go/models/components"
 	"net/http"
+)
+
+type OauthGetTokenResponseBodyType string
+
+const (
+	OauthGetTokenResponseBodyTypeGenericError OauthGetTokenResponseBodyType = "generic-error"
+	OauthGetTokenResponseBodyTypeFieldError   OauthGetTokenResponseBodyType = "field-error"
 )
 
 // OauthGetTokenResponseBody - An error has occurred, and further details are contained in the response
 type OauthGetTokenResponseBody struct {
+	GenericError *components.GenericError
+	FieldError   *components.FieldError
+
+	Type OauthGetTokenResponseBodyType
+
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
 var _ error = &OauthGetTokenResponseBody{}
 
-func (e *OauthGetTokenResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
+func CreateOauthGetTokenResponseBodyGenericError(genericError components.GenericError) OauthGetTokenResponseBody {
+	typ := OauthGetTokenResponseBodyTypeGenericError
+
+	return OauthGetTokenResponseBody{
+		GenericError: &genericError,
+		Type:         typ,
+	}
+}
+
+func CreateOauthGetTokenResponseBodyFieldError(fieldError components.FieldError) OauthGetTokenResponseBody {
+	typ := OauthGetTokenResponseBodyTypeFieldError
+
+	return OauthGetTokenResponseBody{
+		FieldError: &fieldError,
+		Type:       typ,
+	}
+}
+
+func (u *OauthGetTokenResponseBody) UnmarshalJSON(data []byte) error {
+
+	var genericError components.GenericError = components.GenericError{}
+	if err := utils.UnmarshalJSON(data, &genericError, "", true, true); err == nil {
+		u.GenericError = &genericError
+		u.Type = OauthGetTokenResponseBodyTypeGenericError
+		return nil
+	}
+
+	var fieldError components.FieldError = components.FieldError{}
+	if err := utils.UnmarshalJSON(data, &fieldError, "", true, true); err == nil {
+		u.FieldError = &fieldError
+		u.Type = OauthGetTokenResponseBodyTypeFieldError
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for OauthGetTokenResponseBody", string(data))
+}
+
+func (u OauthGetTokenResponseBody) MarshalJSON() ([]byte, error) {
+	if u.GenericError != nil {
+		return utils.MarshalJSON(u.GenericError, "", true)
+	}
+
+	if u.FieldError != nil {
+		return utils.MarshalJSON(u.FieldError, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type OauthGetTokenResponseBody: all fields are null")
+}
+
+func (u OauthGetTokenResponseBody) Error() string {
+	switch u.Type {
+	case OauthGetTokenResponseBodyTypeGenericError:
+		data, _ := json.Marshal(u.GenericError)
+		return string(data)
+	case OauthGetTokenResponseBodyTypeFieldError:
+		data, _ := json.Marshal(u.FieldError)
+		return string(data)
+	default:
+		return "unknown error"
+	}
 }

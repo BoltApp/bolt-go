@@ -34,7 +34,7 @@ func (s *Testing) CreateAccount(ctx context.Context, security operations.Testing
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "testingAccountCreate",
-		SecuritySource: withSecurity(security),
+		SecuritySource: utils.AsSecuritySource(security),
 	}
 
 	request := operations.TestingAccountCreateRequest{
@@ -61,9 +61,9 @@ func (s *Testing) CreateAccount(ctx context.Context, security operations.Testing
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
 
-	utils.PopulateHeaders(ctx, req, request)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -83,9 +83,11 @@ func (s *Testing) CreateAccount(ctx context.Context, security operations.Testing
 		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
+		} else if _httpRes != nil {
+			httpRes = _httpRes
 		}
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
@@ -128,7 +130,6 @@ func (s *Testing) CreateAccount(ctx context.Context, security operations.Testing
 				return nil, err
 			}
 
-			out.RawResponse = httpRes
 			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
@@ -139,6 +140,7 @@ func (s *Testing) CreateAccount(ctx context.Context, security operations.Testing
 	}
 
 	return res, nil
+
 }
 
 // TestingAccountPhoneGet - Get a random phone number
@@ -147,7 +149,7 @@ func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operation
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "testingAccountPhoneGet",
-		SecuritySource: withSecurity(security),
+		SecuritySource: utils.AsSecuritySource(security),
 	}
 
 	request := operations.TestingAccountPhoneGetRequest{
@@ -167,9 +169,9 @@ func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operation
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -189,9 +191,11 @@ func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operation
 		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
+		} else if _httpRes != nil {
+			httpRes = _httpRes
 		}
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
@@ -234,7 +238,6 @@ func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operation
 				return nil, err
 			}
 
-			out.RawResponse = httpRes
 			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
@@ -245,6 +248,7 @@ func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operation
 	}
 
 	return res, nil
+
 }
 
 // GetCreditCard - Retrieve a test credit card, including its token
@@ -253,7 +257,7 @@ func (s *Testing) GetCreditCard(ctx context.Context, request operations.TestingC
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "testingCreditCardGet",
-		SecuritySource: withSecurity(security),
+		SecuritySource: utils.AsSecuritySource(security),
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -275,7 +279,7 @@ func (s *Testing) GetCreditCard(ctx context.Context, request operations.TestingC
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -295,9 +299,11 @@ func (s *Testing) GetCreditCard(ctx context.Context, request operations.TestingC
 		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
+		} else if _httpRes != nil {
+			httpRes = _httpRes
 		}
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
@@ -340,7 +346,6 @@ func (s *Testing) GetCreditCard(ctx context.Context, request operations.TestingC
 				return nil, err
 			}
 
-			out.RawResponse = httpRes
 			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
@@ -351,4 +356,5 @@ func (s *Testing) GetCreditCard(ctx context.Context, request operations.TestingC
 	}
 
 	return res, nil
+
 }

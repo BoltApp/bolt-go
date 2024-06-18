@@ -61,8 +61,8 @@ func (u *AddressReferenceInput) UnmarshalJSON(data []byte) error {
 	switch dis.DotTag {
 	case "id":
 		addressReferenceID := new(AddressReferenceID)
-		if err := utils.UnmarshalJSON(data, &addressReferenceID, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &addressReferenceID, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == id) type AddressReferenceID within AddressReferenceInput: %w", string(data), err)
 		}
 
 		u.AddressReferenceID = addressReferenceID
@@ -70,8 +70,8 @@ func (u *AddressReferenceInput) UnmarshalJSON(data []byte) error {
 		return nil
 	case "explicit":
 		addressReferenceExplicitInput := new(AddressReferenceExplicitInput)
-		if err := utils.UnmarshalJSON(data, &addressReferenceExplicitInput, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &addressReferenceExplicitInput, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == explicit) type AddressReferenceExplicitInput within AddressReferenceInput: %w", string(data), err)
 		}
 
 		u.AddressReferenceExplicitInput = addressReferenceExplicitInput
@@ -79,7 +79,7 @@ func (u *AddressReferenceInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AddressReferenceInput", string(data))
 }
 
 func (u AddressReferenceInput) MarshalJSON() ([]byte, error) {
@@ -91,5 +91,5 @@ func (u AddressReferenceInput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AddressReferenceExplicitInput, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type AddressReferenceInput: all fields are null")
 }

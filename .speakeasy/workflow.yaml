@@ -1,10 +1,13 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
     bolt-go-api:
         inputs:
             - location: https://api-docs.bolt.com/api.bundle.yaml
         overlays:
             - location: ./generic_error_overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/bolt/boltpublicapi/bolt-go-api
 targets:
     bolt-go-sdk:
         target: go

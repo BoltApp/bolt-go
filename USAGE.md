@@ -12,12 +12,10 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
-
 	var xPublishableKey string = "<value>"
-
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
 	if err != nil {

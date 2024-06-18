@@ -33,7 +33,7 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "guestPaymentsInitialize",
-		SecuritySource: withSecurity(security),
+		SecuritySource: utils.AsSecuritySource(security),
 	}
 
 	request := operations.GuestPaymentsInitializeRequest{
@@ -60,9 +60,9 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
 
-	utils.PopulateHeaders(ctx, req, request)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -82,9 +82,11 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
+		} else if _httpRes != nil {
+			httpRes = _httpRes
 		}
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
@@ -127,7 +129,6 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 				return nil, err
 			}
 
-			out.RawResponse = httpRes
 			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
@@ -138,6 +139,7 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 	}
 
 	return res, nil
+
 }
 
 // Update an existing guest payment
@@ -146,7 +148,7 @@ func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpd
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "guestPaymentsUpdate",
-		SecuritySource: withSecurity(security),
+		SecuritySource: utils.AsSecuritySource(security),
 	}
 
 	request := operations.GuestPaymentsUpdateRequest{
@@ -174,9 +176,9 @@ func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpd
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
 
-	utils.PopulateHeaders(ctx, req, request)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -196,9 +198,11 @@ func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpd
 		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
+		} else if _httpRes != nil {
+			httpRes = _httpRes
 		}
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
@@ -241,7 +245,6 @@ func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpd
 				return nil, err
 			}
 
-			out.RawResponse = httpRes
 			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
@@ -252,6 +255,7 @@ func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpd
 	}
 
 	return res, nil
+
 }
 
 // PerformAction - Perform an irreversible action (e.g. finalize) on a pending guest payment
@@ -260,7 +264,7 @@ func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaym
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "guestPaymentsAction",
-		SecuritySource: withSecurity(security),
+		SecuritySource: utils.AsSecuritySource(security),
 	}
 
 	request := operations.GuestPaymentsActionRequest{
@@ -288,9 +292,9 @@ func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaym
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
 
-	utils.PopulateHeaders(ctx, req, request)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -310,9 +314,11 @@ func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaym
 		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
+		} else if _httpRes != nil {
+			httpRes = _httpRes
 		}
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
@@ -355,7 +361,6 @@ func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaym
 				return nil, err
 			}
 
-			out.RawResponse = httpRes
 			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
@@ -366,4 +371,5 @@ func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaym
 	}
 
 	return res, nil
+
 }

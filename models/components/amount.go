@@ -21,7 +21,6 @@ const (
 func (e Currency) ToPointer() *Currency {
 	return &e
 }
-
 func (e *Currency) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

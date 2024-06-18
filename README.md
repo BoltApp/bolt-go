@@ -32,12 +32,10 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
-
 	var xPublishableKey string = "<value>"
-
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
 	if err != nil {
@@ -118,12 +116,10 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
-
 	var xPublishableKey string = "<value>"
-
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
 	if err != nil {
@@ -172,12 +168,10 @@ func main() {
 	s := boltgo.New(
 		boltgo.WithServerIndex(0),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
-
 	var xPublishableKey string = "<value>"
-
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
 	if err != nil {
@@ -212,12 +206,10 @@ func main() {
 	s := boltgo.New(
 		boltgo.WithServerURL("https://{environment}.bolt.com/v3"),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
-
 	var xPublishableKey string = "<value>"
-
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
 	if err != nil {
@@ -286,12 +278,10 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
-
 	var xPublishableKey string = "<value>"
-
 	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, xPublishableKey)
 	if err != nil {
@@ -320,6 +310,9 @@ import (
 
 func main() {
 	s := boltgo.New()
+	security := operations.GuestPaymentsInitializeSecurity{
+		APIKey: "<YOUR_API_KEY_HERE>",
+	}
 
 	var xPublishableKey string = "<value>"
 
@@ -335,30 +328,73 @@ func main() {
 			OrderReference:   "order_100",
 			OrderDescription: boltgo.String("Order #1234567890"),
 			DisplayID:        boltgo.String("215614191"),
+			Shipments: []components.CartShipment{
+				components.CartShipment{
+					Address: components.CreateAddressReferenceInputAddressReferenceID(
+						components.AddressReferenceID{
+							DotTag: components.AddressReferenceIDTagID,
+							ID:     "D4g3h5tBuVYK9",
+						},
+					),
+					Cost: &components.Amount{
+						Currency: components.CurrencyUsd,
+						Units:    10000,
+					},
+					Carrier: boltgo.String("FedEx"),
+				},
+			},
+			Discounts: []components.CartDiscount{
+				components.CartDiscount{
+					Amount: components.Amount{
+						Currency: components.CurrencyUsd,
+						Units:    10000,
+					},
+					Code:       boltgo.String("SUMMER10DISCOUNT"),
+					DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
+				},
+			},
+			Items: []components.CartItem{
+				components.CartItem{
+					Name:        "Bolt Swag Bag",
+					Reference:   "item_100",
+					Description: boltgo.String("Large tote with Bolt logo."),
+					TotalAmount: components.Amount{
+						Currency: components.CurrencyUsd,
+						Units:    9000,
+					},
+					UnitPrice: 1000,
+					Quantity:  9,
+					ImageURL:  boltgo.String("https://www.example.com/products/123456/images/1.png"),
+				},
+			},
 			Total: components.Amount{
 				Currency: components.CurrencyUsd,
-				Units:    900,
+				Units:    9000,
 			},
 			Tax: components.Amount{
 				Currency: components.CurrencyUsd,
-				Units:    900,
+				Units:    100,
 			},
 		},
-		PaymentMethod: components.CreatePaymentMethodInputPaymentMethodPaypal(
-			components.PaymentMethodPaypal{
-				DotTag:     components.PaymentMethodPaypalTagPaypal,
-				SuccessURL: "https://www.example.com/paypal-callback/success",
-				CancelURL:  "https://www.example.com/paypal-callback/cancel",
+		PaymentMethod: components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
+			components.PaymentMethodCreditCardInput{
+				DotTag: components.DotTagCreditCard,
+				BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
+					components.AddressReferenceID{
+						DotTag: components.AddressReferenceIDTagID,
+						ID:     "D4g3h5tBuVYK9",
+					},
+				),
+				Network:    components.CreditCardNetworkVisa,
+				Bin:        "411111",
+				Last4:      "1004",
+				Expiration: "2025-03",
+				Token:      "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
 			},
 		),
 	}
-
-	operationSecurity := operations.GuestPaymentsInitializeSecurity{
-		APIKey: "<YOUR_API_KEY_HERE>",
-	}
-
 	ctx := context.Background()
-	res, err := s.Payments.Guest.Initialize(ctx, operationSecurity, xPublishableKey, guestPaymentInitializeRequest)
+	res, err := s.Payments.Guest.Initialize(ctx, security, xPublishableKey, guestPaymentInitializeRequest)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -17,7 +17,6 @@ const (
 func (e RefreshTokenRequestGrantType) ToPointer() *RefreshTokenRequestGrantType {
 	return &e
 }
-
 func (e *RefreshTokenRequestGrantType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -43,7 +42,6 @@ const (
 func (e RefreshTokenRequestScope) ToPointer() *RefreshTokenRequestScope {
 	return &e
 }
-
 func (e *RefreshTokenRequestScope) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

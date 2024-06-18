@@ -1,29 +1,34 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 52a4491de6268327ef41bf826024fc20
+  docChecksum: 7047ae15e2e9b3b293d2c398872c8ee7
   docVersion: 3.0.3
-  speakeasyVersion: 1.210.0
-  generationVersion: 2.281.2
-  releaseVersion: 0.4.2
-  configChecksum: 89875697fc2f8eb01e1ee529e074051d
+  speakeasyVersion: 1.308.2
+  generationVersion: 2.342.6
+  releaseVersion: 1.0.0
+  configChecksum: 6e2a4a87eeb07561a27607b0d43ebce9
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
   published: true
 features:
   go:
-    core: 3.4.4
+    additionalDependencies: 0.1.0
+    core: 3.4.11
+    errorUnions: 0.1.0
     flattening: 2.81.1
-    globalSecurity: 2.82.8
+    globalSecurity: 2.82.9
+    globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
     ignores: 2.81.1
     inputOutputModels: 2.83.0
+    intellisenseMarkdownSupport: 0.1.0
     methodSecurity: 2.82.2
-    nameOverrides: 2.81.1
-    responseFormat: 0.1.0
-    unions: 2.85.4
+    nameOverrides: 2.81.2
+    responseFormat: 0.1.2
+    sdkHooks: 0.1.0
+    unions: 2.85.8
 generatedFiles:
   - account.go
   - guest.go
@@ -32,7 +37,7 @@ generatedFiles:
   - oauth.go
   - orders.go
   - testing.go
-  - bolttypescriptsdk.go
+  - boltsdk.go
   - go.mod
   - models/sdkerrors/sdkerror.go
   - types/bigint.go
@@ -83,7 +88,7 @@ generatedFiles:
   - /models/components/paymentmethodklarnaaccountoutput.go
   - /models/components/paymentmethodklarnapaynowoutput.go
   - /models/components/addresslisting.go
-  - /models/components/error.go
+  - /models/components/genericerror.go
   - /models/components/fielderror.go
   - /models/components/addresslistinginput.go
   - /models/components/creditcarderror.go
@@ -199,8 +204,8 @@ generatedFiles:
   - docs/models/components/paymentmethodklarnapaynowtag.md
   - docs/models/components/paymentmethodklarnapaynowoutput.md
   - docs/models/components/addresslisting.md
-  - docs/models/components/errortag.md
-  - docs/models/components/error.md
+  - docs/models/components/genericerrortag.md
+  - docs/models/components/genericerror.md
   - docs/models/components/fielderrortag.md
   - docs/models/components/fielderror.md
   - docs/models/components/addresslistinginput.md
@@ -276,7 +281,7 @@ generatedFiles:
   - docs/models/sdkerrors/testingaccountcreateresponsebody.md
   - docs/models/sdkerrors/testingaccountphonegetresponsebody.md
   - docs/models/sdkerrors/testingcreditcardgetresponsebody.md
-  - docs/sdks/bolttypescriptsdk/README.md
+  - docs/sdks/boltsdk/README.md
   - docs/sdks/account/README.md
   - docs/sdks/payments/README.md
   - docs/sdks/guest/README.md

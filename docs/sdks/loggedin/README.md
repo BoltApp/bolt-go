@@ -28,11 +28,9 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var xPublishableKey string = "<value>"
 
     paymentInitializeRequest := components.PaymentInitializeRequest{
@@ -40,33 +38,61 @@ func main() {
             OrderReference: "order_100",
             OrderDescription: boltgo.String("Order #1234567890"),
             DisplayID: boltgo.String("215614191"),
-            Total: components.Amount{
-                Currency: components.CurrencyUsd,
-                Units: 900,
-            },
-            Tax: components.Amount{
-                Currency: components.CurrencyUsd,
-                Units: 900,
-            },
-        },
-        PaymentMethod: components.CreatePaymentMethodExtendedPaymentMethodCreditCardInput(
-                components.PaymentMethodCreditCardInput{
-                    DotTag: components.DotTagCreditCard,
-                    BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
+            Shipments: []components.CartShipment{
+                components.CartShipment{
+                    Address: components.CreateAddressReferenceInputAddressReferenceID(
                             components.AddressReferenceID{
                                 DotTag: components.AddressReferenceIDTagID,
                                 ID: "D4g3h5tBuVYK9",
                             },
                     ),
-                    Network: components.CreditCardNetworkVisa,
-                    Bin: "411111",
-                    Last4: "1004",
-                    Expiration: "2029-03",
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
+                    Cost: &components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 10000,
+                    },
+                    Carrier: boltgo.String("FedEx"),
+                },
+            },
+            Discounts: []components.CartDiscount{
+                components.CartDiscount{
+                    Amount: components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 10000,
+                    },
+                    Code: boltgo.String("SUMMER10DISCOUNT"),
+                    DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
+                },
+            },
+            Items: []components.CartItem{
+                components.CartItem{
+                    Name: "Bolt Swag Bag",
+                    Reference: "item_100",
+                    Description: boltgo.String("Large tote with Bolt logo."),
+                    TotalAmount: components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 9000,
+                    },
+                    UnitPrice: 1000,
+                    Quantity: 9,
+                    ImageURL: boltgo.String("https://www.example.com/products/123456/images/1.png"),
+                },
+            },
+            Total: components.Amount{
+                Currency: components.CurrencyUsd,
+                Units: 9000,
+            },
+            Tax: components.Amount{
+                Currency: components.CurrencyUsd,
+                Units: 100,
+            },
+        },
+        PaymentMethod: components.CreatePaymentMethodExtendedPaymentMethodReference(
+                components.PaymentMethodReference{
+                    DotTag: components.PaymentMethodReferenceTagID,
+                    ID: "X5h6j8uLpVGK",
                 },
         ),
     }
-
     ctx := context.Background()
     res, err := s.Payments.LoggedIn.Initialize(ctx, xPublishableKey, paymentInitializeRequest)
     if err != nil {
@@ -115,17 +141,77 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var id string = "iKv7t5bgt1gg"
 
     var xPublishableKey string = "<value>"
 
-    paymentUpdateRequest := components.PaymentUpdateRequest{}
-
+    paymentUpdateRequest := components.PaymentUpdateRequest{
+        Cart: &components.Cart{
+            OrderReference: "order_100",
+            OrderDescription: boltgo.String("Order #1234567890"),
+            DisplayID: boltgo.String("215614191"),
+            Shipments: []components.CartShipment{
+                components.CartShipment{
+                    Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+                            components.AddressReferenceExplicitInput{
+                                DotTag: components.AddressReferenceExplicitTagExplicit,
+                                FirstName: "Alice",
+                                LastName: "Baker",
+                                Company: boltgo.String("ACME Corporation"),
+                                StreetAddress1: "535 Mission St, Ste 1401",
+                                StreetAddress2: boltgo.String("c/o Shipping Department"),
+                                Locality: "San Francisco",
+                                PostalCode: "94105",
+                                Region: boltgo.String("CA"),
+                                CountryCode: components.CountryCodeUs,
+                                Email: boltgo.String("alice@example.com"),
+                                Phone: boltgo.String("+14155550199"),
+                            },
+                    ),
+                    Cost: &components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 900,
+                    },
+                    Carrier: boltgo.String("FedEx"),
+                },
+            },
+            Discounts: []components.CartDiscount{
+                components.CartDiscount{
+                    Amount: components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 900,
+                    },
+                    Code: boltgo.String("SUMMER10DISCOUNT"),
+                    DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
+                },
+            },
+            Items: []components.CartItem{
+                components.CartItem{
+                    Name: "Bolt Swag Bag",
+                    Reference: "item_100",
+                    Description: boltgo.String("Large tote with Bolt logo."),
+                    TotalAmount: components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 900,
+                    },
+                    UnitPrice: 1000,
+                    Quantity: 1,
+                    ImageURL: boltgo.String("https://www.example.com/products/123456/images/1.png"),
+                },
+            },
+            Total: components.Amount{
+                Currency: components.CurrencyUsd,
+                Units: 900,
+            },
+            Tax: components.Amount{
+                Currency: components.CurrencyUsd,
+                Units: 900,
+            },
+        },
+    }
     ctx := context.Background()
     res, err := s.Payments.LoggedIn.Update(ctx, id, xPublishableKey, paymentUpdateRequest)
     if err != nil {
@@ -175,11 +261,9 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var id string = "iKv7t5bgt1gg"
 
     var xPublishableKey string = "<value>"
@@ -188,7 +272,6 @@ func main() {
         DotTag: components.PaymentActionRequestTagFinalize,
         RedirectResult: boltgo.String("eyJ0cmFuc"),
     }
-
     ctx := context.Background()
     res, err := s.Payments.LoggedIn.PerformAction(ctx, id, xPublishableKey, paymentActionRequest)
     if err != nil {

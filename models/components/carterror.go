@@ -18,7 +18,6 @@ const (
 func (e CartErrorTag) ToPointer() *CartErrorTag {
 	return &e
 }
-
 func (e *CartErrorTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

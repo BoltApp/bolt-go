@@ -16,7 +16,6 @@ const (
 func (e PaymentMethodKlarnaAccountTag) ToPointer() *PaymentMethodKlarnaAccountTag {
 	return &e
 }
-
 func (e *PaymentMethodKlarnaAccountTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

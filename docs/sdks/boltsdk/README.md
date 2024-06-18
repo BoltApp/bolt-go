@@ -1,4 +1,4 @@
-# BoltTypescriptSDK
+# BoltSDK
 
 
 ## Overview

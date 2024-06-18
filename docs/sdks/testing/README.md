@@ -25,15 +25,17 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-
+    security := operations.TestingAccountCreateSecurity{
+            APIKey: "<YOUR_API_KEY_HERE>",
+        }
 
     var xPublishableKey string = "<value>"
 
@@ -44,13 +46,8 @@ func main() {
         HasAddress: boltgo.Bool(true),
         HasCreditCard: boltgo.Bool(true),
     }
-
-    operationSecurity := operations.TestingAccountCreateSecurity{
-            APIKey: "<YOUR_API_KEY_HERE>",
-        }
-
     ctx := context.Background()
-    res, err := s.Testing.CreateAccount(ctx, operationSecurity, xPublishableKey, accountTestCreationData)
+    res, err := s.Testing.CreateAccount(ctx, security, xPublishableKey, accountTestCreationData)
     if err != nil {
         log.Fatal(err)
     }
@@ -97,16 +94,13 @@ import(
 
 func main() {
     s := boltgo.New()
-
-
-    var xPublishableKey string = "<value>"
-
-    operationSecurity := operations.TestingAccountPhoneGetSecurity{
+    security := operations.TestingAccountPhoneGetSecurity{
             APIKey: "<YOUR_API_KEY_HERE>",
         }
 
+    var xPublishableKey string = "<value>"
     ctx := context.Background()
-    res, err := s.Testing.TestingAccountPhoneGet(ctx, operationSecurity, xPublishableKey)
+    res, err := s.Testing.TestingAccountPhoneGet(ctx, security, xPublishableKey)
     if err != nil {
         log.Fatal(err)
     }
@@ -152,16 +146,15 @@ import(
 
 func main() {
     s := boltgo.New()
+    request := operations.TestingCreditCardGetRequestBody{
+        Type: operations.TypeApprove,
+    }
 
-
-    operationSecurity := operations.TestingCreditCardGetSecurity{
+    security := operations.TestingCreditCardGetSecurity{
             APIKey: "<YOUR_API_KEY_HERE>",
         }
-
     ctx := context.Background()
-    res, err := s.Testing.GetCreditCard(ctx, operations.TestingCreditCardGetRequestBody{
-        Type: operations.TypeApprove,
-    }, operationSecurity)
+    res, err := s.Testing.GetCreditCard(ctx, request, security)
     if err != nil {
         log.Fatal(err)
     }

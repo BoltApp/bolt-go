@@ -16,7 +16,6 @@ const (
 func (e PaymentResponseFinalizedTag) ToPointer() *PaymentResponseFinalizedTag {
 	return &e
 }
-
 func (e *PaymentResponseFinalizedTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -40,7 +39,6 @@ const (
 func (e Status) ToPointer() *Status {
 	return &e
 }
-
 func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
