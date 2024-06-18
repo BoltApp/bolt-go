@@ -1,4 +1,4 @@
-# github.com/BoltApp/bolt-go
+# Bolt Go SDK
 
 <div align="left">
     <a href="https://opensource.org/licenses/MIT">
