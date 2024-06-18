@@ -1,11 +1,11 @@
 workflowVersion: 1.0.0
 sources:
-    my-go-source:
+    bolt-go-api:
         inputs:
             - location: https://api-docs.bolt.com/api.bundle.yaml
         overlays:
-            - location: ./default_error_overlay.yaml
+            - location: ./generic_error_overlay.yaml
 targets:
-    bolt-go:
+    bolt-go-sdk:
         target: go
-        source: my-go-source
+        source: bolt-go-api
