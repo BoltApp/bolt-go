@@ -1,18 +1,19 @@
-speakeasyVersion: 1.308.2
+speakeasyVersion: 1.314.2
 sources:
     bolt-go-api:
         sourceNamespace: bolt-go-api
-        sourceRevisionDigest: sha256:8f2cfc6911f904b99b052bb2441efe76ab25e1e0e14d0f70b583d4eefc026c7f
-        sourceBlobDigest: sha256:df30046f99874e7f8417e9ca4944298b9ba72604804c2b786b6cc1deb571f2d9
+        sourceRevisionDigest: sha256:f7053c88ab9eb348d3e811168131e94d5af4f69c8f6937e81ce524abb70d8740
+        sourceBlobDigest: sha256:f1b463a896d45555e593ff7bd44d3b0c0563e6241543ffe8c8893d9e04e97397
         tags:
             - latest
+            - master
 targets:
     bolt-go-sdk:
         source: bolt-go-api
         sourceNamespace: bolt-go-api
-        sourceRevisionDigest: sha256:8f2cfc6911f904b99b052bb2441efe76ab25e1e0e14d0f70b583d4eefc026c7f
-        sourceBlobDigest: sha256:df30046f99874e7f8417e9ca4944298b9ba72604804c2b786b6cc1deb571f2d9
-        outLocation: /Users/winonaschroeer-smith/Code/bolt-go
+        sourceRevisionDigest: sha256:f7053c88ab9eb348d3e811168131e94d5af4f69c8f6937e81ce524abb70d8740
+        sourceBlobDigest: sha256:f1b463a896d45555e593ff7bd44d3b0c0563e6241543ffe8c8893d9e04e97397
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

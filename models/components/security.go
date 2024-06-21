@@ -3,15 +3,8 @@
 package components
 
 type Security struct {
-	Oauth  *string `security:"scheme,type=oauth2,name=Authorization"`
 	APIKey *string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *Security) GetOauth() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Oauth
+	Oauth  *string `security:"scheme,type=oauth2,name=Authorization"`
 }
 
 func (o *Security) GetAPIKey() *string {
@@ -19,4 +12,11 @@ func (o *Security) GetAPIKey() *string {
 		return nil
 	}
 	return o.APIKey
+}
+
+func (o *Security) GetOauth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Oauth
 }

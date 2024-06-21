@@ -3,18 +3,6 @@
 
 ## Supported Types
 
-### PaymentMethodCreditCard
-
-```go
-paymentMethod := components.CreatePaymentMethodCreditCard(components.PaymentMethodCreditCard{/* values here */})
-```
-
-### PaymentMethodPaypalOutput
-
-```go
-paymentMethod := components.CreatePaymentMethodPaypal(components.PaymentMethodPaypalOutput{/* values here */})
-```
-
 ### PaymentMethodAffirmOutput
 
 ```go
@@ -25,6 +13,12 @@ paymentMethod := components.CreatePaymentMethodAffirm(components.PaymentMethodAf
 
 ```go
 paymentMethod := components.CreatePaymentMethodAfterpay(components.PaymentMethodAfterpayOutput{/* values here */})
+```
+
+### PaymentMethodCreditCard
+
+```go
+paymentMethod := components.CreatePaymentMethodCreditCard(components.PaymentMethodCreditCard{/* values here */})
 ```
 
 ### PaymentMethodKlarnaOutput
@@ -43,5 +37,11 @@ paymentMethod := components.CreatePaymentMethodKlarnaAccount(components.PaymentM
 
 ```go
 paymentMethod := components.CreatePaymentMethodKlarnaPaynow(components.PaymentMethodKlarnaPaynowOutput{/* values here */})
+```
+
+### PaymentMethodPaypalOutput
+
+```go
+paymentMethod := components.CreatePaymentMethodPaypal(components.PaymentMethodPaypalOutput{/* values here */})
 ```
 

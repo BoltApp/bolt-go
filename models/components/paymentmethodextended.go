@@ -12,14 +12,14 @@ import (
 type PaymentMethodExtendedType string
 
 const (
-	PaymentMethodExtendedTypeID            PaymentMethodExtendedType = "id"
-	PaymentMethodExtendedTypeCreditCard    PaymentMethodExtendedType = "credit_card"
-	PaymentMethodExtendedTypePaypal        PaymentMethodExtendedType = "paypal"
 	PaymentMethodExtendedTypeAffirm        PaymentMethodExtendedType = "affirm"
 	PaymentMethodExtendedTypeAfterpay      PaymentMethodExtendedType = "afterpay"
+	PaymentMethodExtendedTypeCreditCard    PaymentMethodExtendedType = "credit_card"
+	PaymentMethodExtendedTypeID            PaymentMethodExtendedType = "id"
 	PaymentMethodExtendedTypeKlarna        PaymentMethodExtendedType = "klarna"
 	PaymentMethodExtendedTypeKlarnaAccount PaymentMethodExtendedType = "klarna_account"
 	PaymentMethodExtendedTypeKlarnaPaynow  PaymentMethodExtendedType = "klarna_paynow"
+	PaymentMethodExtendedTypePaypal        PaymentMethodExtendedType = "paypal"
 )
 
 type PaymentMethodExtended struct {
@@ -33,42 +33,6 @@ type PaymentMethodExtended struct {
 	PaymentMethodKlarnaPaynow    *PaymentMethodKlarnaPaynow
 
 	Type PaymentMethodExtendedType
-}
-
-func CreatePaymentMethodExtendedID(id PaymentMethodReference) PaymentMethodExtended {
-	typ := PaymentMethodExtendedTypeID
-
-	typStr := PaymentMethodReferenceTag(typ)
-	id.DotTag = typStr
-
-	return PaymentMethodExtended{
-		PaymentMethodReference: &id,
-		Type:                   typ,
-	}
-}
-
-func CreatePaymentMethodExtendedCreditCard(creditCard PaymentMethodCreditCardInput) PaymentMethodExtended {
-	typ := PaymentMethodExtendedTypeCreditCard
-
-	typStr := DotTag(typ)
-	creditCard.DotTag = typStr
-
-	return PaymentMethodExtended{
-		PaymentMethodCreditCardInput: &creditCard,
-		Type:                         typ,
-	}
-}
-
-func CreatePaymentMethodExtendedPaypal(paypal PaymentMethodPaypal) PaymentMethodExtended {
-	typ := PaymentMethodExtendedTypePaypal
-
-	typStr := PaymentMethodPaypalTag(typ)
-	paypal.DotTag = typStr
-
-	return PaymentMethodExtended{
-		PaymentMethodPaypal: &paypal,
-		Type:                typ,
-	}
 }
 
 func CreatePaymentMethodExtendedAffirm(affirm PaymentMethodAffirm) PaymentMethodExtended {
@@ -92,6 +56,30 @@ func CreatePaymentMethodExtendedAfterpay(afterpay PaymentMethodAfterpay) Payment
 	return PaymentMethodExtended{
 		PaymentMethodAfterpay: &afterpay,
 		Type:                  typ,
+	}
+}
+
+func CreatePaymentMethodExtendedCreditCard(creditCard PaymentMethodCreditCardInput) PaymentMethodExtended {
+	typ := PaymentMethodExtendedTypeCreditCard
+
+	typStr := PaymentMethodCreditCardTag(typ)
+	creditCard.DotTag = typStr
+
+	return PaymentMethodExtended{
+		PaymentMethodCreditCardInput: &creditCard,
+		Type:                         typ,
+	}
+}
+
+func CreatePaymentMethodExtendedID(id PaymentMethodReference) PaymentMethodExtended {
+	typ := PaymentMethodExtendedTypeID
+
+	typStr := PaymentMethodReferenceTag(typ)
+	id.DotTag = typStr
+
+	return PaymentMethodExtended{
+		PaymentMethodReference: &id,
+		Type:                   typ,
 	}
 }
 
@@ -131,6 +119,18 @@ func CreatePaymentMethodExtendedKlarnaPaynow(klarnaPaynow PaymentMethodKlarnaPay
 	}
 }
 
+func CreatePaymentMethodExtendedPaypal(paypal PaymentMethodPaypal) PaymentMethodExtended {
+	typ := PaymentMethodExtendedTypePaypal
+
+	typStr := PaymentMethodPaypalTag(typ)
+	paypal.DotTag = typStr
+
+	return PaymentMethodExtended{
+		PaymentMethodPaypal: &paypal,
+		Type:                typ,
+	}
+}
+
 func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 
 	type discriminator struct {
@@ -143,33 +143,6 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 	}
 
 	switch dis.DotTag {
-	case "id":
-		paymentMethodReference := new(PaymentMethodReference)
-		if err := utils.UnmarshalJSON(data, &paymentMethodReference, "", true, false); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == id) type PaymentMethodReference within PaymentMethodExtended: %w", string(data), err)
-		}
-
-		u.PaymentMethodReference = paymentMethodReference
-		u.Type = PaymentMethodExtendedTypeID
-		return nil
-	case "credit_card":
-		paymentMethodCreditCardInput := new(PaymentMethodCreditCardInput)
-		if err := utils.UnmarshalJSON(data, &paymentMethodCreditCardInput, "", true, false); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == credit_card) type PaymentMethodCreditCardInput within PaymentMethodExtended: %w", string(data), err)
-		}
-
-		u.PaymentMethodCreditCardInput = paymentMethodCreditCardInput
-		u.Type = PaymentMethodExtendedTypeCreditCard
-		return nil
-	case "paypal":
-		paymentMethodPaypal := new(PaymentMethodPaypal)
-		if err := utils.UnmarshalJSON(data, &paymentMethodPaypal, "", true, false); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == paypal) type PaymentMethodPaypal within PaymentMethodExtended: %w", string(data), err)
-		}
-
-		u.PaymentMethodPaypal = paymentMethodPaypal
-		u.Type = PaymentMethodExtendedTypePaypal
-		return nil
 	case "affirm":
 		paymentMethodAffirm := new(PaymentMethodAffirm)
 		if err := utils.UnmarshalJSON(data, &paymentMethodAffirm, "", true, false); err != nil {
@@ -187,6 +160,24 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 
 		u.PaymentMethodAfterpay = paymentMethodAfterpay
 		u.Type = PaymentMethodExtendedTypeAfterpay
+		return nil
+	case "credit_card":
+		paymentMethodCreditCardInput := new(PaymentMethodCreditCardInput)
+		if err := utils.UnmarshalJSON(data, &paymentMethodCreditCardInput, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == credit_card) type PaymentMethodCreditCardInput within PaymentMethodExtended: %w", string(data), err)
+		}
+
+		u.PaymentMethodCreditCardInput = paymentMethodCreditCardInput
+		u.Type = PaymentMethodExtendedTypeCreditCard
+		return nil
+	case "id":
+		paymentMethodReference := new(PaymentMethodReference)
+		if err := utils.UnmarshalJSON(data, &paymentMethodReference, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == id) type PaymentMethodReference within PaymentMethodExtended: %w", string(data), err)
+		}
+
+		u.PaymentMethodReference = paymentMethodReference
+		u.Type = PaymentMethodExtendedTypeID
 		return nil
 	case "klarna":
 		paymentMethodKlarna := new(PaymentMethodKlarna)
@@ -214,6 +205,15 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 
 		u.PaymentMethodKlarnaPaynow = paymentMethodKlarnaPaynow
 		u.Type = PaymentMethodExtendedTypeKlarnaPaynow
+		return nil
+	case "paypal":
+		paymentMethodPaypal := new(PaymentMethodPaypal)
+		if err := utils.UnmarshalJSON(data, &paymentMethodPaypal, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == paypal) type PaymentMethodPaypal within PaymentMethodExtended: %w", string(data), err)
+		}
+
+		u.PaymentMethodPaypal = paymentMethodPaypal
+		u.Type = PaymentMethodExtendedTypePaypal
 		return nil
 	}
 

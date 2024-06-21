@@ -68,10 +68,10 @@ func (e *PhoneState) UnmarshalJSON(data []byte) error {
 type AccountTestCreationDataOutput struct {
 	Email      string     `json:"email"`
 	EmailState EmailState `json:"email_state"`
+	OauthCode  string     `json:"oauth_code"`
+	OtpCode    string     `json:"otp_code"`
 	Phone      string     `json:"phone"`
 	PhoneState PhoneState `json:"phone_state"`
-	OtpCode    string     `json:"otp_code"`
-	OauthCode  string     `json:"oauth_code"`
 }
 
 func (o *AccountTestCreationDataOutput) GetEmail() string {
@@ -88,6 +88,20 @@ func (o *AccountTestCreationDataOutput) GetEmailState() EmailState {
 	return o.EmailState
 }
 
+func (o *AccountTestCreationDataOutput) GetOauthCode() string {
+	if o == nil {
+		return ""
+	}
+	return o.OauthCode
+}
+
+func (o *AccountTestCreationDataOutput) GetOtpCode() string {
+	if o == nil {
+		return ""
+	}
+	return o.OtpCode
+}
+
 func (o *AccountTestCreationDataOutput) GetPhone() string {
 	if o == nil {
 		return ""
@@ -102,26 +116,12 @@ func (o *AccountTestCreationDataOutput) GetPhoneState() PhoneState {
 	return o.PhoneState
 }
 
-func (o *AccountTestCreationDataOutput) GetOtpCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.OtpCode
-}
-
-func (o *AccountTestCreationDataOutput) GetOauthCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.OauthCode
-}
-
 type AccountTestCreationData struct {
 	EmailState    EmailState `json:"email_state"`
-	PhoneState    PhoneState `json:"phone_state"`
-	IsMigrated    *bool      `json:"is_migrated,omitempty"`
 	HasAddress    *bool      `json:"has_address,omitempty"`
 	HasCreditCard *bool      `json:"has_credit_card,omitempty"`
+	IsMigrated    *bool      `json:"is_migrated,omitempty"`
+	PhoneState    PhoneState `json:"phone_state"`
 }
 
 func (o *AccountTestCreationData) GetEmailState() EmailState {
@@ -129,20 +129,6 @@ func (o *AccountTestCreationData) GetEmailState() EmailState {
 		return EmailState("")
 	}
 	return o.EmailState
-}
-
-func (o *AccountTestCreationData) GetPhoneState() PhoneState {
-	if o == nil {
-		return PhoneState("")
-	}
-	return o.PhoneState
-}
-
-func (o *AccountTestCreationData) GetIsMigrated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.IsMigrated
 }
 
 func (o *AccountTestCreationData) GetHasAddress() *bool {
@@ -157,4 +143,18 @@ func (o *AccountTestCreationData) GetHasCreditCard() *bool {
 		return nil
 	}
 	return o.HasCreditCard
+}
+
+func (o *AccountTestCreationData) GetIsMigrated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsMigrated
+}
+
+func (o *AccountTestCreationData) GetPhoneState() PhoneState {
+	if o == nil {
+		return PhoneState("")
+	}
+	return o.PhoneState
 }

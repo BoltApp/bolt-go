@@ -61,10 +61,10 @@ func (e *Scope) UnmarshalJSON(data []byte) error {
 }
 
 type AuthorizationCodeRequest struct {
-	// The type of OAuth 2.0 grant being utilized.
-	GrantType GrantType `form:"name=grant_type"`
 	// Fetched value using OTP value from the Authorization Modal.
 	Code string `form:"name=code"`
+	// The type of OAuth 2.0 grant being utilized.
+	GrantType GrantType `form:"name=grant_type"`
 	// The OAuth client ID, which corresponds to the merchant publishable key, which can be retrieved
 	// in the Merchant Dashboard.
 	//
@@ -82,18 +82,18 @@ type AuthorizationCodeRequest struct {
 	State *string `form:"name=state"`
 }
 
-func (o *AuthorizationCodeRequest) GetGrantType() GrantType {
-	if o == nil {
-		return GrantType("")
-	}
-	return o.GrantType
-}
-
 func (o *AuthorizationCodeRequest) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
+}
+
+func (o *AuthorizationCodeRequest) GetGrantType() GrantType {
+	if o == nil {
+		return GrantType("")
+	}
+	return o.GrantType
 }
 
 func (o *AuthorizationCodeRequest) GetClientID() string {

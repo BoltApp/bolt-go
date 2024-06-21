@@ -11,8 +11,8 @@ you can add or remove addresses and payment information.
 
 * [GetDetails](#getdetails) - Retrieve account details
 * [AddAddress](#addaddress) - Add an address
-* [UpdateAddress](#updateaddress) - Edit an existing address
 * [DeleteAddress](#deleteaddress) - Delete an existing address
+* [UpdateAddress](#updateaddress) - Edit an existing address
 * [AddPaymentMethod](#addpaymentmethod) - Add a payment method to a shopper's Bolt account Wallet.
 * [DeletePaymentMethod](#deletepaymentmethod) - Delete an existing payment method
 
@@ -35,7 +35,7 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
     var xPublishableKey string = "<value>"
@@ -85,23 +85,23 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
     var xPublishableKey string = "<value>"
 
     addressListing := components.AddressListingInput{
-        FirstName: "Alice",
-        LastName: "Baker",
         Company: boltgo.String("ACME Corporation"),
-        StreetAddress1: "535 Mission St, Ste 1401",
-        StreetAddress2: boltgo.String("c/o Shipping Department"),
-        Locality: "San Francisco",
-        PostalCode: "94105",
-        Region: boltgo.String("CA"),
         CountryCode: components.CountryCodeUs,
         Email: boltgo.String("alice@example.com"),
+        FirstName: "Alice",
+        LastName: "Baker",
+        Locality: "San Francisco",
         Phone: boltgo.String("+14155550199"),
+        PostalCode: "94105",
+        Region: boltgo.String("CA"),
+        StreetAddress1: "535 Mission St, Ste 1401",
+        StreetAddress2: boltgo.String("c/o Shipping Department"),
     }
     ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, xPublishableKey, addressListing)
@@ -131,77 +131,6 @@ func main() {
 | sdkerrors.AccountAddressCreateResponseBody | 4XX                                        | application/json                           |
 | sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
 
-## UpdateAddress
-
-Edit an existing address on the shopper's account. This does not edit addresses
-that are already associated with other resources, such as transactions or
-shipments.
-
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"github.com/BoltApp/bolt-go/models/components"
-	boltgo "github.com/BoltApp/bolt-go"
-	"context"
-	"log"
-)
-
-func main() {
-    s := boltgo.New(
-        boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
-        }),
-    )
-    var id string = "D4g3h5tBuVYK9"
-
-    var xPublishableKey string = "<value>"
-
-    addressListing := components.AddressListingInput{
-        FirstName: "Alice",
-        LastName: "Baker",
-        Company: boltgo.String("ACME Corporation"),
-        StreetAddress1: "535 Mission St, Ste 1401",
-        StreetAddress2: boltgo.String("c/o Shipping Department"),
-        Locality: "San Francisco",
-        PostalCode: "94105",
-        Region: boltgo.String("CA"),
-        CountryCode: components.CountryCodeUs,
-        Email: boltgo.String("alice@example.com"),
-        Phone: boltgo.String("+14155550199"),
-    }
-    ctx := context.Background()
-    res, err := s.Account.UpdateAddress(ctx, id, xPublishableKey, addressListing)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.AddressListing != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | The ID of the address to edit                                                    | D4g3h5tBuVYK9                                                                    |
-| `xPublishableKey`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | The publicly viewable identifier used to identify a merchant division.           |                                                                                  |
-| `addressListing`                                                                 | [components.AddressListingInput](../../models/components/addresslistinginput.md) | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
-
-
-### Response
-
-**[*operations.AccountAddressEditResponse](../../models/operations/accountaddresseditresponse.md), error**
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.AccountAddressEditResponseBody | 4XX                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
-
 ## DeleteAddress
 
 Delete an existing address. Deleting an address does not invalidate transactions or
@@ -223,7 +152,7 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
     var id string = "D4g3h5tBuVYK9"
@@ -257,6 +186,77 @@ func main() {
 | sdkerrors.AccountAddressDeleteResponseBody | 4XX                                        | application/json                           |
 | sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
 
+## UpdateAddress
+
+Edit an existing address on the shopper's account. This does not edit addresses
+that are already associated with other resources, such as transactions or
+shipments.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/BoltApp/bolt-go/models/components"
+	boltgo "github.com/BoltApp/bolt-go"
+	"context"
+	"log"
+)
+
+func main() {
+    s := boltgo.New(
+        boltgo.WithSecurity(components.Security{
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
+        }),
+    )
+    var id string = "D4g3h5tBuVYK9"
+
+    var xPublishableKey string = "<value>"
+
+    addressListing := components.AddressListingInput{
+        Company: boltgo.String("ACME Corporation"),
+        CountryCode: components.CountryCodeUs,
+        Email: boltgo.String("alice@example.com"),
+        FirstName: "Alice",
+        LastName: "Baker",
+        Locality: "San Francisco",
+        Phone: boltgo.String("+14155550199"),
+        PostalCode: "94105",
+        Region: boltgo.String("CA"),
+        StreetAddress1: "535 Mission St, Ste 1401",
+        StreetAddress2: boltgo.String("c/o Shipping Department"),
+    }
+    ctx := context.Background()
+    res, err := s.Account.UpdateAddress(ctx, id, xPublishableKey, addressListing)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.AddressListing != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | The ID of the address to edit                                                    | D4g3h5tBuVYK9                                                                    |
+| `xPublishableKey`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | The publicly viewable identifier used to identify a merchant division.           |                                                                                  |
+| `addressListing`                                                                 | [components.AddressListingInput](../../models/components/addresslistinginput.md) | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+
+
+### Response
+
+**[*operations.AccountAddressEditResponse](../../models/operations/accountaddresseditresponse.md), error**
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| sdkerrors.AccountAddressEditResponseBody | 4XX                                      | application/json                         |
+| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+
 ## AddPaymentMethod
 
 Add a payment method to a shopper's Bolt account Wallet. For security purposes, this request must come from
@@ -280,25 +280,15 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
     var xPublishableKey string = "<value>"
 
-    var paymentMethod components.PaymentMethodInput = components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
-            components.PaymentMethodCreditCardInput{
-                DotTag: components.DotTagCreditCard,
-                BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
-                        components.AddressReferenceID{
-                            DotTag: components.AddressReferenceIDTagID,
-                            ID: "D4g3h5tBuVYK9",
-                        },
-                ),
-                Network: components.CreditCardNetworkVisa,
-                Bin: "411111",
-                Last4: "1004",
-                Expiration: "2025-03",
-                Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
+    var paymentMethod components.PaymentMethodInput = components.CreatePaymentMethodInputPaymentMethodAffirm(
+            components.PaymentMethodAffirm{
+                DotTag: components.PaymentMethodAffirmTagAffirm,
+                ReturnURL: "www.example.com/handle_affirm_success",
             },
     )
     ctx := context.Background()
@@ -350,7 +340,7 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
     var id string = "D4g3h5tBuVYK9"

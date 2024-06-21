@@ -35,12 +35,12 @@ func (e *FieldErrorTag) UnmarshalJSON(data []byte) error {
 type FieldError struct {
 	// The type of error returned
 	DotTag FieldErrorTag `json:".tag"`
+	// The field (in its hierarchical form) that is failing validation.
+	Field string `json:"field"`
 	// A human-readable error message, which might include information specific to
 	// the request that was made.
 	//
 	Message string `json:"message"`
-	// The field (in its hierarchical form) that is failing validation.
-	Field string `json:"field"`
 }
 
 func (o *FieldError) GetDotTag() FieldErrorTag {
@@ -50,16 +50,16 @@ func (o *FieldError) GetDotTag() FieldErrorTag {
 	return o.DotTag
 }
 
-func (o *FieldError) GetMessage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Message
-}
-
 func (o *FieldError) GetField() string {
 	if o == nil {
 		return ""
 	}
 	return o.Field
+}
+
+func (o *FieldError) GetMessage() string {
+	if o == nil {
+		return ""
+	}
+	return o.Message
 }

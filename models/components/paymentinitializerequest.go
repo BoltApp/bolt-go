@@ -21,24 +21,20 @@ func (o *PaymentInitializeRequest) GetPaymentMethod() PaymentMethodExtended {
 	return o.PaymentMethod
 }
 
-func (o *PaymentInitializeRequest) GetPaymentMethodID() *PaymentMethodReference {
-	return o.GetPaymentMethod().PaymentMethodReference
-}
-
-func (o *PaymentInitializeRequest) GetPaymentMethodCreditCard() *PaymentMethodCreditCardInput {
-	return o.GetPaymentMethod().PaymentMethodCreditCardInput
-}
-
-func (o *PaymentInitializeRequest) GetPaymentMethodPaypal() *PaymentMethodPaypal {
-	return o.GetPaymentMethod().PaymentMethodPaypal
-}
-
 func (o *PaymentInitializeRequest) GetPaymentMethodAffirm() *PaymentMethodAffirm {
 	return o.GetPaymentMethod().PaymentMethodAffirm
 }
 
 func (o *PaymentInitializeRequest) GetPaymentMethodAfterpay() *PaymentMethodAfterpay {
 	return o.GetPaymentMethod().PaymentMethodAfterpay
+}
+
+func (o *PaymentInitializeRequest) GetPaymentMethodCreditCard() *PaymentMethodCreditCardInput {
+	return o.GetPaymentMethod().PaymentMethodCreditCardInput
+}
+
+func (o *PaymentInitializeRequest) GetPaymentMethodID() *PaymentMethodReference {
+	return o.GetPaymentMethod().PaymentMethodReference
 }
 
 func (o *PaymentInitializeRequest) GetPaymentMethodKlarna() *PaymentMethodKlarna {
@@ -51,4 +47,8 @@ func (o *PaymentInitializeRequest) GetPaymentMethodKlarnaAccount() *PaymentMetho
 
 func (o *PaymentInitializeRequest) GetPaymentMethodKlarnaPaynow() *PaymentMethodKlarnaPaynow {
 	return o.GetPaymentMethod().PaymentMethodKlarnaPaynow
+}
+
+func (o *PaymentInitializeRequest) GetPaymentMethodPaypal() *PaymentMethodPaypal {
+	return o.GetPaymentMethod().PaymentMethodPaypal
 }

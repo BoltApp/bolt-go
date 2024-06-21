@@ -3,16 +3,9 @@
 package components
 
 type GuestPaymentInitializeRequest struct {
-	Profile       ProfileCreationData `json:"profile"`
 	Cart          Cart                `json:"cart"`
 	PaymentMethod PaymentMethodInput  `json:"payment_method"`
-}
-
-func (o *GuestPaymentInitializeRequest) GetProfile() ProfileCreationData {
-	if o == nil {
-		return ProfileCreationData{}
-	}
-	return o.Profile
+	Profile       ProfileCreationData `json:"profile"`
 }
 
 func (o *GuestPaymentInitializeRequest) GetCart() Cart {
@@ -29,20 +22,16 @@ func (o *GuestPaymentInitializeRequest) GetPaymentMethod() PaymentMethodInput {
 	return o.PaymentMethod
 }
 
-func (o *GuestPaymentInitializeRequest) GetPaymentMethodCreditCard() *PaymentMethodCreditCardInput {
-	return o.GetPaymentMethod().PaymentMethodCreditCardInput
-}
-
-func (o *GuestPaymentInitializeRequest) GetPaymentMethodPaypal() *PaymentMethodPaypal {
-	return o.GetPaymentMethod().PaymentMethodPaypal
-}
-
 func (o *GuestPaymentInitializeRequest) GetPaymentMethodAffirm() *PaymentMethodAffirm {
 	return o.GetPaymentMethod().PaymentMethodAffirm
 }
 
 func (o *GuestPaymentInitializeRequest) GetPaymentMethodAfterpay() *PaymentMethodAfterpay {
 	return o.GetPaymentMethod().PaymentMethodAfterpay
+}
+
+func (o *GuestPaymentInitializeRequest) GetPaymentMethodCreditCard() *PaymentMethodCreditCardInput {
+	return o.GetPaymentMethod().PaymentMethodCreditCardInput
 }
 
 func (o *GuestPaymentInitializeRequest) GetPaymentMethodKlarna() *PaymentMethodKlarna {
@@ -55,4 +44,15 @@ func (o *GuestPaymentInitializeRequest) GetPaymentMethodKlarnaAccount() *Payment
 
 func (o *GuestPaymentInitializeRequest) GetPaymentMethodKlarnaPaynow() *PaymentMethodKlarnaPaynow {
 	return o.GetPaymentMethod().PaymentMethodKlarnaPaynow
+}
+
+func (o *GuestPaymentInitializeRequest) GetPaymentMethodPaypal() *PaymentMethodPaypal {
+	return o.GetPaymentMethod().PaymentMethodPaypal
+}
+
+func (o *GuestPaymentInitializeRequest) GetProfile() ProfileCreationData {
+	if o == nil {
+		return ProfileCreationData{}
+	}
+	return o.Profile
 }

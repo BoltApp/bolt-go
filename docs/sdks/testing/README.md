@@ -41,10 +41,10 @@ func main() {
 
     accountTestCreationData := components.AccountTestCreationData{
         EmailState: components.EmailStateUnverified,
-        PhoneState: components.PhoneStateVerified,
-        IsMigrated: boltgo.Bool(true),
         HasAddress: boltgo.Bool(true),
         HasCreditCard: boltgo.Bool(true),
+        IsMigrated: boltgo.Bool(true),
+        PhoneState: components.PhoneStateVerified,
     }
     ctx := context.Background()
     res, err := s.Testing.CreateAccount(ctx, security, xPublishableKey, accountTestCreationData)

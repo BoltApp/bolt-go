@@ -12,7 +12,7 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
 	var xPublishableKey string = "<value>"

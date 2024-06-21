@@ -3,47 +3,19 @@
 package components
 
 type Cart struct {
-	// This value is used by Bolt as an external reference to a given order. This reference must be unique per successful transaction.
-	OrderReference string `json:"order_reference"`
+	Discounts []CartDiscount `json:"discounts,omitempty"`
+	// A shopper-facing identifier corresponding to the order reference associated with this transaction.
+	DisplayID *string    `json:"display_id,omitempty"`
+	Items     []CartItem `json:"items,omitempty"`
 	// Used optionally to pass additional information like order numbers or other IDs as needed.
 	OrderDescription *string `json:"order_description,omitempty"`
-	// A shopper-facing identifier corresponding to the order reference associated with this transaction.
-	DisplayID *string        `json:"display_id,omitempty"`
-	Shipments []CartShipment `json:"shipments,omitempty"`
-	Discounts []CartDiscount `json:"discounts,omitempty"`
-	Items     []CartItem     `json:"items,omitempty"`
-	// A monetary amount, i.e. a base unit amount and a supported currency.
-	Total Amount `json:"total"`
+	// This value is used by Bolt as an external reference to a given order. This reference must be unique per successful transaction.
+	OrderReference string         `json:"order_reference"`
+	Shipments      []CartShipment `json:"shipments,omitempty"`
 	// A monetary amount, i.e. a base unit amount and a supported currency.
 	Tax Amount `json:"tax"`
-}
-
-func (o *Cart) GetOrderReference() string {
-	if o == nil {
-		return ""
-	}
-	return o.OrderReference
-}
-
-func (o *Cart) GetOrderDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OrderDescription
-}
-
-func (o *Cart) GetDisplayID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DisplayID
-}
-
-func (o *Cart) GetShipments() []CartShipment {
-	if o == nil {
-		return nil
-	}
-	return o.Shipments
+	// A monetary amount, i.e. a base unit amount and a supported currency.
+	Total Amount `json:"total"`
 }
 
 func (o *Cart) GetDiscounts() []CartDiscount {
@@ -53,6 +25,13 @@ func (o *Cart) GetDiscounts() []CartDiscount {
 	return o.Discounts
 }
 
+func (o *Cart) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
+}
+
 func (o *Cart) GetItems() []CartItem {
 	if o == nil {
 		return nil
@@ -60,11 +39,25 @@ func (o *Cart) GetItems() []CartItem {
 	return o.Items
 }
 
-func (o *Cart) GetTotal() Amount {
+func (o *Cart) GetOrderDescription() *string {
 	if o == nil {
-		return Amount{}
+		return nil
 	}
-	return o.Total
+	return o.OrderDescription
+}
+
+func (o *Cart) GetOrderReference() string {
+	if o == nil {
+		return ""
+	}
+	return o.OrderReference
+}
+
+func (o *Cart) GetShipments() []CartShipment {
+	if o == nil {
+		return nil
+	}
+	return o.Shipments
 }
 
 func (o *Cart) GetTax() Amount {
@@ -72,4 +65,11 @@ func (o *Cart) GetTax() Amount {
 		return Amount{}
 	}
 	return o.Tax
+}
+
+func (o *Cart) GetTotal() Amount {
+	if o == nil {
+		return Amount{}
+	}
+	return o.Total
 }

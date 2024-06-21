@@ -35,32 +35,7 @@ func main() {
     var xPublishableKey string = "<value>"
 
     guestPaymentInitializeRequest := components.GuestPaymentInitializeRequest{
-        Profile: components.ProfileCreationData{
-            CreateAccount: true,
-            FirstName: "Alice",
-            LastName: "Baker",
-            Email: "alice@example.com",
-            Phone: boltgo.String("+14155550199"),
-        },
         Cart: components.Cart{
-            OrderReference: "order_100",
-            OrderDescription: boltgo.String("Order #1234567890"),
-            DisplayID: boltgo.String("215614191"),
-            Shipments: []components.CartShipment{
-                components.CartShipment{
-                    Address: components.CreateAddressReferenceInputAddressReferenceID(
-                            components.AddressReferenceID{
-                                DotTag: components.AddressReferenceIDTagID,
-                                ID: "D4g3h5tBuVYK9",
-                            },
-                    ),
-                    Cost: &components.Amount{
-                        Currency: components.CurrencyUsd,
-                        Units: 10000,
-                    },
-                    Carrier: boltgo.String("FedEx"),
-                },
-            },
             Discounts: []components.CartDiscount{
                 components.CartDiscount{
                     Amount: components.Amount{
@@ -71,45 +46,70 @@ func main() {
                     DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
                 },
             },
+            DisplayID: boltgo.String("215614191"),
             Items: []components.CartItem{
                 components.CartItem{
-                    Name: "Bolt Swag Bag",
-                    Reference: "item_100",
                     Description: boltgo.String("Large tote with Bolt logo."),
+                    ImageURL: boltgo.String("https://www.example.com/products/123456/images/1.png"),
+                    Name: "Bolt Swag Bag",
+                    Quantity: 9,
+                    Reference: "item_100",
                     TotalAmount: components.Amount{
                         Currency: components.CurrencyUsd,
                         Units: 9000,
                     },
                     UnitPrice: 1000,
-                    Quantity: 9,
-                    ImageURL: boltgo.String("https://www.example.com/products/123456/images/1.png"),
                 },
             },
-            Total: components.Amount{
-                Currency: components.CurrencyUsd,
-                Units: 9000,
+            OrderDescription: boltgo.String("Order #1234567890"),
+            OrderReference: "order_100",
+            Shipments: []components.CartShipment{
+                components.CartShipment{
+                    Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+                            components.AddressReferenceExplicitInput{
+                                DotTag: components.AddressReferenceExplicitTagExplicit,
+                                Company: boltgo.String("ACME Corporation"),
+                                CountryCode: components.CountryCodeUs,
+                                Email: boltgo.String("alice@example.com"),
+                                FirstName: "Alice",
+                                LastName: "Baker",
+                                Locality: "San Francisco",
+                                Phone: boltgo.String("+14155550199"),
+                                PostalCode: "94105",
+                                Region: boltgo.String("CA"),
+                                StreetAddress1: "535 Mission St, Ste 1401",
+                                StreetAddress2: boltgo.String("c/o Shipping Department"),
+                            },
+                    ),
+                    Carrier: boltgo.String("FedEx"),
+                    Cost: &components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 10000,
+                    },
+                },
             },
             Tax: components.Amount{
                 Currency: components.CurrencyUsd,
                 Units: 100,
             },
+            Total: components.Amount{
+                Currency: components.CurrencyUsd,
+                Units: 9000,
+            },
         },
-        PaymentMethod: components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
-                components.PaymentMethodCreditCardInput{
-                    DotTag: components.DotTagCreditCard,
-                    BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
-                            components.AddressReferenceID{
-                                DotTag: components.AddressReferenceIDTagID,
-                                ID: "D4g3h5tBuVYK9",
-                            },
-                    ),
-                    Network: components.CreditCardNetworkVisa,
-                    Bin: "411111",
-                    Last4: "1004",
-                    Expiration: "2025-03",
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
+        PaymentMethod: components.CreatePaymentMethodInputPaymentMethodAffirm(
+                components.PaymentMethodAffirm{
+                    DotTag: components.PaymentMethodAffirmTagAffirm,
+                    ReturnURL: "www.example.com/handle_affirm_success",
                 },
         ),
+        Profile: components.ProfileCreationData{
+            CreateAccount: true,
+            Email: "alice@example.com",
+            FirstName: "Alice",
+            LastName: "Baker",
+            Phone: boltgo.String("+14155550199"),
+        },
     }
     ctx := context.Background()
     res, err := s.Payments.Guest.Initialize(ctx, security, xPublishableKey, guestPaymentInitializeRequest)
@@ -170,34 +170,6 @@ func main() {
 
     paymentUpdateRequest := components.PaymentUpdateRequest{
         Cart: &components.Cart{
-            OrderReference: "order_100",
-            OrderDescription: boltgo.String("Order #1234567890"),
-            DisplayID: boltgo.String("215614191"),
-            Shipments: []components.CartShipment{
-                components.CartShipment{
-                    Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
-                            components.AddressReferenceExplicitInput{
-                                DotTag: components.AddressReferenceExplicitTagExplicit,
-                                FirstName: "Alice",
-                                LastName: "Baker",
-                                Company: boltgo.String("ACME Corporation"),
-                                StreetAddress1: "535 Mission St, Ste 1401",
-                                StreetAddress2: boltgo.String("c/o Shipping Department"),
-                                Locality: "San Francisco",
-                                PostalCode: "94105",
-                                Region: boltgo.String("CA"),
-                                CountryCode: components.CountryCodeUs,
-                                Email: boltgo.String("alice@example.com"),
-                                Phone: boltgo.String("+14155550199"),
-                            },
-                    ),
-                    Cost: &components.Amount{
-                        Currency: components.CurrencyUsd,
-                        Units: 900,
-                    },
-                    Carrier: boltgo.String("FedEx"),
-                },
-            },
             Discounts: []components.CartDiscount{
                 components.CartDiscount{
                     Amount: components.Amount{
@@ -208,25 +180,43 @@ func main() {
                     DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
                 },
             },
+            DisplayID: boltgo.String("215614191"),
             Items: []components.CartItem{
                 components.CartItem{
-                    Name: "Bolt Swag Bag",
-                    Reference: "item_100",
                     Description: boltgo.String("Large tote with Bolt logo."),
+                    ImageURL: boltgo.String("https://www.example.com/products/123456/images/1.png"),
+                    Name: "Bolt Swag Bag",
+                    Quantity: 1,
+                    Reference: "item_100",
                     TotalAmount: components.Amount{
                         Currency: components.CurrencyUsd,
                         Units: 900,
                     },
                     UnitPrice: 1000,
-                    Quantity: 1,
-                    ImageURL: boltgo.String("https://www.example.com/products/123456/images/1.png"),
                 },
             },
-            Total: components.Amount{
+            OrderDescription: boltgo.String("Order #1234567890"),
+            OrderReference: "order_100",
+            Shipments: []components.CartShipment{
+                components.CartShipment{
+                    Address: components.CreateAddressReferenceInputAddressReferenceID(
+                            components.AddressReferenceID{
+                                DotTag: components.AddressReferenceIDTagID,
+                                ID: "D4g3h5tBuVYK9",
+                            },
+                    ),
+                    Carrier: boltgo.String("FedEx"),
+                    Cost: &components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 900,
+                    },
+                },
+            },
+            Tax: components.Amount{
                 Currency: components.CurrencyUsd,
                 Units: 900,
             },
-            Tax: components.Amount{
+            Total: components.Amount{
                 Currency: components.CurrencyUsd,
                 Units: 900,
             },
