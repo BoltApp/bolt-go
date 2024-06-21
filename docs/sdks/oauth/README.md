@@ -23,16 +23,14 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"context"
 	"github.com/BoltApp/bolt-go/models/components"
+	"context"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-
-    ctx := context.Background()
-    res, err := s.OAuth.GetToken(ctx, components.CreateTokenRequestAuthorizationCodeRequest(
+    var request components.TokenRequest = components.CreateTokenRequestAuthorizationCodeRequest(
             components.AuthorizationCodeRequest{
                 GrantType: components.GrantTypeAuthorizationCode,
                 Code: "7GSjMRSHs6Ak7C_zvVW6P2IhZOHxMK7HZKW1fMX85ms",
@@ -40,10 +38,14 @@ func main() {
                 ClientSecret: "23ee7ec7301779eaff451d7c6f6cba322499e3c0ec752f800c72a8f99217e3a8",
                 Scope: []components.Scope{
                     components.ScopeBoltAccountManage,
+                    components.ScopeBoltAccountView,
+                    components.ScopeOpenid,
                 },
                 State: boltgo.String("xyzABC123"),
             },
-    ))
+    )
+    ctx := context.Background()
+    res, err := s.OAuth.GetToken(ctx, request)
     if err != nil {
         log.Fatal(err)
     }

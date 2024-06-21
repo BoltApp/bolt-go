@@ -35,13 +35,10 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var xPublishableKey string = "<value>"
-
     ctx := context.Background()
     res, err := s.Account.GetDetails(ctx, xPublishableKey)
     if err != nil {
@@ -88,11 +85,9 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var xPublishableKey string = "<value>"
 
     addressListing := components.AddressListingInput{
@@ -108,7 +103,6 @@ func main() {
         Email: boltgo.String("alice@example.com"),
         Phone: boltgo.String("+14155550199"),
     }
-
     ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, xPublishableKey, addressListing)
     if err != nil {
@@ -159,11 +153,9 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var id string = "D4g3h5tBuVYK9"
 
     var xPublishableKey string = "<value>"
@@ -181,7 +173,6 @@ func main() {
         Email: boltgo.String("alice@example.com"),
         Phone: boltgo.String("+14155550199"),
     }
-
     ctx := context.Background()
     res, err := s.Account.UpdateAddress(ctx, id, xPublishableKey, addressListing)
     if err != nil {
@@ -232,15 +223,12 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var id string = "D4g3h5tBuVYK9"
 
     var xPublishableKey string = "<value>"
-
     ctx := context.Background()
     res, err := s.Account.DeleteAddress(ctx, id, xPublishableKey)
     if err != nil {
@@ -292,20 +280,27 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var xPublishableKey string = "<value>"
 
-    var paymentMethod components.PaymentMethodInput = components.CreatePaymentMethodInputPaymentMethodAffirm(
-            components.PaymentMethodAffirm{
-                DotTag: components.PaymentMethodAffirmTagAffirm,
-                ReturnURL: "www.example.com/handle_affirm_success",
+    var paymentMethod components.PaymentMethodInput = components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
+            components.PaymentMethodCreditCardInput{
+                DotTag: components.DotTagCreditCard,
+                BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
+                        components.AddressReferenceID{
+                            DotTag: components.AddressReferenceIDTagID,
+                            ID: "D4g3h5tBuVYK9",
+                        },
+                ),
+                Network: components.CreditCardNetworkVisa,
+                Bin: "411111",
+                Last4: "1004",
+                Expiration: "2025-03",
+                Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
             },
     )
-
     ctx := context.Background()
     res, err := s.Account.AddPaymentMethod(ctx, xPublishableKey, paymentMethod)
     if err != nil {
@@ -355,15 +350,12 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
         }),
     )
-
-
     var id string = "D4g3h5tBuVYK9"
 
     var xPublishableKey string = "<value>"
-
     ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, id, xPublishableKey)
     if err != nil {

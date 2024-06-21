@@ -61,8 +61,8 @@ func (u *PaymentResponse) UnmarshalJSON(data []byte) error {
 	switch dis.DotTag {
 	case "finalized":
 		paymentResponseFinalized := new(PaymentResponseFinalized)
-		if err := utils.UnmarshalJSON(data, &paymentResponseFinalized, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentResponseFinalized, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == finalized) type PaymentResponseFinalized within PaymentResponse: %w", string(data), err)
 		}
 
 		u.PaymentResponseFinalized = paymentResponseFinalized
@@ -70,8 +70,8 @@ func (u *PaymentResponse) UnmarshalJSON(data []byte) error {
 		return nil
 	case "pending":
 		paymentResponsePending := new(PaymentResponsePending)
-		if err := utils.UnmarshalJSON(data, &paymentResponsePending, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentResponsePending, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == pending) type PaymentResponsePending within PaymentResponse: %w", string(data), err)
 		}
 
 		u.PaymentResponsePending = paymentResponsePending
@@ -79,7 +79,7 @@ func (u *PaymentResponse) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for PaymentResponse", string(data))
 }
 
 func (u PaymentResponse) MarshalJSON() ([]byte, error) {
@@ -91,5 +91,5 @@ func (u PaymentResponse) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PaymentResponsePending, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type PaymentResponse: all fields are null")
 }

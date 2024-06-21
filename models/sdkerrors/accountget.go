@@ -4,18 +4,91 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/BoltApp/bolt-go/internal/utils"
+	"github.com/BoltApp/bolt-go/models/components"
 	"net/http"
+)
+
+type AccountGetResponseBodyType string
+
+const (
+	AccountGetResponseBodyTypeGenericError AccountGetResponseBodyType = "generic-error"
+	AccountGetResponseBodyTypeFieldError   AccountGetResponseBodyType = "field-error"
 )
 
 // AccountGetResponseBody - An error has occurred, and further details are contained in the response
 type AccountGetResponseBody struct {
+	GenericError *components.GenericError
+	FieldError   *components.FieldError
+
+	Type AccountGetResponseBodyType
+
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
 var _ error = &AccountGetResponseBody{}
 
-func (e *AccountGetResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
+func CreateAccountGetResponseBodyGenericError(genericError components.GenericError) AccountGetResponseBody {
+	typ := AccountGetResponseBodyTypeGenericError
+
+	return AccountGetResponseBody{
+		GenericError: &genericError,
+		Type:         typ,
+	}
+}
+
+func CreateAccountGetResponseBodyFieldError(fieldError components.FieldError) AccountGetResponseBody {
+	typ := AccountGetResponseBodyTypeFieldError
+
+	return AccountGetResponseBody{
+		FieldError: &fieldError,
+		Type:       typ,
+	}
+}
+
+func (u *AccountGetResponseBody) UnmarshalJSON(data []byte) error {
+
+	var genericError components.GenericError = components.GenericError{}
+	if err := utils.UnmarshalJSON(data, &genericError, "", true, true); err == nil {
+		u.GenericError = &genericError
+		u.Type = AccountGetResponseBodyTypeGenericError
+		return nil
+	}
+
+	var fieldError components.FieldError = components.FieldError{}
+	if err := utils.UnmarshalJSON(data, &fieldError, "", true, true); err == nil {
+		u.FieldError = &fieldError
+		u.Type = AccountGetResponseBodyTypeFieldError
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AccountGetResponseBody", string(data))
+}
+
+func (u AccountGetResponseBody) MarshalJSON() ([]byte, error) {
+	if u.GenericError != nil {
+		return utils.MarshalJSON(u.GenericError, "", true)
+	}
+
+	if u.FieldError != nil {
+		return utils.MarshalJSON(u.FieldError, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type AccountGetResponseBody: all fields are null")
+}
+
+func (u AccountGetResponseBody) Error() string {
+	switch u.Type {
+	case AccountGetResponseBodyTypeGenericError:
+		data, _ := json.Marshal(u.GenericError)
+		return string(data)
+	case AccountGetResponseBodyTypeFieldError:
+		data, _ := json.Marshal(u.FieldError)
+		return string(data)
+	default:
+		return "unknown error"
+	}
 }

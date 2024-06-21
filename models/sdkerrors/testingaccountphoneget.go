@@ -4,18 +4,91 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/BoltApp/bolt-go/internal/utils"
+	"github.com/BoltApp/bolt-go/models/components"
 	"net/http"
+)
+
+type TestingAccountPhoneGetResponseBodyType string
+
+const (
+	TestingAccountPhoneGetResponseBodyTypeGenericError TestingAccountPhoneGetResponseBodyType = "generic-error"
+	TestingAccountPhoneGetResponseBodyTypeFieldError   TestingAccountPhoneGetResponseBodyType = "field-error"
 )
 
 // TestingAccountPhoneGetResponseBody - An error has occurred, and further details are contained in the response
 type TestingAccountPhoneGetResponseBody struct {
+	GenericError *components.GenericError
+	FieldError   *components.FieldError
+
+	Type TestingAccountPhoneGetResponseBodyType
+
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
 var _ error = &TestingAccountPhoneGetResponseBody{}
 
-func (e *TestingAccountPhoneGetResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
+func CreateTestingAccountPhoneGetResponseBodyGenericError(genericError components.GenericError) TestingAccountPhoneGetResponseBody {
+	typ := TestingAccountPhoneGetResponseBodyTypeGenericError
+
+	return TestingAccountPhoneGetResponseBody{
+		GenericError: &genericError,
+		Type:         typ,
+	}
+}
+
+func CreateTestingAccountPhoneGetResponseBodyFieldError(fieldError components.FieldError) TestingAccountPhoneGetResponseBody {
+	typ := TestingAccountPhoneGetResponseBodyTypeFieldError
+
+	return TestingAccountPhoneGetResponseBody{
+		FieldError: &fieldError,
+		Type:       typ,
+	}
+}
+
+func (u *TestingAccountPhoneGetResponseBody) UnmarshalJSON(data []byte) error {
+
+	var genericError components.GenericError = components.GenericError{}
+	if err := utils.UnmarshalJSON(data, &genericError, "", true, true); err == nil {
+		u.GenericError = &genericError
+		u.Type = TestingAccountPhoneGetResponseBodyTypeGenericError
+		return nil
+	}
+
+	var fieldError components.FieldError = components.FieldError{}
+	if err := utils.UnmarshalJSON(data, &fieldError, "", true, true); err == nil {
+		u.FieldError = &fieldError
+		u.Type = TestingAccountPhoneGetResponseBodyTypeFieldError
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TestingAccountPhoneGetResponseBody", string(data))
+}
+
+func (u TestingAccountPhoneGetResponseBody) MarshalJSON() ([]byte, error) {
+	if u.GenericError != nil {
+		return utils.MarshalJSON(u.GenericError, "", true)
+	}
+
+	if u.FieldError != nil {
+		return utils.MarshalJSON(u.FieldError, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type TestingAccountPhoneGetResponseBody: all fields are null")
+}
+
+func (u TestingAccountPhoneGetResponseBody) Error() string {
+	switch u.Type {
+	case TestingAccountPhoneGetResponseBodyTypeGenericError:
+		data, _ := json.Marshal(u.GenericError)
+		return string(data)
+	case TestingAccountPhoneGetResponseBodyTypeFieldError:
+		data, _ := json.Marshal(u.FieldError)
+		return string(data)
+	default:
+		return "unknown error"
+	}
 }

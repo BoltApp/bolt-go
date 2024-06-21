@@ -145,8 +145,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 	switch dis.DotTag {
 	case "id":
 		paymentMethodReference := new(PaymentMethodReference)
-		if err := utils.UnmarshalJSON(data, &paymentMethodReference, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodReference, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == id) type PaymentMethodReference within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodReference = paymentMethodReference
@@ -154,8 +154,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "credit_card":
 		paymentMethodCreditCardInput := new(PaymentMethodCreditCardInput)
-		if err := utils.UnmarshalJSON(data, &paymentMethodCreditCardInput, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodCreditCardInput, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == credit_card) type PaymentMethodCreditCardInput within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodCreditCardInput = paymentMethodCreditCardInput
@@ -163,8 +163,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "paypal":
 		paymentMethodPaypal := new(PaymentMethodPaypal)
-		if err := utils.UnmarshalJSON(data, &paymentMethodPaypal, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodPaypal, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == paypal) type PaymentMethodPaypal within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodPaypal = paymentMethodPaypal
@@ -172,8 +172,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "affirm":
 		paymentMethodAffirm := new(PaymentMethodAffirm)
-		if err := utils.UnmarshalJSON(data, &paymentMethodAffirm, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodAffirm, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == affirm) type PaymentMethodAffirm within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodAffirm = paymentMethodAffirm
@@ -181,8 +181,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "afterpay":
 		paymentMethodAfterpay := new(PaymentMethodAfterpay)
-		if err := utils.UnmarshalJSON(data, &paymentMethodAfterpay, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodAfterpay, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == afterpay) type PaymentMethodAfterpay within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodAfterpay = paymentMethodAfterpay
@@ -190,8 +190,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "klarna":
 		paymentMethodKlarna := new(PaymentMethodKlarna)
-		if err := utils.UnmarshalJSON(data, &paymentMethodKlarna, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodKlarna, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == klarna) type PaymentMethodKlarna within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodKlarna = paymentMethodKlarna
@@ -199,8 +199,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "klarna_account":
 		paymentMethodKlarnaAccount := new(PaymentMethodKlarnaAccount)
-		if err := utils.UnmarshalJSON(data, &paymentMethodKlarnaAccount, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodKlarnaAccount, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == klarna_account) type PaymentMethodKlarnaAccount within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodKlarnaAccount = paymentMethodKlarnaAccount
@@ -208,8 +208,8 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	case "klarna_paynow":
 		paymentMethodKlarnaPaynow := new(PaymentMethodKlarnaPaynow)
-		if err := utils.UnmarshalJSON(data, &paymentMethodKlarnaPaynow, "", true, true); err != nil {
-			return fmt.Errorf("could not unmarshal expected type: %w", err)
+		if err := utils.UnmarshalJSON(data, &paymentMethodKlarnaPaynow, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == klarna_paynow) type PaymentMethodKlarnaPaynow within PaymentMethodExtended: %w", string(data), err)
 		}
 
 		u.PaymentMethodKlarnaPaynow = paymentMethodKlarnaPaynow
@@ -217,7 +217,7 @@ func (u *PaymentMethodExtended) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for PaymentMethodExtended", string(data))
 }
 
 func (u PaymentMethodExtended) MarshalJSON() ([]byte, error) {
@@ -253,5 +253,5 @@ func (u PaymentMethodExtended) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PaymentMethodKlarnaPaynow, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type PaymentMethodExtended: all fields are null")
 }

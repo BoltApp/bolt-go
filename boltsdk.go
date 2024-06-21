@@ -64,8 +64,8 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], c.ServerDefaults[c.ServerIndex]
 }
 
-// BoltTypescriptSDK - Bolt API Reference: A comprehensive Bolt API reference for interacting with Transactions, Orders, Product Catalog, Configuration, Testing, and much more.
-type BoltTypescriptSDK struct {
+// BoltSDK - Bolt API Reference: A comprehensive Bolt API reference for interacting with Transactions, Orders, Product Catalog, Configuration, Testing, and much more.
+type BoltSDK struct {
 	// Account endpoints allow you to view and manage shoppers' accounts. For example,
 	// you can add or remove addresses and payment information.
 	//
@@ -88,18 +88,18 @@ type BoltTypescriptSDK struct {
 	sdkConfiguration sdkConfiguration
 }
 
-type SDKOption func(*BoltTypescriptSDK)
+type SDKOption func(*BoltSDK)
 
 // WithServerURL allows the overriding of the default server URL
 func WithServerURL(serverURL string) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 }
 
 // WithTemplatedServerURL allows the overriding of the default server URL with a templated URL populated with the provided parameters
 func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
 		}
@@ -110,7 +110,7 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOptio
 
 // WithServerIndex allows the overriding of the default server by index
 func WithServerIndex(serverIndex int) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		if serverIndex < 0 || serverIndex >= len(ServerList) {
 			panic(fmt.Errorf("server index %d out of range", serverIndex))
 		}
@@ -129,7 +129,6 @@ const (
 func (e ServerEnvironment) ToPointer() *ServerEnvironment {
 	return &e
 }
-
 func (e *ServerEnvironment) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -148,7 +147,7 @@ func (e *ServerEnvironment) UnmarshalJSON(data []byte) error {
 
 // WithEnvironment allows setting the environment variable for url substitution
 func WithEnvironment(environment ServerEnvironment) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		for idx := range sdk.sdkConfiguration.ServerDefaults {
 			if _, ok := sdk.sdkConfiguration.ServerDefaults[idx]["environment"]; !ok {
 				continue
@@ -161,27 +160,21 @@ func WithEnvironment(environment ServerEnvironment) SDKOption {
 
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		sdk.sdkConfiguration.Client = client
-	}
-}
-
-func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
-	return func(context.Context) (interface{}, error) {
-		return security, nil
 	}
 }
 
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security components.Security) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
-		sdk.sdkConfiguration.Security = withSecurity(security)
+	return func(sdk *BoltSDK) {
+		sdk.sdkConfiguration.Security = utils.AsSecuritySource(security)
 	}
 }
 
 // WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
 func WithSecuritySource(security func(context.Context) (components.Security, error)) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
 			return security(ctx)
 		}
@@ -189,20 +182,20 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 }
 
 func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
-	return func(sdk *BoltTypescriptSDK) {
+	return func(sdk *BoltSDK) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
 }
 
 // New creates a new instance of the SDK with the provided options
-func New(opts ...SDKOption) *BoltTypescriptSDK {
-	sdk := &BoltTypescriptSDK{
+func New(opts ...SDKOption) *BoltSDK {
+	sdk := &BoltSDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.3",
-			SDKVersion:        "0.4.2",
-			GenVersion:        "2.281.2",
-			UserAgent:         "speakeasy-sdk/go 0.4.2 2.281.2 3.0.3 github.com/BoltApp/bolt-go",
+			SDKVersion:        "1.0.0",
+			GenVersion:        "2.342.6",
+			UserAgent:         "speakeasy-sdk/go 1.0.0 2.342.6 3.0.3 github.com/BoltApp/bolt-go",
 			ServerDefaults: []map[string]string{
 				{
 					"environment": "api-sandbox",

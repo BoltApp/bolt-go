@@ -3,8 +3,29 @@
 The payment operation cannot complete
 
 
-## Fields
+## Supported Types
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `RawResponse`                                           | [*http.Response](https://pkg.go.dev/net/http#Response)  | :heavy_minus_sign:                                      | Raw HTTP response; suitable for custom response parsing |
+### GenericError
+
+```go
+paymentsInitializeResponseBody := sdkerrors.CreatePaymentsInitializeResponseBodyGenericError(components.GenericError{/* values here */})
+```
+
+### FieldError
+
+```go
+paymentsInitializeResponseBody := sdkerrors.CreatePaymentsInitializeResponseBodyFieldError(components.FieldError{/* values here */})
+```
+
+### CartError
+
+```go
+paymentsInitializeResponseBody := sdkerrors.CreatePaymentsInitializeResponseBodyCartError(components.CartError{/* values here */})
+```
+
+### CreditCardError
+
+```go
+paymentsInitializeResponseBody := sdkerrors.CreatePaymentsInitializeResponseBodyCreditCardError(components.CreditCardError{/* values here */})
+```
+

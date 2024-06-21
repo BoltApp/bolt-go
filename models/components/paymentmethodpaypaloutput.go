@@ -16,7 +16,6 @@ const (
 func (e PaymentMethodPaypalTag) ToPointer() *PaymentMethodPaypalTag {
 	return &e
 }
-
 func (e *PaymentMethodPaypalTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

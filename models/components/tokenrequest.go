@@ -4,6 +4,7 @@ package components
 
 import (
 	"errors"
+	"fmt"
 	"github.com/BoltApp/bolt-go/internal/utils"
 )
 
@@ -41,21 +42,21 @@ func CreateTokenRequestRefreshTokenRequest(refreshTokenRequest RefreshTokenReque
 
 func (u *TokenRequest) UnmarshalJSON(data []byte) error {
 
-	authorizationCodeRequest := AuthorizationCodeRequest{}
+	var authorizationCodeRequest AuthorizationCodeRequest = AuthorizationCodeRequest{}
 	if err := utils.UnmarshalJSON(data, &authorizationCodeRequest, "", true, true); err == nil {
 		u.AuthorizationCodeRequest = &authorizationCodeRequest
 		u.Type = TokenRequestTypeAuthorizationCodeRequest
 		return nil
 	}
 
-	refreshTokenRequest := RefreshTokenRequest{}
+	var refreshTokenRequest RefreshTokenRequest = RefreshTokenRequest{}
 	if err := utils.UnmarshalJSON(data, &refreshTokenRequest, "", true, true); err == nil {
 		u.RefreshTokenRequest = &refreshTokenRequest
 		u.Type = TokenRequestTypeRefreshTokenRequest
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TokenRequest", string(data))
 }
 
 func (u TokenRequest) MarshalJSON() ([]byte, error) {
@@ -67,5 +68,5 @@ func (u TokenRequest) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.RefreshTokenRequest, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type TokenRequest: all fields are null")
 }

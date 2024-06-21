@@ -3,8 +3,17 @@
 The address is invalid and cannot be added, or some other error has occurred
 
 
-## Fields
+## Supported Types
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `RawResponse`                                           | [*http.Response](https://pkg.go.dev/net/http#Response)  | :heavy_minus_sign:                                      | Raw HTTP response; suitable for custom response parsing |
+### GenericError
+
+```go
+accountAddressCreateResponseBody := sdkerrors.CreateAccountAddressCreateResponseBodyGenericError(components.GenericError{/* values here */})
+```
+
+### FieldError
+
+```go
+accountAddressCreateResponseBody := sdkerrors.CreateAccountAddressCreateResponseBodyFieldError(components.FieldError{/* values here */})
+```
+

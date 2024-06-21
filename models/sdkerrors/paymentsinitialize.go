@@ -4,18 +4,141 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/BoltApp/bolt-go/internal/utils"
+	"github.com/BoltApp/bolt-go/models/components"
 	"net/http"
+)
+
+type PaymentsInitializeResponseBodyType string
+
+const (
+	PaymentsInitializeResponseBodyTypeGenericError    PaymentsInitializeResponseBodyType = "generic-error"
+	PaymentsInitializeResponseBodyTypeFieldError      PaymentsInitializeResponseBodyType = "field-error"
+	PaymentsInitializeResponseBodyTypeCartError       PaymentsInitializeResponseBodyType = "cart-error"
+	PaymentsInitializeResponseBodyTypeCreditCardError PaymentsInitializeResponseBodyType = "credit-card-error"
 )
 
 // PaymentsInitializeResponseBody - The payment operation cannot complete
 type PaymentsInitializeResponseBody struct {
+	GenericError    *components.GenericError
+	FieldError      *components.FieldError
+	CartError       *components.CartError
+	CreditCardError *components.CreditCardError
+
+	Type PaymentsInitializeResponseBodyType
+
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
 var _ error = &PaymentsInitializeResponseBody{}
 
-func (e *PaymentsInitializeResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
+func CreatePaymentsInitializeResponseBodyGenericError(genericError components.GenericError) PaymentsInitializeResponseBody {
+	typ := PaymentsInitializeResponseBodyTypeGenericError
+
+	return PaymentsInitializeResponseBody{
+		GenericError: &genericError,
+		Type:         typ,
+	}
+}
+
+func CreatePaymentsInitializeResponseBodyFieldError(fieldError components.FieldError) PaymentsInitializeResponseBody {
+	typ := PaymentsInitializeResponseBodyTypeFieldError
+
+	return PaymentsInitializeResponseBody{
+		FieldError: &fieldError,
+		Type:       typ,
+	}
+}
+
+func CreatePaymentsInitializeResponseBodyCartError(cartError components.CartError) PaymentsInitializeResponseBody {
+	typ := PaymentsInitializeResponseBodyTypeCartError
+
+	return PaymentsInitializeResponseBody{
+		CartError: &cartError,
+		Type:      typ,
+	}
+}
+
+func CreatePaymentsInitializeResponseBodyCreditCardError(creditCardError components.CreditCardError) PaymentsInitializeResponseBody {
+	typ := PaymentsInitializeResponseBodyTypeCreditCardError
+
+	return PaymentsInitializeResponseBody{
+		CreditCardError: &creditCardError,
+		Type:            typ,
+	}
+}
+
+func (u *PaymentsInitializeResponseBody) UnmarshalJSON(data []byte) error {
+
+	var genericError components.GenericError = components.GenericError{}
+	if err := utils.UnmarshalJSON(data, &genericError, "", true, true); err == nil {
+		u.GenericError = &genericError
+		u.Type = PaymentsInitializeResponseBodyTypeGenericError
+		return nil
+	}
+
+	var cartError components.CartError = components.CartError{}
+	if err := utils.UnmarshalJSON(data, &cartError, "", true, true); err == nil {
+		u.CartError = &cartError
+		u.Type = PaymentsInitializeResponseBodyTypeCartError
+		return nil
+	}
+
+	var creditCardError components.CreditCardError = components.CreditCardError{}
+	if err := utils.UnmarshalJSON(data, &creditCardError, "", true, true); err == nil {
+		u.CreditCardError = &creditCardError
+		u.Type = PaymentsInitializeResponseBodyTypeCreditCardError
+		return nil
+	}
+
+	var fieldError components.FieldError = components.FieldError{}
+	if err := utils.UnmarshalJSON(data, &fieldError, "", true, true); err == nil {
+		u.FieldError = &fieldError
+		u.Type = PaymentsInitializeResponseBodyTypeFieldError
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for PaymentsInitializeResponseBody", string(data))
+}
+
+func (u PaymentsInitializeResponseBody) MarshalJSON() ([]byte, error) {
+	if u.GenericError != nil {
+		return utils.MarshalJSON(u.GenericError, "", true)
+	}
+
+	if u.FieldError != nil {
+		return utils.MarshalJSON(u.FieldError, "", true)
+	}
+
+	if u.CartError != nil {
+		return utils.MarshalJSON(u.CartError, "", true)
+	}
+
+	if u.CreditCardError != nil {
+		return utils.MarshalJSON(u.CreditCardError, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type PaymentsInitializeResponseBody: all fields are null")
+}
+
+func (u PaymentsInitializeResponseBody) Error() string {
+	switch u.Type {
+	case PaymentsInitializeResponseBodyTypeGenericError:
+		data, _ := json.Marshal(u.GenericError)
+		return string(data)
+	case PaymentsInitializeResponseBodyTypeFieldError:
+		data, _ := json.Marshal(u.FieldError)
+		return string(data)
+	case PaymentsInitializeResponseBodyTypeCartError:
+		data, _ := json.Marshal(u.CartError)
+		return string(data)
+	case PaymentsInitializeResponseBodyTypeCreditCardError:
+		data, _ := json.Marshal(u.CreditCardError)
+		return string(data)
+	default:
+		return "unknown error"
+	}
 }

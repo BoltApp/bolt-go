@@ -17,7 +17,6 @@ const (
 func (e FieldErrorTag) ToPointer() *FieldErrorTag {
 	return &e
 }
-
 func (e *FieldErrorTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
