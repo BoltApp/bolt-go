@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 20d70f47203d7cc58f509a74c1cc8b23
+  docChecksum: c4fe0e05a897d2529fe236e336233db8
   docVersion: 3.0.3
-  speakeasyVersion: 1.314.2
-  generationVersion: 2.349.6
-  releaseVersion: 1.0.1
-  configChecksum: de7eaa6919fcce5f1e738270095545c9
+  speakeasyVersion: 1.327.0
+  generationVersion: 2.359.6
+  releaseVersion: 1.0.2
+  configChecksum: 476efdecc8e57a06b7f3ad9d2206c8a3
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -40,6 +40,7 @@ generatedFiles:
   - boltsdk.go
   - go.mod
   - models/sdkerrors/sdkerror.go
+  - retry/config.go
   - types/bigint.go
   - types/date.go
   - types/datetime.go
@@ -57,8 +58,8 @@ generatedFiles:
   - internal/utils/utils.go
   - /models/operations/accountget.go
   - /models/operations/accountaddresscreate.go
-  - /models/operations/accountaddressdelete.go
   - /models/operations/accountaddressedit.go
+  - /models/operations/accountaddressdelete.go
   - /models/operations/accountaddpaymentmethod.go
   - /models/operations/accountpaymentmethoddelete.go
   - /models/operations/guestpaymentsinitialize.go
@@ -100,12 +101,12 @@ generatedFiles:
   - /models/components/paymentresponsepending.go
   - /models/components/carterror.go
   - /models/components/guestpaymentinitializerequest.go
-  - /models/components/profilecreationdata.go
   - /models/components/cart.go
   - /models/components/amount.go
-  - /models/components/cartshipment.go
   - /models/components/cartitem.go
   - /models/components/cartdiscount.go
+  - /models/components/cartshipment.go
+  - /models/components/profilecreationdata.go
   - /models/components/paymentupdaterequest.go
   - /models/components/paymentactionrequest.go
   - /models/components/paymentinitializerequest.go
@@ -123,8 +124,8 @@ generatedFiles:
   - /models/components/security.go
   - /models/sdkerrors/accountget.go
   - /models/sdkerrors/accountaddresscreate.go
-  - /models/sdkerrors/accountaddressdelete.go
   - /models/sdkerrors/accountaddressedit.go
+  - /models/sdkerrors/accountaddressdelete.go
   - /models/sdkerrors/accountaddpaymentmethod.go
   - /models/sdkerrors/accountpaymentmethoddelete.go
   - /models/sdkerrors/guestpaymentsinitialize.go
@@ -142,10 +143,10 @@ generatedFiles:
   - docs/models/operations/accountgetresponse.md
   - docs/models/operations/accountaddresscreaterequest.md
   - docs/models/operations/accountaddresscreateresponse.md
-  - docs/models/operations/accountaddressdeleterequest.md
-  - docs/models/operations/accountaddressdeleteresponse.md
   - docs/models/operations/accountaddresseditrequest.md
   - docs/models/operations/accountaddresseditresponse.md
+  - docs/models/operations/accountaddressdeleterequest.md
+  - docs/models/operations/accountaddressdeleteresponse.md
   - docs/models/operations/accountaddpaymentmethodrequest.md
   - docs/models/operations/accountaddpaymentmethodresponse.md
   - docs/models/operations/accountpaymentmethoddeleterequest.md
@@ -182,7 +183,7 @@ generatedFiles:
   - docs/models/components/account.md
   - docs/models/components/profile.md
   - docs/models/components/paymentmethod.md
-  - docs/models/components/paymentmethodcreditcardtag.md
+  - docs/models/components/dottag.md
   - docs/models/components/paymentmethodcreditcard.md
   - docs/models/components/creditcardnetwork.md
   - docs/models/components/addressreference.md
@@ -204,7 +205,7 @@ generatedFiles:
   - docs/models/components/paymentmethodklarnapaynowtag.md
   - docs/models/components/paymentmethodklarnapaynowoutput.md
   - docs/models/components/addresslisting.md
-  - docs/models/components/dottag.md
+  - docs/models/components/genericerrortag.md
   - docs/models/components/genericerror.md
   - docs/models/components/fielderrortag.md
   - docs/models/components/fielderror.md
@@ -227,19 +228,19 @@ generatedFiles:
   - docs/models/components/paymentresponsefinalized.md
   - docs/models/components/transaction.md
   - docs/models/components/paymentresponsependingtag.md
-  - docs/models/components/action.md
   - docs/models/components/paymentresponsependingstatus.md
+  - docs/models/components/action.md
   - docs/models/components/paymentresponsepending.md
   - docs/models/components/carterrortag.md
   - docs/models/components/carterror.md
   - docs/models/components/guestpaymentinitializerequest.md
-  - docs/models/components/profilecreationdata.md
   - docs/models/components/cart.md
   - docs/models/components/currency.md
   - docs/models/components/amount.md
-  - docs/models/components/cartshipment.md
   - docs/models/components/cartitem.md
   - docs/models/components/cartdiscount.md
+  - docs/models/components/cartshipment.md
+  - docs/models/components/profilecreationdata.md
   - docs/models/components/paymentupdaterequest.md
   - docs/models/components/paymentactionrequesttag.md
   - docs/models/components/paymentactionrequest.md
@@ -266,8 +267,8 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/sdkerrors/accountgetresponsebody.md
   - docs/models/sdkerrors/accountaddresscreateresponsebody.md
-  - docs/models/sdkerrors/accountaddressdeleteresponsebody.md
   - docs/models/sdkerrors/accountaddresseditresponsebody.md
+  - docs/models/sdkerrors/accountaddressdeleteresponsebody.md
   - docs/models/sdkerrors/accountaddpaymentmethodresponsebody.md
   - docs/models/sdkerrors/accountpaymentmethoddeleteresponsebody.md
   - docs/models/sdkerrors/guestpaymentsinitializeresponsebody.md

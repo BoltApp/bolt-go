@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// DotTag - The type of error returned
-type DotTag string
+// GenericErrorTag - The type of error returned
+type GenericErrorTag string
 
 const (
-	DotTagUnauthorized         DotTag = "unauthorized"
-	DotTagForbidden            DotTag = "forbidden"
-	DotTagUnprocessableRequest DotTag = "unprocessable_request"
-	DotTagNotFound             DotTag = "not_found"
+	GenericErrorTagUnauthorized         GenericErrorTag = "unauthorized"
+	GenericErrorTagForbidden            GenericErrorTag = "forbidden"
+	GenericErrorTagUnprocessableRequest GenericErrorTag = "unprocessable_request"
+	GenericErrorTagNotFound             GenericErrorTag = "not_found"
 )
 
-func (e DotTag) ToPointer() *DotTag {
+func (e GenericErrorTag) ToPointer() *GenericErrorTag {
 	return &e
 }
-func (e *DotTag) UnmarshalJSON(data []byte) error {
+func (e *GenericErrorTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,25 +33,25 @@ func (e *DotTag) UnmarshalJSON(data []byte) error {
 	case "unprocessable_request":
 		fallthrough
 	case "not_found":
-		*e = DotTag(v)
+		*e = GenericErrorTag(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DotTag: %v", v)
+		return fmt.Errorf("invalid value for GenericErrorTag: %v", v)
 	}
 }
 
 type GenericError struct {
 	// The type of error returned
-	DotTag DotTag `json:".tag"`
+	DotTag GenericErrorTag `json:".tag"`
 	// A human-readable error message, which might include information specific to
 	// the request that was made.
 	//
 	Message string `json:"message"`
 }
 
-func (o *GenericError) GetDotTag() DotTag {
+func (o *GenericError) GetDotTag() GenericErrorTag {
 	if o == nil {
-		return DotTag("")
+		return GenericErrorTag("")
 	}
 	return o.DotTag
 }

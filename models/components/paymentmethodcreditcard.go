@@ -7,61 +7,46 @@ import (
 	"fmt"
 )
 
-type PaymentMethodCreditCardTag string
+type DotTag string
 
 const (
-	PaymentMethodCreditCardTagCreditCard PaymentMethodCreditCardTag = "credit_card"
+	DotTagCreditCard DotTag = "credit_card"
 )
 
-func (e PaymentMethodCreditCardTag) ToPointer() *PaymentMethodCreditCardTag {
+func (e DotTag) ToPointer() *DotTag {
 	return &e
 }
-func (e *PaymentMethodCreditCardTag) UnmarshalJSON(data []byte) error {
+func (e *DotTag) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "credit_card":
-		*e = PaymentMethodCreditCardTag(v)
+		*e = DotTag(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PaymentMethodCreditCardTag: %v", v)
+		return fmt.Errorf("invalid value for DotTag: %v", v)
 	}
 }
 
 type PaymentMethodCreditCard struct {
-	DotTag         PaymentMethodCreditCardTag `json:".tag"`
-	BillingAddress AddressReference           `json:"billing_address"`
-	ID             *string                    `json:"id,omitempty"`
-	// The expiration date, in YYYY-MM format.
-	Expiration string `json:"expiration"`
-	// The account number's last four digits.
-	Last4 string `json:"last4"`
+	DotTag         DotTag           `json:".tag"`
+	ID             *string          `json:"id,omitempty"`
+	BillingAddress AddressReference `json:"billing_address"`
 	// The credit card's network.
 	Network CreditCardNetwork `json:"network"`
+	// The account number's last four digits.
+	Last4 string `json:"last4"`
+	// The expiration date, in YYYY-MM format.
+	Expiration string `json:"expiration"`
 }
 
-func (o *PaymentMethodCreditCard) GetDotTag() PaymentMethodCreditCardTag {
+func (o *PaymentMethodCreditCard) GetDotTag() DotTag {
 	if o == nil {
-		return PaymentMethodCreditCardTag("")
+		return DotTag("")
 	}
 	return o.DotTag
-}
-
-func (o *PaymentMethodCreditCard) GetBillingAddress() AddressReference {
-	if o == nil {
-		return AddressReference{}
-	}
-	return o.BillingAddress
-}
-
-func (o *PaymentMethodCreditCard) GetBillingAddressExplicit() *AddressReferenceExplicit {
-	return o.GetBillingAddress().AddressReferenceExplicit
-}
-
-func (o *PaymentMethodCreditCard) GetBillingAddressID() *AddressReferenceID {
-	return o.GetBillingAddress().AddressReferenceID
 }
 
 func (o *PaymentMethodCreditCard) GetID() *string {
@@ -71,18 +56,19 @@ func (o *PaymentMethodCreditCard) GetID() *string {
 	return o.ID
 }
 
-func (o *PaymentMethodCreditCard) GetExpiration() string {
+func (o *PaymentMethodCreditCard) GetBillingAddress() AddressReference {
 	if o == nil {
-		return ""
+		return AddressReference{}
 	}
-	return o.Expiration
+	return o.BillingAddress
 }
 
-func (o *PaymentMethodCreditCard) GetLast4() string {
-	if o == nil {
-		return ""
-	}
-	return o.Last4
+func (o *PaymentMethodCreditCard) GetBillingAddressID() *AddressReferenceID {
+	return o.GetBillingAddress().AddressReferenceID
+}
+
+func (o *PaymentMethodCreditCard) GetBillingAddressExplicit() *AddressReferenceExplicit {
+	return o.GetBillingAddress().AddressReferenceExplicit
 }
 
 func (o *PaymentMethodCreditCard) GetNetwork() CreditCardNetwork {
@@ -92,24 +78,38 @@ func (o *PaymentMethodCreditCard) GetNetwork() CreditCardNetwork {
 	return o.Network
 }
 
+func (o *PaymentMethodCreditCard) GetLast4() string {
+	if o == nil {
+		return ""
+	}
+	return o.Last4
+}
+
+func (o *PaymentMethodCreditCard) GetExpiration() string {
+	if o == nil {
+		return ""
+	}
+	return o.Expiration
+}
+
 type PaymentMethodCreditCardInput struct {
-	DotTag         PaymentMethodCreditCardTag `json:".tag"`
-	BillingAddress AddressReferenceInput      `json:"billing_address"`
-	// The Bank Identification Number (BIN). This is typically the first 4 to 6 digits of the account number.
-	Bin string `json:"bin"`
-	// The expiration date, in YYYY-MM format.
-	Expiration string `json:"expiration"`
-	// The account number's last four digits.
-	Last4 string `json:"last4"`
+	DotTag         DotTag                `json:".tag"`
+	BillingAddress AddressReferenceInput `json:"billing_address"`
 	// The credit card's network.
 	Network CreditCardNetwork `json:"network"`
+	// The Bank Identification Number (BIN). This is typically the first 4 to 6 digits of the account number.
+	Bin string `json:"bin"`
+	// The account number's last four digits.
+	Last4 string `json:"last4"`
+	// The expiration date, in YYYY-MM format.
+	Expiration string `json:"expiration"`
 	// The Bolt token associated with the credit card.
 	Token string `json:"token"`
 }
 
-func (o *PaymentMethodCreditCardInput) GetDotTag() PaymentMethodCreditCardTag {
+func (o *PaymentMethodCreditCardInput) GetDotTag() DotTag {
 	if o == nil {
-		return PaymentMethodCreditCardTag("")
+		return DotTag("")
 	}
 	return o.DotTag
 }
@@ -121,12 +121,19 @@ func (o *PaymentMethodCreditCardInput) GetBillingAddress() AddressReferenceInput
 	return o.BillingAddress
 }
 
+func (o *PaymentMethodCreditCardInput) GetBillingAddressID() *AddressReferenceID {
+	return o.GetBillingAddress().AddressReferenceID
+}
+
 func (o *PaymentMethodCreditCardInput) GetBillingAddressExplicit() *AddressReferenceExplicitInput {
 	return o.GetBillingAddress().AddressReferenceExplicitInput
 }
 
-func (o *PaymentMethodCreditCardInput) GetBillingAddressID() *AddressReferenceID {
-	return o.GetBillingAddress().AddressReferenceID
+func (o *PaymentMethodCreditCardInput) GetNetwork() CreditCardNetwork {
+	if o == nil {
+		return CreditCardNetwork("")
+	}
+	return o.Network
 }
 
 func (o *PaymentMethodCreditCardInput) GetBin() string {
@@ -136,13 +143,6 @@ func (o *PaymentMethodCreditCardInput) GetBin() string {
 	return o.Bin
 }
 
-func (o *PaymentMethodCreditCardInput) GetExpiration() string {
-	if o == nil {
-		return ""
-	}
-	return o.Expiration
-}
-
 func (o *PaymentMethodCreditCardInput) GetLast4() string {
 	if o == nil {
 		return ""
@@ -150,11 +150,11 @@ func (o *PaymentMethodCreditCardInput) GetLast4() string {
 	return o.Last4
 }
 
-func (o *PaymentMethodCreditCardInput) GetNetwork() CreditCardNetwork {
+func (o *PaymentMethodCreditCardInput) GetExpiration() string {
 	if o == nil {
-		return CreditCardNetwork("")
+		return ""
 	}
-	return o.Network
+	return o.Expiration
 }
 
 func (o *PaymentMethodCreditCardInput) GetToken() string {

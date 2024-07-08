@@ -5,12 +5,12 @@ package components
 type ProfileCreationData struct {
 	// Whether or not an account should be created.
 	CreateAccount bool `json:"create_account"`
-	// The email address asscoiated with this profile.
-	Email string `json:"email"`
 	// The given name of the person associated with this profile.
 	FirstName string `json:"first_name"`
 	// The last name of the person associated with this profile.
 	LastName string `json:"last_name"`
+	// The email address asscoiated with this profile.
+	Email string `json:"email"`
 	// The phone number associated with this profile.
 	Phone *string `json:"phone,omitempty"`
 }
@@ -20,13 +20,6 @@ func (o *ProfileCreationData) GetCreateAccount() bool {
 		return false
 	}
 	return o.CreateAccount
-}
-
-func (o *ProfileCreationData) GetEmail() string {
-	if o == nil {
-		return ""
-	}
-	return o.Email
 }
 
 func (o *ProfileCreationData) GetFirstName() string {
@@ -41,6 +34,13 @@ func (o *ProfileCreationData) GetLastName() string {
 		return ""
 	}
 	return o.LastName
+}
+
+func (o *ProfileCreationData) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
 }
 
 func (o *ProfileCreationData) GetPhone() *string {

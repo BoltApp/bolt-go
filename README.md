@@ -32,7 +32,7 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -56,8 +56,8 @@ func main() {
 
 * [GetDetails](docs/sdks/account/README.md#getdetails) - Retrieve account details
 * [AddAddress](docs/sdks/account/README.md#addaddress) - Add an address
-* [DeleteAddress](docs/sdks/account/README.md#deleteaddress) - Delete an existing address
 * [UpdateAddress](docs/sdks/account/README.md#updateaddress) - Edit an existing address
+* [DeleteAddress](docs/sdks/account/README.md#deleteaddress) - Delete an existing address
 * [AddPaymentMethod](docs/sdks/account/README.md#addpaymentmethod) - Add a payment method to a shopper's Bolt account Wallet.
 * [DeletePaymentMethod](docs/sdks/account/README.md#deletepaymentmethod) - Delete an existing payment method
 
@@ -116,7 +116,7 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -168,7 +168,7 @@ func main() {
 	s := boltgo.New(
 		boltgo.WithServerIndex(0),
 		boltgo.WithSecurity(components.Security{
-			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -206,7 +206,7 @@ func main() {
 	s := boltgo.New(
 		boltgo.WithServerURL("https://{environment}.bolt.com/v3"),
 		boltgo.WithSecurity(components.Security{
-			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -261,8 +261,8 @@ This SDK supports the following security schemes globally:
 
 | Name         | Type         | Scheme       |
 | ------------ | ------------ | ------------ |
-| `APIKey`     | apiKey       | API key      |
 | `Oauth`      | oauth2       | OAuth2 token |
+| `APIKey`     | apiKey       | API key      |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```go
@@ -278,7 +278,7 @@ import (
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -317,7 +317,32 @@ func main() {
 	var xPublishableKey string = "<value>"
 
 	guestPaymentInitializeRequest := components.GuestPaymentInitializeRequest{
+		Profile: components.ProfileCreationData{
+			CreateAccount: true,
+			FirstName:     "Alice",
+			LastName:      "Baker",
+			Email:         "alice@example.com",
+			Phone:         boltgo.String("+14155550199"),
+		},
 		Cart: components.Cart{
+			OrderReference:   "order_100",
+			OrderDescription: boltgo.String("Order #1234567890"),
+			DisplayID:        boltgo.String("215614191"),
+			Shipments: []components.CartShipment{
+				components.CartShipment{
+					Address: components.CreateAddressReferenceInputAddressReferenceID(
+						components.AddressReferenceID{
+							DotTag: components.AddressReferenceIDTagID,
+							ID:     "D4g3h5tBuVYK9",
+						},
+					),
+					Cost: &components.Amount{
+						Currency: components.CurrencyUsd,
+						Units:    10000,
+					},
+					Carrier: boltgo.String("FedEx"),
+				},
+			},
 			Discounts: []components.CartDiscount{
 				components.CartDiscount{
 					Amount: components.Amount{
@@ -328,70 +353,45 @@ func main() {
 					DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
 				},
 			},
-			DisplayID: boltgo.String("215614191"),
 			Items: []components.CartItem{
 				components.CartItem{
-					Description: boltgo.String("Large tote with Bolt logo."),
-					ImageURL:    boltgo.String("https://www.example.com/products/123456/images/1.png"),
 					Name:        "Bolt Swag Bag",
-					Quantity:    9,
 					Reference:   "item_100",
+					Description: boltgo.String("Large tote with Bolt logo."),
 					TotalAmount: components.Amount{
 						Currency: components.CurrencyUsd,
 						Units:    9000,
 					},
 					UnitPrice: 1000,
+					Quantity:  9,
+					ImageURL:  boltgo.String("https://www.example.com/products/123456/images/1.png"),
 				},
-			},
-			OrderDescription: boltgo.String("Order #1234567890"),
-			OrderReference:   "order_100",
-			Shipments: []components.CartShipment{
-				components.CartShipment{
-					Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
-						components.AddressReferenceExplicitInput{
-							DotTag:         components.AddressReferenceExplicitTagExplicit,
-							Company:        boltgo.String("ACME Corporation"),
-							CountryCode:    components.CountryCodeUs,
-							Email:          boltgo.String("alice@example.com"),
-							FirstName:      "Alice",
-							LastName:       "Baker",
-							Locality:       "San Francisco",
-							Phone:          boltgo.String("+14155550199"),
-							PostalCode:     "94105",
-							Region:         boltgo.String("CA"),
-							StreetAddress1: "535 Mission St, Ste 1401",
-							StreetAddress2: boltgo.String("c/o Shipping Department"),
-						},
-					),
-					Carrier: boltgo.String("FedEx"),
-					Cost: &components.Amount{
-						Currency: components.CurrencyUsd,
-						Units:    10000,
-					},
-				},
-			},
-			Tax: components.Amount{
-				Currency: components.CurrencyUsd,
-				Units:    100,
 			},
 			Total: components.Amount{
 				Currency: components.CurrencyUsd,
 				Units:    9000,
 			},
+			Tax: components.Amount{
+				Currency: components.CurrencyUsd,
+				Units:    100,
+			},
 		},
-		PaymentMethod: components.CreatePaymentMethodInputPaymentMethodAffirm(
-			components.PaymentMethodAffirm{
-				DotTag:    components.PaymentMethodAffirmTagAffirm,
-				ReturnURL: "www.example.com/handle_affirm_success",
+		PaymentMethod: components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
+			components.PaymentMethodCreditCardInput{
+				DotTag: components.DotTagCreditCard,
+				BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
+					components.AddressReferenceID{
+						DotTag: components.AddressReferenceIDTagID,
+						ID:     "D4g3h5tBuVYK9",
+					},
+				),
+				Network:    components.CreditCardNetworkVisa,
+				Bin:        "411111",
+				Last4:      "1004",
+				Expiration: "2025-03",
+				Token:      "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
 			},
 		),
-		Profile: components.ProfileCreationData{
-			CreateAccount: true,
-			Email:         "alice@example.com",
-			FirstName:     "Alice",
-			LastName:      "Baker",
-			Phone:         boltgo.String("+14155550199"),
-		},
 	}
 	ctx := context.Background()
 	res, err := s.Payments.Guest.Initialize(ctx, security, xPublishableKey, guestPaymentInitializeRequest)

@@ -37,7 +37,31 @@ func main() {
     var xPublishableKey string = "<value>"
 
     order := components.Order{
+        Profile: components.Profile{
+            FirstName: "Charlie",
+            LastName: "Dunn",
+            Email: "charlie@example.com",
+            Phone: boltgo.String("+14085551111"),
+        },
         Cart: components.Cart{
+            OrderReference: "instore_20240116-878",
+            OrderDescription: boltgo.String("Order #878"),
+            DisplayID: boltgo.String("20240116-878"),
+            Shipments: []components.CartShipment{
+                components.CartShipment{
+                    Address: components.CreateAddressReferenceInputAddressReferenceID(
+                            components.AddressReferenceID{
+                                DotTag: components.AddressReferenceIDTagID,
+                                ID: "D4g3h5tBuVYK9",
+                            },
+                    ),
+                    Cost: &components.Amount{
+                        Currency: components.CurrencyUsd,
+                        Units: 10000,
+                    },
+                    Carrier: boltgo.String("FedEx"),
+                },
+            },
             Discounts: []components.CartDiscount{
                 components.CartDiscount{
                     Amount: components.Amount{
@@ -48,62 +72,28 @@ func main() {
                     DetailsURL: boltgo.String("https://www.example.com/SUMMER-SALE"),
                 },
             },
-            DisplayID: boltgo.String("20240116-878"),
             Items: []components.CartItem{
                 components.CartItem{
-                    Description: boltgo.String("Single-packed fidget spinner, red"),
-                    ImageURL: boltgo.String("https://www.example.com/products/984/image.png"),
                     Name: "Red Fidget Spinner",
-                    Quantity: 1,
                     Reference: "sku-984",
+                    Description: boltgo.String("Single-packed fidget spinner, red"),
                     TotalAmount: components.Amount{
                         Currency: components.CurrencyUsd,
                         Units: 1000,
                     },
                     UnitPrice: 1000,
+                    Quantity: 1,
+                    ImageURL: boltgo.String("https://www.example.com/products/984/image.png"),
                 },
-            },
-            OrderDescription: boltgo.String("Order #878"),
-            OrderReference: "instore_20240116-878",
-            Shipments: []components.CartShipment{
-                components.CartShipment{
-                    Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
-                            components.AddressReferenceExplicitInput{
-                                DotTag: components.AddressReferenceExplicitTagExplicit,
-                                Company: boltgo.String("ACME Corporation"),
-                                CountryCode: components.CountryCodeUs,
-                                Email: boltgo.String("alice@example.com"),
-                                FirstName: "Charlie",
-                                LastName: "Dunn",
-                                Locality: "San Francisco",
-                                Phone: boltgo.String("+14155550199"),
-                                PostalCode: "94105",
-                                Region: boltgo.String("CA"),
-                                StreetAddress1: "535 Mission St",
-                                StreetAddress2: boltgo.String("c/o Shipping Department"),
-                            },
-                    ),
-                    Carrier: boltgo.String("FedEx"),
-                    Cost: &components.Amount{
-                        Currency: components.CurrencyUsd,
-                        Units: 10000,
-                    },
-                },
-            },
-            Tax: components.Amount{
-                Currency: components.CurrencyUsd,
-                Units: 100,
             },
             Total: components.Amount{
                 Currency: components.CurrencyUsd,
                 Units: 1000,
             },
-        },
-        Profile: components.Profile{
-            Email: "charlie@example.com",
-            FirstName: "Charlie",
-            LastName: "Dunn",
-            Phone: boltgo.String("+14085551111"),
+            Tax: components.Amount{
+                Currency: components.CurrencyUsd,
+                Units: 100,
+            },
         },
     }
     ctx := context.Background()

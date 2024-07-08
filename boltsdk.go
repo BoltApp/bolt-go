@@ -9,6 +9,7 @@ import (
 	"github.com/BoltApp/bolt-go/internal/hooks"
 	"github.com/BoltApp/bolt-go/internal/utils"
 	"github.com/BoltApp/bolt-go/models/components"
+	"github.com/BoltApp/bolt-go/retry"
 	"net/http"
 	"time"
 )
@@ -52,7 +53,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	RetryConfig       *utils.RetryConfig
+	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
 }
 
@@ -181,7 +182,7 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
-func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *BoltSDK) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
@@ -193,9 +194,9 @@ func New(opts ...SDKOption) *BoltSDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.3",
-			SDKVersion:        "1.0.1",
-			GenVersion:        "2.349.6",
-			UserAgent:         "speakeasy-sdk/go 1.0.1 2.349.6 3.0.3 github.com/BoltApp/bolt-go",
+			SDKVersion:        "1.0.2",
+			GenVersion:        "2.359.6",
+			UserAgent:         "speakeasy-sdk/go 1.0.2 2.359.6 3.0.3 github.com/BoltApp/bolt-go",
 			ServerDefaults: []map[string]string{
 				{
 					"environment": "api-sandbox",

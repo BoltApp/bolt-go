@@ -27,16 +27,20 @@ func (o *AccountAddPaymentMethodRequest) GetPaymentMethod() components.PaymentMe
 	return o.PaymentMethod
 }
 
+func (o *AccountAddPaymentMethodRequest) GetPaymentMethodCreditCard() *components.PaymentMethodCreditCardInput {
+	return o.GetPaymentMethod().PaymentMethodCreditCardInput
+}
+
+func (o *AccountAddPaymentMethodRequest) GetPaymentMethodPaypal() *components.PaymentMethodPaypal {
+	return o.GetPaymentMethod().PaymentMethodPaypal
+}
+
 func (o *AccountAddPaymentMethodRequest) GetPaymentMethodAffirm() *components.PaymentMethodAffirm {
 	return o.GetPaymentMethod().PaymentMethodAffirm
 }
 
 func (o *AccountAddPaymentMethodRequest) GetPaymentMethodAfterpay() *components.PaymentMethodAfterpay {
 	return o.GetPaymentMethod().PaymentMethodAfterpay
-}
-
-func (o *AccountAddPaymentMethodRequest) GetPaymentMethodCreditCard() *components.PaymentMethodCreditCardInput {
-	return o.GetPaymentMethod().PaymentMethodCreditCardInput
 }
 
 func (o *AccountAddPaymentMethodRequest) GetPaymentMethodKlarna() *components.PaymentMethodKlarna {
@@ -49,10 +53,6 @@ func (o *AccountAddPaymentMethodRequest) GetPaymentMethodKlarnaAccount() *compon
 
 func (o *AccountAddPaymentMethodRequest) GetPaymentMethodKlarnaPaynow() *components.PaymentMethodKlarnaPaynow {
 	return o.GetPaymentMethod().PaymentMethodKlarnaPaynow
-}
-
-func (o *AccountAddPaymentMethodRequest) GetPaymentMethodPaypal() *components.PaymentMethodPaypal {
-	return o.GetPaymentMethod().PaymentMethodPaypal
 }
 
 type AccountAddPaymentMethodResponse struct {
@@ -94,6 +94,20 @@ func (o *AccountAddPaymentMethodResponse) GetPaymentMethod() *components.Payment
 	return o.PaymentMethod
 }
 
+func (o *AccountAddPaymentMethodResponse) GetPaymentMethodCreditCard() *components.PaymentMethodCreditCard {
+	if v := o.GetPaymentMethod(); v != nil {
+		return v.PaymentMethodCreditCard
+	}
+	return nil
+}
+
+func (o *AccountAddPaymentMethodResponse) GetPaymentMethodPaypal() *components.PaymentMethodPaypalOutput {
+	if v := o.GetPaymentMethod(); v != nil {
+		return v.PaymentMethodPaypalOutput
+	}
+	return nil
+}
+
 func (o *AccountAddPaymentMethodResponse) GetPaymentMethodAffirm() *components.PaymentMethodAffirmOutput {
 	if v := o.GetPaymentMethod(); v != nil {
 		return v.PaymentMethodAffirmOutput
@@ -104,13 +118,6 @@ func (o *AccountAddPaymentMethodResponse) GetPaymentMethodAffirm() *components.P
 func (o *AccountAddPaymentMethodResponse) GetPaymentMethodAfterpay() *components.PaymentMethodAfterpayOutput {
 	if v := o.GetPaymentMethod(); v != nil {
 		return v.PaymentMethodAfterpayOutput
-	}
-	return nil
-}
-
-func (o *AccountAddPaymentMethodResponse) GetPaymentMethodCreditCard() *components.PaymentMethodCreditCard {
-	if v := o.GetPaymentMethod(); v != nil {
-		return v.PaymentMethodCreditCard
 	}
 	return nil
 }
@@ -132,13 +139,6 @@ func (o *AccountAddPaymentMethodResponse) GetPaymentMethodKlarnaAccount() *compo
 func (o *AccountAddPaymentMethodResponse) GetPaymentMethodKlarnaPaynow() *components.PaymentMethodKlarnaPaynowOutput {
 	if v := o.GetPaymentMethod(); v != nil {
 		return v.PaymentMethodKlarnaPaynowOutput
-	}
-	return nil
-}
-
-func (o *AccountAddPaymentMethodResponse) GetPaymentMethodPaypal() *components.PaymentMethodPaypalOutput {
-	if v := o.GetPaymentMethod(); v != nil {
-		return v.PaymentMethodPaypalOutput
 	}
 	return nil
 }

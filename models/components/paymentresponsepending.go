@@ -30,29 +30,6 @@ func (e *PaymentResponsePendingTag) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Action string
-
-const (
-	ActionRedirect Action = "redirect"
-)
-
-func (e Action) ToPointer() *Action {
-	return &e
-}
-func (e *Action) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "redirect":
-		*e = Action(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Action: %v", v)
-	}
-}
-
 type PaymentResponsePendingStatus string
 
 const (
@@ -76,11 +53,34 @@ func (e *PaymentResponsePendingStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type Action string
+
+const (
+	ActionRedirect Action = "redirect"
+)
+
+func (e Action) ToPointer() *Action {
+	return &e
+}
+func (e *Action) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "redirect":
+		*e = Action(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Action: %v", v)
+	}
+}
+
 type PaymentResponsePending struct {
 	DotTag PaymentResponsePendingTag    `json:".tag"`
-	Action Action                       `json:"action"`
 	ID     *string                      `json:"id,omitempty"`
 	Status PaymentResponsePendingStatus `json:"status"`
+	Action Action                       `json:"action"`
 	URL    string                       `json:"url"`
 }
 
@@ -89,13 +89,6 @@ func (o *PaymentResponsePending) GetDotTag() PaymentResponsePendingTag {
 		return PaymentResponsePendingTag("")
 	}
 	return o.DotTag
-}
-
-func (o *PaymentResponsePending) GetAction() Action {
-	if o == nil {
-		return Action("")
-	}
-	return o.Action
 }
 
 func (o *PaymentResponsePending) GetID() *string {
@@ -110,6 +103,13 @@ func (o *PaymentResponsePending) GetStatus() PaymentResponsePendingStatus {
 		return PaymentResponsePendingStatus("")
 	}
 	return o.Status
+}
+
+func (o *PaymentResponsePending) GetAction() Action {
+	if o == nil {
+		return Action("")
+	}
+	return o.Action
 }
 
 func (o *PaymentResponsePending) GetURL() string {

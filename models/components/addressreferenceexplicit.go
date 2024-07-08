@@ -35,30 +35,30 @@ func (e *AddressReferenceExplicitTag) UnmarshalJSON(data []byte) error {
 type AddressReferenceExplicit struct {
 	// The type of address reference
 	DotTag AddressReferenceExplicitTag `json:".tag"`
-	// The company associated with this address.
-	Company *string `json:"company,omitempty"`
-	// The country (in its ISO 3166 alpha-2 format) associated with this address.
-	CountryCode CountryCode `json:"country_code"`
-	// The email address associated with this address.
-	Email *string `json:"email,omitempty"`
-	// The first name of the person associated with this address.
-	FirstName string `json:"first_name"`
 	// The address's unique identifier.
 	ID *string `json:"id,omitempty"`
+	// The first name of the person associated with this address.
+	FirstName string `json:"first_name"`
 	// The last name of the person associated with this address.
 	LastName string `json:"last_name"`
-	// The locality (e.g. city, town, etc...) associated with this address.
-	Locality string `json:"locality"`
-	// The phone number associated with this address.
-	Phone *string `json:"phone,omitempty"`
-	// The postal code associated with this address.
-	PostalCode string `json:"postal_code"`
-	// The region or administrative area (e.g. state, province, county, etc...) associated with this address.
-	Region *string `json:"region,omitempty"`
+	// The company associated with this address.
+	Company *string `json:"company,omitempty"`
 	// The street address associated with this address.
 	StreetAddress1 string `json:"street_address1"`
 	// Any additional, optional, street address information associated with this address.
 	StreetAddress2 *string `json:"street_address2,omitempty"`
+	// The locality (e.g. city, town, etc...) associated with this address.
+	Locality string `json:"locality"`
+	// The postal code associated with this address.
+	PostalCode string `json:"postal_code"`
+	// The region or administrative area (e.g. state, province, county, etc...) associated with this address.
+	Region *string `json:"region,omitempty"`
+	// The country (in its ISO 3166 alpha-2 format) associated with this address.
+	CountryCode CountryCode `json:"country_code"`
+	// The email address associated with this address.
+	Email *string `json:"email,omitempty"`
+	// The phone number associated with this address.
+	Phone *string `json:"phone,omitempty"`
 }
 
 func (o *AddressReferenceExplicit) GetDotTag() AddressReferenceExplicitTag {
@@ -68,25 +68,11 @@ func (o *AddressReferenceExplicit) GetDotTag() AddressReferenceExplicitTag {
 	return o.DotTag
 }
 
-func (o *AddressReferenceExplicit) GetCompany() *string {
+func (o *AddressReferenceExplicit) GetID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Company
-}
-
-func (o *AddressReferenceExplicit) GetCountryCode() CountryCode {
-	if o == nil {
-		return CountryCode("")
-	}
-	return o.CountryCode
-}
-
-func (o *AddressReferenceExplicit) GetEmail() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Email
+	return o.ID
 }
 
 func (o *AddressReferenceExplicit) GetFirstName() string {
@@ -96,13 +82,6 @@ func (o *AddressReferenceExplicit) GetFirstName() string {
 	return o.FirstName
 }
 
-func (o *AddressReferenceExplicit) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
 func (o *AddressReferenceExplicit) GetLastName() string {
 	if o == nil {
 		return ""
@@ -110,32 +89,11 @@ func (o *AddressReferenceExplicit) GetLastName() string {
 	return o.LastName
 }
 
-func (o *AddressReferenceExplicit) GetLocality() string {
-	if o == nil {
-		return ""
-	}
-	return o.Locality
-}
-
-func (o *AddressReferenceExplicit) GetPhone() *string {
+func (o *AddressReferenceExplicit) GetCompany() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Phone
-}
-
-func (o *AddressReferenceExplicit) GetPostalCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.PostalCode
-}
-
-func (o *AddressReferenceExplicit) GetRegion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Region
+	return o.Company
 }
 
 func (o *AddressReferenceExplicit) GetStreetAddress1() string {
@@ -152,32 +110,74 @@ func (o *AddressReferenceExplicit) GetStreetAddress2() *string {
 	return o.StreetAddress2
 }
 
+func (o *AddressReferenceExplicit) GetLocality() string {
+	if o == nil {
+		return ""
+	}
+	return o.Locality
+}
+
+func (o *AddressReferenceExplicit) GetPostalCode() string {
+	if o == nil {
+		return ""
+	}
+	return o.PostalCode
+}
+
+func (o *AddressReferenceExplicit) GetRegion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Region
+}
+
+func (o *AddressReferenceExplicit) GetCountryCode() CountryCode {
+	if o == nil {
+		return CountryCode("")
+	}
+	return o.CountryCode
+}
+
+func (o *AddressReferenceExplicit) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *AddressReferenceExplicit) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
 // AddressReferenceExplicitInput - A physical address.
 type AddressReferenceExplicitInput struct {
 	// The type of address reference
 	DotTag AddressReferenceExplicitTag `json:".tag"`
-	// The company associated with this address.
-	Company *string `json:"company,omitempty"`
-	// The country (in its ISO 3166 alpha-2 format) associated with this address.
-	CountryCode CountryCode `json:"country_code"`
-	// The email address associated with this address.
-	Email *string `json:"email,omitempty"`
 	// The first name of the person associated with this address.
 	FirstName string `json:"first_name"`
 	// The last name of the person associated with this address.
 	LastName string `json:"last_name"`
-	// The locality (e.g. city, town, etc...) associated with this address.
-	Locality string `json:"locality"`
-	// The phone number associated with this address.
-	Phone *string `json:"phone,omitempty"`
-	// The postal code associated with this address.
-	PostalCode string `json:"postal_code"`
-	// The region or administrative area (e.g. state, province, county, etc...) associated with this address.
-	Region *string `json:"region,omitempty"`
+	// The company associated with this address.
+	Company *string `json:"company,omitempty"`
 	// The street address associated with this address.
 	StreetAddress1 string `json:"street_address1"`
 	// Any additional, optional, street address information associated with this address.
 	StreetAddress2 *string `json:"street_address2,omitempty"`
+	// The locality (e.g. city, town, etc...) associated with this address.
+	Locality string `json:"locality"`
+	// The postal code associated with this address.
+	PostalCode string `json:"postal_code"`
+	// The region or administrative area (e.g. state, province, county, etc...) associated with this address.
+	Region *string `json:"region,omitempty"`
+	// The country (in its ISO 3166 alpha-2 format) associated with this address.
+	CountryCode CountryCode `json:"country_code"`
+	// The email address associated with this address.
+	Email *string `json:"email,omitempty"`
+	// The phone number associated with this address.
+	Phone *string `json:"phone,omitempty"`
 }
 
 func (o *AddressReferenceExplicitInput) GetDotTag() AddressReferenceExplicitTag {
@@ -185,27 +185,6 @@ func (o *AddressReferenceExplicitInput) GetDotTag() AddressReferenceExplicitTag 
 		return AddressReferenceExplicitTag("")
 	}
 	return o.DotTag
-}
-
-func (o *AddressReferenceExplicitInput) GetCompany() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Company
-}
-
-func (o *AddressReferenceExplicitInput) GetCountryCode() CountryCode {
-	if o == nil {
-		return CountryCode("")
-	}
-	return o.CountryCode
-}
-
-func (o *AddressReferenceExplicitInput) GetEmail() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Email
 }
 
 func (o *AddressReferenceExplicitInput) GetFirstName() string {
@@ -222,18 +201,32 @@ func (o *AddressReferenceExplicitInput) GetLastName() string {
 	return o.LastName
 }
 
+func (o *AddressReferenceExplicitInput) GetCompany() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Company
+}
+
+func (o *AddressReferenceExplicitInput) GetStreetAddress1() string {
+	if o == nil {
+		return ""
+	}
+	return o.StreetAddress1
+}
+
+func (o *AddressReferenceExplicitInput) GetStreetAddress2() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StreetAddress2
+}
+
 func (o *AddressReferenceExplicitInput) GetLocality() string {
 	if o == nil {
 		return ""
 	}
 	return o.Locality
-}
-
-func (o *AddressReferenceExplicitInput) GetPhone() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Phone
 }
 
 func (o *AddressReferenceExplicitInput) GetPostalCode() string {
@@ -250,16 +243,23 @@ func (o *AddressReferenceExplicitInput) GetRegion() *string {
 	return o.Region
 }
 
-func (o *AddressReferenceExplicitInput) GetStreetAddress1() string {
+func (o *AddressReferenceExplicitInput) GetCountryCode() CountryCode {
 	if o == nil {
-		return ""
+		return CountryCode("")
 	}
-	return o.StreetAddress1
+	return o.CountryCode
 }
 
-func (o *AddressReferenceExplicitInput) GetStreetAddress2() *string {
+func (o *AddressReferenceExplicitInput) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
-	return o.StreetAddress2
+	return o.Email
+}
+
+func (o *AddressReferenceExplicitInput) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
 }

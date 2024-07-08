@@ -3,34 +3,20 @@
 package components
 
 type CartItem struct {
-	// A human-readable description of this cart item.
-	Description *string `json:"description,omitempty"`
-	// Used to provide a link to the image associated with the item.
-	ImageURL *string `json:"image_url,omitempty"`
 	// The name of a given item.
 	Name string `json:"name"`
-	// The number of units that comprise this cart item.
-	Quantity int64 `json:"quantity"`
 	// This value is used by Bolt as an external reference to a given item.
 	Reference string `json:"reference"`
+	// A human-readable description of this cart item.
+	Description *string `json:"description,omitempty"`
 	// A monetary amount, i.e. a base unit amount and a supported currency.
 	TotalAmount Amount `json:"total_amount"`
 	// The item's unit price, i.e. the cost of a single item exclusive of tax and discounts.
 	UnitPrice int64 `json:"unit_price"`
-}
-
-func (o *CartItem) GetDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Description
-}
-
-func (o *CartItem) GetImageURL() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ImageURL
+	// The number of units that comprise this cart item.
+	Quantity int64 `json:"quantity"`
+	// Used to provide a link to the image associated with the item.
+	ImageURL *string `json:"image_url,omitempty"`
 }
 
 func (o *CartItem) GetName() string {
@@ -40,18 +26,18 @@ func (o *CartItem) GetName() string {
 	return o.Name
 }
 
-func (o *CartItem) GetQuantity() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.Quantity
-}
-
 func (o *CartItem) GetReference() string {
 	if o == nil {
 		return ""
 	}
 	return o.Reference
+}
+
+func (o *CartItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
 }
 
 func (o *CartItem) GetTotalAmount() Amount {
@@ -66,4 +52,18 @@ func (o *CartItem) GetUnitPrice() int64 {
 		return 0
 	}
 	return o.UnitPrice
+}
+
+func (o *CartItem) GetQuantity() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Quantity
+}
+
+func (o *CartItem) GetImageURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ImageURL
 }

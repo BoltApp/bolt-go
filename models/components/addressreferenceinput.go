@@ -12,8 +12,8 @@ import (
 type AddressReferenceInputType string
 
 const (
-	AddressReferenceInputTypeExplicit AddressReferenceInputType = "explicit"
 	AddressReferenceInputTypeID       AddressReferenceInputType = "id"
+	AddressReferenceInputTypeExplicit AddressReferenceInputType = "explicit"
 )
 
 type AddressReferenceInput struct {
@@ -21,18 +21,6 @@ type AddressReferenceInput struct {
 	AddressReferenceExplicitInput *AddressReferenceExplicitInput
 
 	Type AddressReferenceInputType
-}
-
-func CreateAddressReferenceInputExplicit(explicit AddressReferenceExplicitInput) AddressReferenceInput {
-	typ := AddressReferenceInputTypeExplicit
-
-	typStr := AddressReferenceExplicitTag(typ)
-	explicit.DotTag = typStr
-
-	return AddressReferenceInput{
-		AddressReferenceExplicitInput: &explicit,
-		Type:                          typ,
-	}
 }
 
 func CreateAddressReferenceInputID(id AddressReferenceID) AddressReferenceInput {
@@ -44,6 +32,18 @@ func CreateAddressReferenceInputID(id AddressReferenceID) AddressReferenceInput 
 	return AddressReferenceInput{
 		AddressReferenceID: &id,
 		Type:               typ,
+	}
+}
+
+func CreateAddressReferenceInputExplicit(explicit AddressReferenceExplicitInput) AddressReferenceInput {
+	typ := AddressReferenceInputTypeExplicit
+
+	typStr := AddressReferenceExplicitTag(typ)
+	explicit.DotTag = typStr
+
+	return AddressReferenceInput{
+		AddressReferenceExplicitInput: &explicit,
+		Type:                          typ,
 	}
 }
 
@@ -59,15 +59,6 @@ func (u *AddressReferenceInput) UnmarshalJSON(data []byte) error {
 	}
 
 	switch dis.DotTag {
-	case "explicit":
-		addressReferenceExplicitInput := new(AddressReferenceExplicitInput)
-		if err := utils.UnmarshalJSON(data, &addressReferenceExplicitInput, "", true, false); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == explicit) type AddressReferenceExplicitInput within AddressReferenceInput: %w", string(data), err)
-		}
-
-		u.AddressReferenceExplicitInput = addressReferenceExplicitInput
-		u.Type = AddressReferenceInputTypeExplicit
-		return nil
 	case "id":
 		addressReferenceID := new(AddressReferenceID)
 		if err := utils.UnmarshalJSON(data, &addressReferenceID, "", true, false); err != nil {
@@ -76,6 +67,15 @@ func (u *AddressReferenceInput) UnmarshalJSON(data []byte) error {
 
 		u.AddressReferenceID = addressReferenceID
 		u.Type = AddressReferenceInputTypeID
+		return nil
+	case "explicit":
+		addressReferenceExplicitInput := new(AddressReferenceExplicitInput)
+		if err := utils.UnmarshalJSON(data, &addressReferenceExplicitInput, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == explicit) type AddressReferenceExplicitInput within AddressReferenceInput: %w", string(data), err)
+		}
+
+		u.AddressReferenceExplicitInput = addressReferenceExplicitInput
+		u.Type = AddressReferenceInputTypeExplicit
 		return nil
 	}
 

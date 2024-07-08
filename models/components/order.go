@@ -3,15 +3,8 @@
 package components
 
 type Order struct {
-	Cart    Cart    `json:"cart"`
 	Profile Profile `json:"profile"`
-}
-
-func (o *Order) GetCart() Cart {
-	if o == nil {
-		return Cart{}
-	}
-	return o.Cart
+	Cart    Cart    `json:"cart"`
 }
 
 func (o *Order) GetProfile() Profile {
@@ -19,4 +12,11 @@ func (o *Order) GetProfile() Profile {
 		return Profile{}
 	}
 	return o.Profile
+}
+
+func (o *Order) GetCart() Cart {
+	if o == nil {
+		return Cart{}
+	}
+	return o.Cart
 }

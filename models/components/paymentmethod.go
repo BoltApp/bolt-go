@@ -12,13 +12,13 @@ import (
 type PaymentMethodType string
 
 const (
+	PaymentMethodTypeCreditCard    PaymentMethodType = "credit_card"
+	PaymentMethodTypePaypal        PaymentMethodType = "paypal"
 	PaymentMethodTypeAffirm        PaymentMethodType = "affirm"
 	PaymentMethodTypeAfterpay      PaymentMethodType = "afterpay"
-	PaymentMethodTypeCreditCard    PaymentMethodType = "credit_card"
 	PaymentMethodTypeKlarna        PaymentMethodType = "klarna"
 	PaymentMethodTypeKlarnaAccount PaymentMethodType = "klarna_account"
 	PaymentMethodTypeKlarnaPaynow  PaymentMethodType = "klarna_paynow"
-	PaymentMethodTypePaypal        PaymentMethodType = "paypal"
 )
 
 type PaymentMethod struct {
@@ -31,6 +31,30 @@ type PaymentMethod struct {
 	PaymentMethodKlarnaPaynowOutput  *PaymentMethodKlarnaPaynowOutput
 
 	Type PaymentMethodType
+}
+
+func CreatePaymentMethodCreditCard(creditCard PaymentMethodCreditCard) PaymentMethod {
+	typ := PaymentMethodTypeCreditCard
+
+	typStr := DotTag(typ)
+	creditCard.DotTag = typStr
+
+	return PaymentMethod{
+		PaymentMethodCreditCard: &creditCard,
+		Type:                    typ,
+	}
+}
+
+func CreatePaymentMethodPaypal(paypal PaymentMethodPaypalOutput) PaymentMethod {
+	typ := PaymentMethodTypePaypal
+
+	typStr := PaymentMethodPaypalTag(typ)
+	paypal.DotTag = typStr
+
+	return PaymentMethod{
+		PaymentMethodPaypalOutput: &paypal,
+		Type:                      typ,
+	}
 }
 
 func CreatePaymentMethodAffirm(affirm PaymentMethodAffirmOutput) PaymentMethod {
@@ -54,18 +78,6 @@ func CreatePaymentMethodAfterpay(afterpay PaymentMethodAfterpayOutput) PaymentMe
 	return PaymentMethod{
 		PaymentMethodAfterpayOutput: &afterpay,
 		Type:                        typ,
-	}
-}
-
-func CreatePaymentMethodCreditCard(creditCard PaymentMethodCreditCard) PaymentMethod {
-	typ := PaymentMethodTypeCreditCard
-
-	typStr := PaymentMethodCreditCardTag(typ)
-	creditCard.DotTag = typStr
-
-	return PaymentMethod{
-		PaymentMethodCreditCard: &creditCard,
-		Type:                    typ,
 	}
 }
 
@@ -105,18 +117,6 @@ func CreatePaymentMethodKlarnaPaynow(klarnaPaynow PaymentMethodKlarnaPaynowOutpu
 	}
 }
 
-func CreatePaymentMethodPaypal(paypal PaymentMethodPaypalOutput) PaymentMethod {
-	typ := PaymentMethodTypePaypal
-
-	typStr := PaymentMethodPaypalTag(typ)
-	paypal.DotTag = typStr
-
-	return PaymentMethod{
-		PaymentMethodPaypalOutput: &paypal,
-		Type:                      typ,
-	}
-}
-
 func (u *PaymentMethod) UnmarshalJSON(data []byte) error {
 
 	type discriminator struct {
@@ -129,6 +129,24 @@ func (u *PaymentMethod) UnmarshalJSON(data []byte) error {
 	}
 
 	switch dis.DotTag {
+	case "credit_card":
+		paymentMethodCreditCard := new(PaymentMethodCreditCard)
+		if err := utils.UnmarshalJSON(data, &paymentMethodCreditCard, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == credit_card) type PaymentMethodCreditCard within PaymentMethod: %w", string(data), err)
+		}
+
+		u.PaymentMethodCreditCard = paymentMethodCreditCard
+		u.Type = PaymentMethodTypeCreditCard
+		return nil
+	case "paypal":
+		paymentMethodPaypalOutput := new(PaymentMethodPaypalOutput)
+		if err := utils.UnmarshalJSON(data, &paymentMethodPaypalOutput, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == paypal) type PaymentMethodPaypalOutput within PaymentMethod: %w", string(data), err)
+		}
+
+		u.PaymentMethodPaypalOutput = paymentMethodPaypalOutput
+		u.Type = PaymentMethodTypePaypal
+		return nil
 	case "affirm":
 		paymentMethodAffirmOutput := new(PaymentMethodAffirmOutput)
 		if err := utils.UnmarshalJSON(data, &paymentMethodAffirmOutput, "", true, false); err != nil {
@@ -146,15 +164,6 @@ func (u *PaymentMethod) UnmarshalJSON(data []byte) error {
 
 		u.PaymentMethodAfterpayOutput = paymentMethodAfterpayOutput
 		u.Type = PaymentMethodTypeAfterpay
-		return nil
-	case "credit_card":
-		paymentMethodCreditCard := new(PaymentMethodCreditCard)
-		if err := utils.UnmarshalJSON(data, &paymentMethodCreditCard, "", true, false); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == credit_card) type PaymentMethodCreditCard within PaymentMethod: %w", string(data), err)
-		}
-
-		u.PaymentMethodCreditCard = paymentMethodCreditCard
-		u.Type = PaymentMethodTypeCreditCard
 		return nil
 	case "klarna":
 		paymentMethodKlarnaOutput := new(PaymentMethodKlarnaOutput)
@@ -182,15 +191,6 @@ func (u *PaymentMethod) UnmarshalJSON(data []byte) error {
 
 		u.PaymentMethodKlarnaPaynowOutput = paymentMethodKlarnaPaynowOutput
 		u.Type = PaymentMethodTypeKlarnaPaynow
-		return nil
-	case "paypal":
-		paymentMethodPaypalOutput := new(PaymentMethodPaypalOutput)
-		if err := utils.UnmarshalJSON(data, &paymentMethodPaypalOutput, "", true, false); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (DotTag == paypal) type PaymentMethodPaypalOutput within PaymentMethod: %w", string(data), err)
-		}
-
-		u.PaymentMethodPaypalOutput = paymentMethodPaypalOutput
-		u.Type = PaymentMethodTypePaypal
 		return nil
 	}
 

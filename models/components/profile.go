@@ -3,21 +3,14 @@
 package components
 
 type Profile struct {
-	// The email address asscoiated with this profile.
-	Email string `json:"email"`
 	// The given name of the person associated with this profile.
 	FirstName string `json:"first_name"`
 	// The last name of the person associated with this profile.
 	LastName string `json:"last_name"`
+	// The email address asscoiated with this profile.
+	Email string `json:"email"`
 	// The phone number associated with this profile.
 	Phone *string `json:"phone,omitempty"`
-}
-
-func (o *Profile) GetEmail() string {
-	if o == nil {
-		return ""
-	}
-	return o.Email
 }
 
 func (o *Profile) GetFirstName() string {
@@ -32,6 +25,13 @@ func (o *Profile) GetLastName() string {
 		return ""
 	}
 	return o.LastName
+}
+
+func (o *Profile) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
 }
 
 func (o *Profile) GetPhone() *string {

@@ -43,10 +43,10 @@ func (o *PaymentMethodPaypalOutput) GetDotTag() PaymentMethodPaypalTag {
 
 type PaymentMethodPaypal struct {
 	DotTag PaymentMethodPaypalTag `json:".tag"`
-	// Redirect URL for canceled PayPal transaction.
-	CancelURL string `json:"cancel_url"`
 	// Redirect URL for successful PayPal transaction.
 	SuccessURL string `json:"success_url"`
+	// Redirect URL for canceled PayPal transaction.
+	CancelURL string `json:"cancel_url"`
 }
 
 func (o *PaymentMethodPaypal) GetDotTag() PaymentMethodPaypalTag {
@@ -56,16 +56,16 @@ func (o *PaymentMethodPaypal) GetDotTag() PaymentMethodPaypalTag {
 	return o.DotTag
 }
 
-func (o *PaymentMethodPaypal) GetCancelURL() string {
-	if o == nil {
-		return ""
-	}
-	return o.CancelURL
-}
-
 func (o *PaymentMethodPaypal) GetSuccessURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.SuccessURL
+}
+
+func (o *PaymentMethodPaypal) GetCancelURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.CancelURL
 }
