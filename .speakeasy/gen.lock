@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: c4fe0e05a897d2529fe236e336233db8
-  docVersion: 3.0.3
-  speakeasyVersion: 1.327.0
-  generationVersion: 2.359.6
-  releaseVersion: 1.0.2
-  configChecksum: 476efdecc8e57a06b7f3ad9d2206c8a3
+  docChecksum: 591aea7c18b3e1522f68607a9c305077
+  docVersion: 3.1.0
+  speakeasyVersion: 1.331.0
+  generationVersion: 2.365.0
+  releaseVersion: 1.1.0
+  configChecksum: cf6bdfad49bec5a3bf1b03506a34873d
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -14,7 +14,8 @@ management:
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.4.14
+    core: 3.4.15
+    defaultEnabledRetries: 0.2.0
     errorUnions: 0.1.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -27,6 +28,7 @@ features:
     methodSecurity: 2.82.2
     nameOverrides: 2.81.2
     responseFormat: 0.1.2
+    retries: 2.83.0
     sdkHooks: 0.1.0
     unions: 2.85.8
 generatedFiles:
@@ -166,6 +168,7 @@ generatedFiles:
   - docs/models/operations/paymentsupdateresponse.md
   - docs/models/operations/paymentsactionrequest.md
   - docs/models/operations/paymentsactionresponse.md
+  - docs/models/operations/oauthgettokenrequest.md
   - docs/models/operations/oauthgettokenresponse.md
   - docs/models/operations/orderscreatesecurity.md
   - docs/models/operations/orderscreaterequest.md
@@ -283,6 +286,7 @@ generatedFiles:
   - docs/models/sdkerrors/testingaccountphonegetresponsebody.md
   - docs/models/sdkerrors/testingcreditcardgetresponsebody.md
   - docs/sdks/boltsdk/README.md
+  - docs/models/operations/option.md
   - docs/sdks/account/README.md
   - docs/sdks/payments/README.md
   - docs/sdks/guest/README.md
@@ -291,5 +295,6 @@ generatedFiles:
   - docs/sdks/orders/README.md
   - docs/sdks/testing/README.md
   - USAGE.md
+  - models/operations/options.go
   - .gitattributes
   - internal/hooks/hooks.go

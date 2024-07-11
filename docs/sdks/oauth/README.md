@@ -30,7 +30,9 @@ import(
 
 func main() {
     s := boltgo.New()
-    var request components.TokenRequest = components.CreateTokenRequestAuthorizationCodeRequest(
+    var xMerchantClientID string = "<value>"
+
+    var tokenRequest components.TokenRequest = components.CreateTokenRequestAuthorizationCodeRequest(
             components.AuthorizationCodeRequest{
                 GrantType: components.GrantTypeAuthorizationCode,
                 Code: "7GSjMRSHs6Ak7C_zvVW6P2IhZOHxMK7HZKW1fMX85ms",
@@ -45,7 +47,7 @@ func main() {
             },
     )
     ctx := context.Background()
-    res, err := s.OAuth.GetToken(ctx, request)
+    res, err := s.OAuth.GetToken(ctx, xMerchantClientID, tokenRequest)
     if err != nil {
         log.Fatal(err)
     }
@@ -57,10 +59,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [components.TokenRequest](../../models/components/tokenrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| Parameter                                                                                                                                                                                                           | Type                                                                                                                                                                                                                | Required                                                                                                                                                                                                            | Description                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                                                               | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                  | The context to use for the request.                                                                                                                                                                                 |
+| `xMerchantClientID`                                                                                                                                                                                                 | *string*                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                  | A unique identifier for a shopper's device, generated by Bolt. This header is required for proper attribution of this operation to your analytics reports. Omitting this header may result in incorrect statistics. |
+| `tokenRequest`                                                                                                                                                                                                      | [components.TokenRequest](../../models/components/tokenrequest.md)                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                  | N/A                                                                                                                                                                                                                 |
+| `opts`                                                                                                                                                                                                              | [][operations.Option](../../models/operations/option.md)                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                  | The options for this request.                                                                                                                                                                                       |
 
 
 ### Response

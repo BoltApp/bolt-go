@@ -55,6 +55,7 @@ type sdkConfiguration struct {
 	UserAgent         string
 	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
+	Timeout           *time.Duration
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -188,15 +189,22 @@ func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	}
 }
 
+// WithTimeout Optional request timeout applied to each operation
+func WithTimeout(timeout time.Duration) SDKOption {
+	return func(sdk *BoltSDK) {
+		sdk.sdkConfiguration.Timeout = &timeout
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *BoltSDK {
 	sdk := &BoltSDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "3.0.3",
-			SDKVersion:        "1.0.2",
-			GenVersion:        "2.359.6",
-			UserAgent:         "speakeasy-sdk/go 1.0.2 2.359.6 3.0.3 github.com/BoltApp/bolt-go",
+			OpenAPIDocVersion: "3.1.0",
+			SDKVersion:        "1.1.0",
+			GenVersion:        "2.365.0",
+			UserAgent:         "speakeasy-sdk/go 1.1.0 2.365.0 3.1.0 github.com/BoltApp/bolt-go",
 			ServerDefaults: []map[string]string{
 				{
 					"environment": "api-sandbox",

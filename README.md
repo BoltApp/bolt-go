@@ -36,8 +36,10 @@ func main() {
 		}),
 	)
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey)
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -120,8 +122,10 @@ func main() {
 		}),
 	)
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey)
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
 	if err != nil {
 
 		var e *sdkerrors.AccountGetResponseBody
@@ -172,8 +176,10 @@ func main() {
 		}),
 	)
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey)
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -210,8 +216,10 @@ func main() {
 		}),
 	)
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey)
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -282,8 +290,10 @@ func main() {
 		}),
 	)
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey)
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -315,6 +325,8 @@ func main() {
 	}
 
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 
 	guestPaymentInitializeRequest := components.GuestPaymentInitializeRequest{
 		Profile: components.ProfileCreationData{
@@ -394,7 +406,7 @@ func main() {
 		),
 	}
 	ctx := context.Background()
-	res, err := s.Payments.Guest.Initialize(ctx, security, xPublishableKey, guestPaymentInitializeRequest)
+	res, err := s.Payments.Guest.Initialize(ctx, security, xPublishableKey, xMerchantClientID, guestPaymentInitializeRequest)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -411,6 +423,100 @@ func main() {
 
 
 <!-- End Special Types [types] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
+```go
+package main
+
+import (
+	"context"
+	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
+	"github.com/BoltApp/bolt-go/retry"
+	"log"
+	"models/operations"
+)
+
+func main() {
+	s := boltgo.New(
+		boltgo.WithSecurity(components.Security{
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+		}),
+	)
+	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
+	ctx := context.Background()
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID, operations.WithRetries(
+		retry.Config{
+			Strategy: "backoff",
+			Backoff: &retry.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Account != nil {
+		// handle response
+	}
+}
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
+```go
+package main
+
+import (
+	"context"
+	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
+	"github.com/BoltApp/bolt-go/retry"
+	"log"
+)
+
+func main() {
+	s := boltgo.New(
+		boltgo.WithRetryConfig(
+			retry.Config{
+				Strategy: "backoff",
+				Backoff: &retry.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
+		boltgo.WithSecurity(components.Security{
+			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+		}),
+	)
+	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
+	ctx := context.Background()
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Account != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

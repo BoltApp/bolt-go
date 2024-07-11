@@ -16,8 +16,10 @@ func main() {
 		}),
 	)
 	var xPublishableKey string = "<value>"
+
+	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey)
+	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
 	if err != nil {
 		log.Fatal(err)
 	}
