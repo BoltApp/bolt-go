@@ -5,15 +5,13 @@
 
 Use the Orders API to create and manage orders, including orders that have been placed outside the Bolt ecosystem.
 
-
 ### Available Operations
 
-* [OrdersCreate](#orderscreate) - Create an order that was placed outside the Bolt ecosystem.
+* [OrdersCreate](#orderscreate) - Create an order that was prepared outside the Bolt ecosystem.
 
 ## OrdersCreate
 
-Create an order that was placed outside the Bolt ecosystem.
-
+Create an order that was prepared outside the Bolt ecosystem. Some Bolt-powered flows automatically manage order creation - in those flows the order ID will be provided separately and not through this API.
 
 ### Example Usage
 
@@ -23,6 +21,7 @@ package main
 import(
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"os"
 	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
@@ -31,7 +30,7 @@ import(
 func main() {
     s := boltgo.New()
     security := operations.OrdersCreateSecurity{
-            APIKey: "<YOUR_API_KEY_HERE>",
+            APIKey: os.Getenv("API_KEY"),
         }
 
     var xPublishableKey string = "<value>"
@@ -115,7 +114,7 @@ func main() {
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                               | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                  | The context to use for the request.                                                                                                                                                                                 |
 | `security`                                                                                                                                                                                                          | [operations.OrdersCreateSecurity](../../models/operations/orderscreatesecurity.md)                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                  | The security requirements to use for the request.                                                                                                                                                                   |
-| `xPublishableKey`                                                                                                                                                                                                   | *string*                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                  | The publicly viewable identifier used to identify a merchant division.                                                                                                                                              |
+| `xPublishableKey`                                                                                                                                                                                                   | *string*                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                  | The publicly shareable identifier used to identify your Bolt merchant division.                                                                                                                                     |
 | `xMerchantClientID`                                                                                                                                                                                                 | *string*                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                  | A unique identifier for a shopper's device, generated by Bolt. This header is required for proper attribution of this operation to your analytics reports. Omitting this header may result in incorrect statistics. |
 | `order`                                                                                                                                                                                                             | [components.Order](../../models/components/order.md)                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                                                                  | N/A                                                                                                                                                                                                                 |
 | `opts`                                                                                                                                                                                                              | [][operations.Option](../../models/operations/option.md)                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                  | The options for this request.                                                                                                                                                                                       |

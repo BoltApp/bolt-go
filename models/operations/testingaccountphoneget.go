@@ -19,7 +19,7 @@ func (o *TestingAccountPhoneGetSecurity) GetAPIKey() string {
 }
 
 type TestingAccountPhoneGetRequest struct {
-	// The publicly viewable identifier used to identify a merchant division.
+	// The publicly shareable identifier used to identify your Bolt merchant division.
 	XPublishableKey string `header:"style=simple,explode=false,name=X-Publishable-Key"`
 }
 

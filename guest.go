@@ -28,8 +28,7 @@ func newGuest(sdkConfig sdkConfiguration) *Guest {
 }
 
 // Initialize a Bolt payment for guest shoppers
-// Initialize a Bolt payment token that will be used to reference this payment to
-// Bolt when it is updated or finalized for guest shoppers.
+// Initialize a Bolt guest shopper's intent to pay for a cart, using the specified payment method. Payments must be finalized before indicating the payment result to the shopper. Some payment methods will finalize automatically after initialization. For these payments, they will transition directly to "finalized" and the response from Initialize Payment will contain a finalized payment.
 func (s *Guest) Initialize(ctx context.Context, security operations.GuestPaymentsInitializeSecurity, xPublishableKey string, xMerchantClientID string, guestPaymentInitializeRequest components.GuestPaymentInitializeRequest, opts ...operations.Option) (*operations.GuestPaymentsInitializeResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -223,8 +222,8 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 
 }
 
-// Update an existing guest payment
 // Update a pending guest payment
+// Update a guest payment that is still in the pending state, with new information about the payment.
 func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpdateSecurity, id string, xPublishableKey string, xMerchantClientID string, paymentUpdateRequest components.PaymentUpdateRequest, opts ...operations.Option) (*operations.GuestPaymentsUpdateResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -419,8 +418,8 @@ func (s *Guest) Update(ctx context.Context, security operations.GuestPaymentsUpd
 
 }
 
-// PerformAction - Perform an irreversible action (e.g. finalize) on a pending guest payment
-// Perform an irreversible action on a pending guest payment, such as finalizing it.
+// PerformAction - Finalize a pending guest payment
+// Finalize a pending payment being made by a Bolt guest shopper. Upon receipt of a finalized payment result, payment success should be communicated to the shopper.
 func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaymentsActionSecurity, id string, xPublishableKey string, xMerchantClientID string, paymentActionRequest components.PaymentActionRequest, opts ...operations.Option) (*operations.GuestPaymentsActionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

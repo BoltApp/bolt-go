@@ -28,8 +28,7 @@ func newLoggedIn(sdkConfig sdkConfiguration) *LoggedIn {
 }
 
 // Initialize a Bolt payment for logged in shoppers
-// Initialize a Bolt payment token that will be used to reference this payment to
-// Bolt when it is updated or finalized for logged in shoppers.
+// Initialize a Bolt logged-in shopper's intent to pay for a cart, using the specified payment method. Payments must be finalized before indicating the payment result to the shopper. Some payment methods will finalize automatically after initialization. For these payments, they will transition directly to "finalized" and the response from Initialize Payment will contain a finalized payment.
 func (s *LoggedIn) Initialize(ctx context.Context, xPublishableKey string, xMerchantClientID string, paymentInitializeRequest components.PaymentInitializeRequest, opts ...operations.Option) (*operations.PaymentsInitializeResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -223,8 +222,8 @@ func (s *LoggedIn) Initialize(ctx context.Context, xPublishableKey string, xMerc
 
 }
 
-// Update an existing payment
 // Update a pending payment
+// Update a payment that is still in the pending state, with new information about the payment.
 func (s *LoggedIn) Update(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, paymentUpdateRequest components.PaymentUpdateRequest, opts ...operations.Option) (*operations.PaymentsUpdateResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -419,8 +418,8 @@ func (s *LoggedIn) Update(ctx context.Context, id string, xPublishableKey string
 
 }
 
-// PerformAction - Perform an irreversible action (e.g. finalize) on a pending payment
-// Perform an irreversible action on a pending payment, such as finalizing it.
+// PerformAction - Finalize a pending payment
+// Finalize a pending payment being made by a Bolt logged-in shopper. Upon receipt of a finalized payment result, payment success should be communicated to the shopper.
 func (s *LoggedIn) PerformAction(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, paymentActionRequest components.PaymentActionRequest, opts ...operations.Option) (*operations.PaymentsActionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

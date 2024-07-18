@@ -17,8 +17,7 @@ import (
 	"net/url"
 )
 
-// Testing - Endpoints that allow you to generate and retrieve test data to verify certain
-// flows in non-production environments.
+// Testing - Use the Testing API to generate and retrieve test data to verify a subset of flows in non-production environments.
 type Testing struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -224,7 +223,7 @@ func (s *Testing) CreateAccount(ctx context.Context, security operations.Testing
 }
 
 // TestingAccountPhoneGet - Get a random phone number
-// Get a random, fictitious phone number that is not assigned to any existing account.
+// Get a random, fictitious phone number that is not assigned to any existing Bolt account.
 func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operations.TestingAccountPhoneGetSecurity, xPublishableKey string, opts ...operations.Option) (*operations.TestingAccountPhoneGetResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -410,8 +409,8 @@ func (s *Testing) TestingAccountPhoneGet(ctx context.Context, security operation
 
 }
 
-// GetCreditCard - Retrieve a test credit card, including its token
-// Retrieve test credit card information. This includes its token, which can be used to process payments.
+// GetCreditCard - Retrieve a tokenized test credit card
+// Retrieve a test credit card that can be used to process payments in your Bolt testing environment. The response includes the card's Bolt credit card token.
 func (s *Testing) GetCreditCard(ctx context.Context, request operations.TestingCreditCardGetRequestBody, security operations.TestingCreditCardGetSecurity, opts ...operations.Option) (*operations.TestingCreditCardGetResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

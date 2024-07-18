@@ -43,9 +43,7 @@ func (e *GenericErrorTag) UnmarshalJSON(data []byte) error {
 type GenericError struct {
 	// The type of error returned
 	DotTag GenericErrorTag `json:".tag"`
-	// A human-readable error message, which might include information specific to
-	// the request that was made.
-	//
+	// A human-readable error message, which might include information specific to the request that was made.
 	Message string `json:"message"`
 }
 

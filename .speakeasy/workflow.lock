@@ -1,9 +1,9 @@
-speakeasyVersion: 1.331.0
+speakeasyVersion: 1.340.0
 sources:
     bolt-go-api:
         sourceNamespace: bolt-go-api
-        sourceRevisionDigest: sha256:ab5eff5fb72b424e02d8259471874c0029a22d04a632207311edfed0cb3cf822
-        sourceBlobDigest: sha256:550a2252c21dbb2d2c879a453a0ae2ba89be552e8f693dd1b08d5ffb8b511ed1
+        sourceRevisionDigest: sha256:11e2f155bbec6e42046bc396023d30e306309319279a055f345efe57117316b2
+        sourceBlobDigest: sha256:02d2c05fe0ea617fc13ed24f6382b3619fff6ed15b5b0b68df475ad09e9f7495
         tags:
             - latest
             - master
@@ -11,8 +11,8 @@ targets:
     bolt-go-sdk:
         source: bolt-go-api
         sourceNamespace: bolt-go-api
-        sourceRevisionDigest: sha256:ab5eff5fb72b424e02d8259471874c0029a22d04a632207311edfed0cb3cf822
-        sourceBlobDigest: sha256:550a2252c21dbb2d2c879a453a0ae2ba89be552e8f693dd1b08d5ffb8b511ed1
+        sourceRevisionDigest: sha256:11e2f155bbec6e42046bc396023d30e306309319279a055f345efe57117316b2
+        sourceBlobDigest: sha256:02d2c05fe0ea617fc13ed24f6382b3619fff6ed15b5b0b68df475ad09e9f7495
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0

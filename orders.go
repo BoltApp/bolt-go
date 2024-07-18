@@ -28,8 +28,8 @@ func newOrders(sdkConfig sdkConfiguration) *Orders {
 	}
 }
 
-// OrdersCreate - Create an order that was placed outside the Bolt ecosystem.
-// Create an order that was placed outside the Bolt ecosystem.
+// OrdersCreate - Create an order that was prepared outside the Bolt ecosystem.
+// Create an order that was prepared outside the Bolt ecosystem. Some Bolt-powered flows automatically manage order creation - in those flows the order ID will be provided separately and not through this API.
 func (s *Orders) OrdersCreate(ctx context.Context, security operations.OrdersCreateSecurity, xPublishableKey string, xMerchantClientID string, order components.Order, opts ...operations.Option) (*operations.OrdersCreateResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

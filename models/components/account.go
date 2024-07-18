@@ -7,7 +7,8 @@ type Account struct {
 	Addresses []AddressListing `json:"addresses"`
 	// A list of payment methods associated with this account.
 	PaymentMethods []PaymentMethod `json:"payment_methods"`
-	Profile        *Profile        `json:"profile,omitempty"`
+	// An account's identifying information.
+	Profile *Profile `json:"profile,omitempty"`
 }
 
 func (o *Account) GetAddresses() []AddressListing {

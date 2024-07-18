@@ -66,25 +66,18 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], c.ServerDefaults[c.ServerIndex]
 }
 
-// BoltSDK - Bolt API Reference: A comprehensive Bolt API reference for interacting with Transactions, Orders, Product Catalog, Configuration, Testing, and much more.
+// BoltSDK - Bolt API Reference: A comprehensive Bolt API reference for interacting with Accounts, Payments, Orders and more.
 type BoltSDK struct {
-	// Account endpoints allow you to view and manage shoppers' accounts. For example,
-	// you can add or remove addresses and payment information.
-	//
+	// Use the Accounts API to access shoppers' accounts to empower your checkout and facilitate shoppers' choices.
 	Account  *Account
 	Payments *Payments
-	// Use this endpoint to retrieve an OAuth token. Use the token to allow your ecommerce server to make calls to the Account
-	// endpoint and create a one-click checkout experience for shoppers.
-	//
+	// Use the OAuth API to enable your ecommerce server to make API calls on behalf of a Bolt logged-in shopper.
 	//
 	// https://help.bolt.com/products/accounts/direct-api/oauth-guide/
 	OAuth *OAuth
 	// Use the Orders API to create and manage orders, including orders that have been placed outside the Bolt ecosystem.
-	//
 	Orders *Orders
-	// Endpoints that allow you to generate and retrieve test data to verify certain
-	// flows in non-production environments.
-	//
+	// Use the Testing API to generate and retrieve test data to verify a subset of flows in non-production environments.
 	Testing *Testing
 
 	sdkConfiguration sdkConfiguration
@@ -201,10 +194,10 @@ func New(opts ...SDKOption) *BoltSDK {
 	sdk := &BoltSDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "3.1.0",
-			SDKVersion:        "1.1.0",
-			GenVersion:        "2.365.0",
-			UserAgent:         "speakeasy-sdk/go 1.1.0 2.365.0 3.1.0 github.com/BoltApp/bolt-go",
+			OpenAPIDocVersion: "3.1.1",
+			SDKVersion:        "1.2.0",
+			GenVersion:        "2.375.5",
+			UserAgent:         "speakeasy-sdk/go 1.2.0 2.375.5 3.1.1 github.com/BoltApp/bolt-go",
 			ServerDefaults: []map[string]string{
 				{
 					"environment": "api-sandbox",

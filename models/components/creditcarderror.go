@@ -55,9 +55,7 @@ func (e *CreditCardErrorTag) UnmarshalJSON(data []byte) error {
 type CreditCardError struct {
 	// The type of error returned
 	DotTag CreditCardErrorTag `json:".tag"`
-	// A human-readable error message, which might include information specific to
-	// the request that was made.
-	//
+	// A human-readable error message, which might include information specific to the request that was made.
 	Message string `json:"message"`
 }
 

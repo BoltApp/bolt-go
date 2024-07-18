@@ -3,20 +3,17 @@
 
 ## Overview
 
-Endpoints that allow you to generate and retrieve test data to verify certain
-flows in non-production environments.
-
+Use the Testing API to generate and retrieve test data to verify a subset of flows in non-production environments.
 
 ### Available Operations
 
 * [CreateAccount](#createaccount) - Create a test account
 * [TestingAccountPhoneGet](#testingaccountphoneget) - Get a random phone number
-* [GetCreditCard](#getcreditcard) - Retrieve a test credit card, including its token
+* [GetCreditCard](#getcreditcard) - Retrieve a tokenized test credit card
 
 ## CreateAccount
 
 Create a Bolt shopper account for testing purposes.
-
 
 ### Example Usage
 
@@ -26,6 +23,7 @@ package main
 import(
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"os"
 	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
@@ -34,7 +32,7 @@ import(
 func main() {
     s := boltgo.New()
     security := operations.TestingAccountCreateSecurity{
-            APIKey: "<YOUR_API_KEY_HERE>",
+            APIKey: os.Getenv("API_KEY"),
         }
 
     var xPublishableKey string = "<value>"
@@ -63,7 +61,7 @@ func main() {
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
 | `security`                                                                                         | [operations.TestingAccountCreateSecurity](../../models/operations/testingaccountcreatesecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
-| `xPublishableKey`                                                                                  | *string*                                                                                           | :heavy_check_mark:                                                                                 | The publicly viewable identifier used to identify a merchant division.                             |
+| `xPublishableKey`                                                                                  | *string*                                                                                           | :heavy_check_mark:                                                                                 | The publicly shareable identifier used to identify your Bolt merchant division.                    |
 | `accountTestCreationData`                                                                          | [components.AccountTestCreationData](../../models/components/accounttestcreationdata.md)           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
 | `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
@@ -78,8 +76,7 @@ func main() {
 
 ## TestingAccountPhoneGet
 
-Get a random, fictitious phone number that is not assigned to any existing account.
-
+Get a random, fictitious phone number that is not assigned to any existing Bolt account.
 
 ### Example Usage
 
@@ -89,6 +86,7 @@ package main
 import(
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"os"
 	"context"
 	"log"
 )
@@ -96,7 +94,7 @@ import(
 func main() {
     s := boltgo.New()
     security := operations.TestingAccountPhoneGetSecurity{
-            APIKey: "<YOUR_API_KEY_HERE>",
+            APIKey: os.Getenv("API_KEY"),
         }
 
     var xPublishableKey string = "<value>"
@@ -117,7 +115,7 @@ func main() {
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
 | `security`                                                                                             | [operations.TestingAccountPhoneGetSecurity](../../models/operations/testingaccountphonegetsecurity.md) | :heavy_check_mark:                                                                                     | The security requirements to use for the request.                                                      |
-| `xPublishableKey`                                                                                      | *string*                                                                                               | :heavy_check_mark:                                                                                     | The publicly viewable identifier used to identify a merchant division.                                 |
+| `xPublishableKey`                                                                                      | *string*                                                                                               | :heavy_check_mark:                                                                                     | The publicly shareable identifier used to identify your Bolt merchant division.                        |
 | `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
@@ -131,8 +129,7 @@ func main() {
 
 ## GetCreditCard
 
-Retrieve test credit card information. This includes its token, which can be used to process payments.
-
+Retrieve a test credit card that can be used to process payments in your Bolt testing environment. The response includes the card's Bolt credit card token.
 
 ### Example Usage
 
@@ -142,6 +139,7 @@ package main
 import(
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"os"
 	"context"
 	"log"
 )
@@ -153,7 +151,7 @@ func main() {
     }
 
     security := operations.TestingCreditCardGetSecurity{
-            APIKey: "<YOUR_API_KEY_HERE>",
+            APIKey: os.Getenv("API_KEY"),
         }
     ctx := context.Background()
     res, err := s.Testing.GetCreditCard(ctx, request, security)

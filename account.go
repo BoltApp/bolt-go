@@ -17,8 +17,7 @@ import (
 	"net/url"
 )
 
-// Account endpoints allow you to view and manage shoppers' accounts. For example,
-// you can add or remove addresses and payment information.
+// Account - Use the Accounts API to access shoppers' accounts to empower your checkout and facilitate shoppers' choices.
 type Account struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -413,9 +412,7 @@ func (s *Account) AddAddress(ctx context.Context, xPublishableKey string, xMerch
 }
 
 // UpdateAddress - Edit an existing address
-// Edit an existing address on the shopper's account. This does not edit addresses
-// that are already associated with other resources, such as transactions or
-// shipments.
+// Edit an existing address on the shopper's account. This does not edit addresses that are already associated with other resources, such as transactions or shipments.
 func (s *Account) UpdateAddress(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, addressListing components.AddressListingInput, opts ...operations.Option) (*operations.AccountAddressEditResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -611,8 +608,7 @@ func (s *Account) UpdateAddress(ctx context.Context, id string, xPublishableKey 
 }
 
 // DeleteAddress - Delete an existing address
-// Delete an existing address. Deleting an address does not invalidate transactions or
-// shipments that are associated with it.
+// Delete an existing address. Deleting an address does not invalidate or remove the address from transactions or shipments that are associated with it.
 func (s *Account) DeleteAddress(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, opts ...operations.Option) (*operations.AccountAddressDeleteResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -790,11 +786,8 @@ func (s *Account) DeleteAddress(ctx context.Context, id string, xPublishableKey 
 
 }
 
-// AddPaymentMethod - Add a payment method to a shopper's Bolt account Wallet.
-// Add a payment method to a shopper's Bolt account Wallet. For security purposes, this request must come from
-// your backend because authentication requires the use of your private key.<br />
-// **Note**: Before using this API, the credit card details must be tokenized using Bolt's JavaScript library function,
-// which is documented in [Install the Bolt Tokenizer](https://help.bolt.com/developers/references/bolt-tokenizer).
+// AddPaymentMethod - Add a payment method
+// Add a payment method to a shopper's Bolt Account Wallet. For security purposes, this request must come from your backend. <br/> **Note**: Before using this API, the credit card details must be tokenized by Bolt's credit card tokenization service. Please review our [Bolt Payment Field Component](https://help.bolt.com/products/ignite/api-implementation/#enhance-payments) or [Install the Bolt Tokenizer](https://help.bolt.com/developers/references/bolt-tokenizer) documentation.
 func (s *Account) AddPaymentMethod(ctx context.Context, xPublishableKey string, xMerchantClientID string, paymentMethod components.PaymentMethodInput, opts ...operations.Option) (*operations.AccountAddPaymentMethodResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -989,8 +982,7 @@ func (s *Account) AddPaymentMethod(ctx context.Context, xPublishableKey string, 
 }
 
 // DeletePaymentMethod - Delete an existing payment method
-// Delete an existing payment method. Deleting a payment method does not invalidate transactions or
-// orders that are associated with it.
+// Delete an existing payment method. Deleting a payment method does not invalidate or remove it from transactions or orders that are associated with it.
 func (s *Account) DeletePaymentMethod(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, opts ...operations.Option) (*operations.AccountPaymentMethodDeleteResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

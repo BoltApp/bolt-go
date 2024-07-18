@@ -2,6 +2,7 @@
 
 package components
 
+// ProfileCreationData - An account's identifying information.
 type ProfileCreationData struct {
 	// Whether or not an account should be created.
 	CreateAccount bool `json:"create_account"`

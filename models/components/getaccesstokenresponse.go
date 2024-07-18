@@ -3,9 +3,9 @@
 package components
 
 type GetAccessTokenResponse struct {
-	// A JWT token issued when the request includes the scope open_id.
+	// A JSON Web Token (JWT) issued when the request includes the scope open_id.
 	IDToken *string `json:"id_token,omitempty"`
-	// An access token you can use to make requests on behalf of a Bolt Account.
+	// An access token you can use to make requests on behalf of a Bolt shopper.
 	AccessToken *string `json:"access_token,omitempty"`
 	// The access token's expiration, in seconds.
 	ExpiresIn *int64 `json:"expires_in,omitempty"`
@@ -13,9 +13,7 @@ type GetAccessTokenResponse struct {
 	RefreshToken *string `json:"refresh_token,omitempty"`
 	// The scope granted to the refresh token. Currently, refreshed token will only grant view permissions.
 	RefreshTokenScope *string `json:"refresh_token_scope,omitempty"`
-	// The scope granted to access token, depending on the scope granted to the authorization code as well as the scope parameter.
-	// Options include `bolt.account.manage`, `bolt.account.view`, `openid`. Multiple values can be returned as space-separated strings.
-	//
+	// The scope granted to access token, depending on the scope granted to the authorization code as well as the scope parameter. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. Multiple values can be returned as space-separated strings.
 	Scope *string `json:"scope,omitempty"`
 	// The token_type will always be bearer.
 	TokenType *string `json:"token_type,omitempty"`

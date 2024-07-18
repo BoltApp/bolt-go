@@ -27,12 +27,13 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
+	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -60,21 +61,21 @@ func main() {
 * [AddAddress](docs/sdks/account/README.md#addaddress) - Add an address
 * [UpdateAddress](docs/sdks/account/README.md#updateaddress) - Edit an existing address
 * [DeleteAddress](docs/sdks/account/README.md#deleteaddress) - Delete an existing address
-* [AddPaymentMethod](docs/sdks/account/README.md#addpaymentmethod) - Add a payment method to a shopper's Bolt account Wallet.
+* [AddPaymentMethod](docs/sdks/account/README.md#addpaymentmethod) - Add a payment method
 * [DeletePaymentMethod](docs/sdks/account/README.md#deletepaymentmethod) - Delete an existing payment method
 
 
 ### [Payments.Guest](docs/sdks/guest/README.md)
 
 * [Initialize](docs/sdks/guest/README.md#initialize) - Initialize a Bolt payment for guest shoppers
-* [Update](docs/sdks/guest/README.md#update) - Update an existing guest payment
-* [PerformAction](docs/sdks/guest/README.md#performaction) - Perform an irreversible action (e.g. finalize) on a pending guest payment
+* [Update](docs/sdks/guest/README.md#update) - Update a pending guest payment
+* [PerformAction](docs/sdks/guest/README.md#performaction) - Finalize a pending guest payment
 
 ### [Payments.LoggedIn](docs/sdks/loggedin/README.md)
 
 * [Initialize](docs/sdks/loggedin/README.md#initialize) - Initialize a Bolt payment for logged in shoppers
-* [Update](docs/sdks/loggedin/README.md#update) - Update an existing payment
-* [PerformAction](docs/sdks/loggedin/README.md#performaction) - Perform an irreversible action (e.g. finalize) on a pending payment
+* [Update](docs/sdks/loggedin/README.md#update) - Update a pending payment
+* [PerformAction](docs/sdks/loggedin/README.md#performaction) - Finalize a pending payment
 
 ### [OAuth](docs/sdks/oauth/README.md)
 
@@ -82,13 +83,13 @@ func main() {
 
 ### [Orders](docs/sdks/orders/README.md)
 
-* [OrdersCreate](docs/sdks/orders/README.md#orderscreate) - Create an order that was placed outside the Bolt ecosystem.
+* [OrdersCreate](docs/sdks/orders/README.md#orderscreate) - Create an order that was prepared outside the Bolt ecosystem.
 
 ### [Testing](docs/sdks/testing/README.md)
 
 * [CreateAccount](docs/sdks/testing/README.md#createaccount) - Create a test account
 * [TestingAccountPhoneGet](docs/sdks/testing/README.md#testingaccountphoneget) - Get a random phone number
-* [GetCreditCard](docs/sdks/testing/README.md#getcreditcard) - Retrieve a test credit card, including its token
+* [GetCreditCard](docs/sdks/testing/README.md#getcreditcard) - Retrieve a tokenized test credit card
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -113,12 +114,13 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/sdkerrors"
 	"log"
+	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -166,13 +168,14 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
+	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithServerIndex(0),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -206,13 +209,14 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
+	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithServerURL("https://{environment}.bolt.com/v3"),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -281,12 +285,13 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
+	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -316,12 +321,13 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
+	"os"
 )
 
 func main() {
 	s := boltgo.New()
 	security := operations.GuestPaymentsInitializeSecurity{
-		APIKey: "<YOUR_API_KEY_HERE>",
+		APIKey: os.Getenv("API_KEY"),
 	}
 
 	var xPublishableKey string = "<value>"
@@ -440,12 +446,13 @@ import (
 	"github.com/BoltApp/bolt-go/retry"
 	"log"
 	"models/operations"
+	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"
@@ -483,6 +490,7 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/retry"
 	"log"
+	"os"
 )
 
 func main() {
@@ -499,7 +507,7 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+			Oauth: boltgo.String(os.Getenv("OAUTH")),
 		}),
 	)
 	var xPublishableKey string = "<value>"

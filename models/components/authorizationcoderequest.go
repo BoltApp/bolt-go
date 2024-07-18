@@ -65,20 +65,13 @@ type AuthorizationCodeRequest struct {
 	GrantType GrantType `form:"name=grant_type"`
 	// Fetched value using OTP value from the Authorization Modal.
 	Code string `form:"name=code"`
-	// The OAuth client ID, which corresponds to the merchant publishable key, which can be retrieved
-	// in the Merchant Dashboard.
-	//
+	// The OAuth client ID, which corresponds to the merchant publishable key, which can be retrieved in your Merchant Dashboard.
 	ClientID string `form:"name=client_id"`
-	// The OAuth client secret, which corresponds the merchant API key, which can be retrieved in the
-	// Merchant Dashboard.
-	//
+	// The OAuth client secret, which corresponds the merchant API key, which can be retrieved in your Merchant Dashboard.
 	ClientSecret string `form:"name=client_secret"`
 	// The requested scopes. If the request is successful, the OAuth client will be able to perform operations requiring these scopes.
-	//
 	Scope []Scope `form:"name=scope"`
-	// A randomly generated string sent along with an authorization code. This must be included, if provided,
-	// in order to prevent CSRF attacks. used to prevent CSRF attacks.
-	//
+	// A randomly generated string sent along with an authorization code. This must be included if provided. It is used to prevent cross-site request forgery (CSRF) attacks.
 	State *string `form:"name=state"`
 }
 

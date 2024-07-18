@@ -3,9 +3,7 @@
 
 ## Overview
 
-Use this endpoint to retrieve an OAuth token. Use the token to allow your ecommerce server to make calls to the Account
-endpoint and create a one-click checkout experience for shoppers.
-
+Use the OAuth API to enable your ecommerce server to make API calls on behalf of a Bolt logged-in shopper.
 
 <https://help.bolt.com/products/accounts/direct-api/oauth-guide/>
 ### Available Operations

@@ -37,9 +37,7 @@ func (e *CartErrorTag) UnmarshalJSON(data []byte) error {
 type CartError struct {
 	// The type of error returned
 	DotTag CartErrorTag `json:".tag"`
-	// A human-readable error message, which might include information specific to
-	// the request that was made.
-	//
+	// A human-readable error message, which might include information specific to the request that was made.
 	Message string `json:"message"`
 }
 

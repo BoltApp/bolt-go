@@ -3,6 +3,7 @@
 package components
 
 type Order struct {
+	// An account's identifying information.
 	Profile Profile `json:"profile"`
 	Cart    Cart    `json:"cart"`
 }

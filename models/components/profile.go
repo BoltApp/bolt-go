@@ -2,6 +2,7 @@
 
 package components
 
+// Profile - An account's identifying information.
 type Profile struct {
 	// The given name of the person associated with this profile.
 	FirstName string `json:"first_name"`
