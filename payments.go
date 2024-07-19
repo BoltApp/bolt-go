@@ -3,8 +3,8 @@
 package boltgo
 
 type Payments struct {
-	Guest    *Guest
 	LoggedIn *LoggedIn
+	Guest    *Guest
 
 	sdkConfiguration sdkConfiguration
 }
@@ -12,7 +12,7 @@ type Payments struct {
 func newPayments(sdkConfig sdkConfiguration) *Payments {
 	return &Payments{
 		sdkConfiguration: sdkConfig,
-		Guest:            newGuest(sdkConfig),
 		LoggedIn:         newLoggedIn(sdkConfig),
+		Guest:            newGuest(sdkConfig),
 	}
 }

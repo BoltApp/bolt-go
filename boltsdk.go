@@ -71,12 +71,12 @@ type BoltSDK struct {
 	// Use the Accounts API to access shoppers' accounts to empower your checkout and facilitate shoppers' choices.
 	Account  *Account
 	Payments *Payments
+	// Use the Orders API to create and manage orders, including orders that have been placed outside the Bolt ecosystem.
+	Orders *Orders
 	// Use the OAuth API to enable your ecommerce server to make API calls on behalf of a Bolt logged-in shopper.
 	//
 	// https://help.bolt.com/products/accounts/direct-api/oauth-guide/
 	OAuth *OAuth
-	// Use the Orders API to create and manage orders, including orders that have been placed outside the Bolt ecosystem.
-	Orders *Orders
 	// Use the Testing API to generate and retrieve test data to verify a subset of flows in non-production environments.
 	Testing *Testing
 
@@ -194,10 +194,10 @@ func New(opts ...SDKOption) *BoltSDK {
 	sdk := &BoltSDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "3.1.1",
-			SDKVersion:        "1.2.0",
-			GenVersion:        "2.375.5",
-			UserAgent:         "speakeasy-sdk/go 1.2.0 2.375.5 3.1.1 github.com/BoltApp/bolt-go",
+			OpenAPIDocVersion: "3.2.0",
+			SDKVersion:        "1.3.0",
+			GenVersion:        "2.376.0",
+			UserAgent:         "speakeasy-sdk/go 1.3.0 2.376.0 3.2.0 github.com/BoltApp/bolt-go",
 			ServerDefaults: []map[string]string{
 				{
 					"environment": "api-sandbox",
@@ -226,9 +226,9 @@ func New(opts ...SDKOption) *BoltSDK {
 
 	sdk.Payments = newPayments(sdk.sdkConfiguration)
 
-	sdk.OAuth = newOAuth(sdk.sdkConfiguration)
-
 	sdk.Orders = newOrders(sdk.sdkConfiguration)
+
+	sdk.OAuth = newOAuth(sdk.sdkConfiguration)
 
 	sdk.Testing = newTesting(sdk.sdkConfiguration)
 

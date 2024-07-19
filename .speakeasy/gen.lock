@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 0b7f03a22207f700e583f991ee2e376c
-  docVersion: 3.1.1
-  speakeasyVersion: 1.340.0
-  generationVersion: 2.375.5
-  releaseVersion: 1.2.0
-  configChecksum: 4e21a3f2e1c6fdf42cc3c31c267b2b37
+  docChecksum: 6f643f3ad4bcf7e18d91d410f30ec9ee
+  docVersion: 3.2.0
+  speakeasyVersion: 1.344.0
+  generationVersion: 2.376.0
+  releaseVersion: 1.3.0
+  configChecksum: f8d1d5ff41908887566d0a9f7a3ecffe
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -34,11 +34,11 @@ features:
     unions: 2.85.8
 generatedFiles:
   - account.go
-  - guest.go
   - loggedin.go
+  - guest.go
   - payments.go
-  - oauth.go
   - orders.go
+  - oauth.go
   - testing.go
   - boltsdk.go
   - go.mod
@@ -65,14 +65,12 @@ generatedFiles:
   - /models/operations/accountaddressdelete.go
   - /models/operations/accountaddpaymentmethod.go
   - /models/operations/accountpaymentmethoddelete.go
-  - /models/operations/guestpaymentsinitialize.go
-  - /models/operations/guestpaymentsupdate.go
-  - /models/operations/guestpaymentsaction.go
   - /models/operations/paymentsinitialize.go
-  - /models/operations/paymentsupdate.go
   - /models/operations/paymentsaction.go
-  - /models/operations/oauthgettoken.go
+  - /models/operations/guestpaymentsinitialize.go
+  - /models/operations/guestpaymentsaction.go
   - /models/operations/orderscreate.go
+  - /models/operations/oauthgettoken.go
   - /models/operations/testingaccountcreate.go
   - /models/operations/testingaccountphoneget.go
   - /models/operations/testingcreditcardget.go
@@ -103,24 +101,23 @@ generatedFiles:
   - /models/components/transaction.go
   - /models/components/paymentresponsepending.go
   - /models/components/carterror.go
-  - /models/components/guestpaymentinitializerequest.go
+  - /models/components/paymentinitializerequest.go
+  - /models/components/paymentmethodextended.go
+  - /models/components/paymentmethodreference.go
   - /models/components/cart.go
   - /models/components/amount.go
   - /models/components/cartitem.go
   - /models/components/cartdiscount.go
   - /models/components/cartshipment.go
-  - /models/components/profilecreationdata.go
-  - /models/components/paymentupdaterequest.go
   - /models/components/paymentactionrequest.go
-  - /models/components/paymentinitializerequest.go
-  - /models/components/paymentmethodextended.go
-  - /models/components/paymentmethodreference.go
+  - /models/components/guestpaymentinitializerequest.go
+  - /models/components/profilecreationdata.go
+  - /models/components/orderresponse.go
+  - /models/components/order.go
   - /models/components/getaccesstokenresponse.go
   - /models/components/tokenrequest.go
   - /models/components/authorizationcoderequest.go
   - /models/components/refreshtokenrequest.go
-  - /models/components/orderresponse.go
-  - /models/components/order.go
   - /models/components/accounttestcreationdataoutput.go
   - /models/components/accounttestphonedata.go
   - /models/components/testcreditcard.go
@@ -131,14 +128,12 @@ generatedFiles:
   - /models/sdkerrors/accountaddressdelete.go
   - /models/sdkerrors/accountaddpaymentmethod.go
   - /models/sdkerrors/accountpaymentmethoddelete.go
-  - /models/sdkerrors/guestpaymentsinitialize.go
-  - /models/sdkerrors/guestpaymentsupdate.go
-  - /models/sdkerrors/guestpaymentsaction.go
   - /models/sdkerrors/paymentsinitialize.go
-  - /models/sdkerrors/paymentsupdate.go
   - /models/sdkerrors/paymentsaction.go
-  - /models/sdkerrors/oauthgettoken.go
+  - /models/sdkerrors/guestpaymentsinitialize.go
+  - /models/sdkerrors/guestpaymentsaction.go
   - /models/sdkerrors/orderscreate.go
+  - /models/sdkerrors/oauthgettoken.go
   - /models/sdkerrors/testingaccountcreate.go
   - /models/sdkerrors/testingaccountphoneget.go
   - /models/sdkerrors/testingcreditcardget.go
@@ -154,26 +149,21 @@ generatedFiles:
   - docs/models/operations/accountaddpaymentmethodresponse.md
   - docs/models/operations/accountpaymentmethoddeleterequest.md
   - docs/models/operations/accountpaymentmethoddeleteresponse.md
+  - docs/models/operations/paymentsinitializerequest.md
+  - docs/models/operations/paymentsinitializeresponse.md
+  - docs/models/operations/paymentsactionrequest.md
+  - docs/models/operations/paymentsactionresponse.md
   - docs/models/operations/guestpaymentsinitializesecurity.md
   - docs/models/operations/guestpaymentsinitializerequest.md
   - docs/models/operations/guestpaymentsinitializeresponse.md
-  - docs/models/operations/guestpaymentsupdatesecurity.md
-  - docs/models/operations/guestpaymentsupdaterequest.md
-  - docs/models/operations/guestpaymentsupdateresponse.md
   - docs/models/operations/guestpaymentsactionsecurity.md
   - docs/models/operations/guestpaymentsactionrequest.md
   - docs/models/operations/guestpaymentsactionresponse.md
-  - docs/models/operations/paymentsinitializerequest.md
-  - docs/models/operations/paymentsinitializeresponse.md
-  - docs/models/operations/paymentsupdaterequest.md
-  - docs/models/operations/paymentsupdateresponse.md
-  - docs/models/operations/paymentsactionrequest.md
-  - docs/models/operations/paymentsactionresponse.md
-  - docs/models/operations/oauthgettokenrequest.md
-  - docs/models/operations/oauthgettokenresponse.md
   - docs/models/operations/orderscreatesecurity.md
   - docs/models/operations/orderscreaterequest.md
   - docs/models/operations/orderscreateresponse.md
+  - docs/models/operations/oauthgettokenrequest.md
+  - docs/models/operations/oauthgettokenresponse.md
   - docs/models/operations/testingaccountcreatesecurity.md
   - docs/models/operations/testingaccountcreaterequest.md
   - docs/models/operations/testingaccountcreateresponse.md
@@ -237,21 +227,22 @@ generatedFiles:
   - docs/models/components/paymentresponsepending.md
   - docs/models/components/carterrortag.md
   - docs/models/components/carterror.md
-  - docs/models/components/guestpaymentinitializerequest.md
+  - docs/models/components/paymentinitializerequest.md
+  - docs/models/components/paymentmethodextended.md
+  - docs/models/components/paymentmethodreferencetag.md
+  - docs/models/components/paymentmethodreference.md
   - docs/models/components/cart.md
   - docs/models/components/currency.md
   - docs/models/components/amount.md
   - docs/models/components/cartitem.md
   - docs/models/components/cartdiscount.md
   - docs/models/components/cartshipment.md
-  - docs/models/components/profilecreationdata.md
-  - docs/models/components/paymentupdaterequest.md
   - docs/models/components/paymentactionrequesttag.md
   - docs/models/components/paymentactionrequest.md
-  - docs/models/components/paymentinitializerequest.md
-  - docs/models/components/paymentmethodextended.md
-  - docs/models/components/paymentmethodreferencetag.md
-  - docs/models/components/paymentmethodreference.md
+  - docs/models/components/guestpaymentinitializerequest.md
+  - docs/models/components/profilecreationdata.md
+  - docs/models/components/orderresponse.md
+  - docs/models/components/order.md
   - docs/models/components/getaccesstokenresponse.md
   - docs/models/components/tokenrequest.md
   - docs/models/components/granttype.md
@@ -260,8 +251,6 @@ generatedFiles:
   - docs/models/components/refreshtokenrequestgranttype.md
   - docs/models/components/refreshtokenrequestscope.md
   - docs/models/components/refreshtokenrequest.md
-  - docs/models/components/orderresponse.md
-  - docs/models/components/order.md
   - docs/models/components/emailstate.md
   - docs/models/components/phonestate.md
   - docs/models/components/accounttestcreationdataoutput.md
@@ -275,14 +264,12 @@ generatedFiles:
   - docs/models/sdkerrors/accountaddressdeleteresponsebody.md
   - docs/models/sdkerrors/accountaddpaymentmethodresponsebody.md
   - docs/models/sdkerrors/accountpaymentmethoddeleteresponsebody.md
-  - docs/models/sdkerrors/guestpaymentsinitializeresponsebody.md
-  - docs/models/sdkerrors/guestpaymentsupdateresponsebody.md
-  - docs/models/sdkerrors/guestpaymentsactionresponsebody.md
   - docs/models/sdkerrors/paymentsinitializeresponsebody.md
-  - docs/models/sdkerrors/paymentsupdateresponsebody.md
   - docs/models/sdkerrors/paymentsactionresponsebody.md
-  - docs/models/sdkerrors/oauthgettokenresponsebody.md
+  - docs/models/sdkerrors/guestpaymentsinitializeresponsebody.md
+  - docs/models/sdkerrors/guestpaymentsactionresponsebody.md
   - docs/models/sdkerrors/orderscreateresponsebody.md
+  - docs/models/sdkerrors/oauthgettokenresponsebody.md
   - docs/models/sdkerrors/testingaccountcreateresponsebody.md
   - docs/models/sdkerrors/testingaccountphonegetresponsebody.md
   - docs/models/sdkerrors/testingcreditcardgetresponsebody.md
@@ -290,10 +277,10 @@ generatedFiles:
   - docs/models/operations/option.md
   - docs/sdks/account/README.md
   - docs/sdks/payments/README.md
-  - docs/sdks/guest/README.md
   - docs/sdks/loggedin/README.md
-  - docs/sdks/oauth/README.md
+  - docs/sdks/guest/README.md
   - docs/sdks/orders/README.md
+  - docs/sdks/oauth/README.md
   - docs/sdks/testing/README.md
   - USAGE.md
   - models/operations/options.go
