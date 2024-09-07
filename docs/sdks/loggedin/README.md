@@ -1,6 +1,8 @@
 # LoggedIn
 (*Payments.LoggedIn*)
 
+## Overview
+
 ### Available Operations
 
 * [Initialize](#initialize) - Initialize a Bolt payment for logged in shoppers
@@ -18,7 +20,6 @@ package main
 
 import(
 	"github.com/BoltApp/bolt-go/models/components"
-	"os"
 	boltgo "github.com/BoltApp/bolt-go"
 	"context"
 	"log"
@@ -27,14 +28,13 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String(os.Getenv("OAUTH")),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
-    var xPublishableKey string = "<value>"
 
-    var xMerchantClientID string = "<value>"
-
-    paymentInitializeRequest := components.PaymentInitializeRequest{
+    ctx := context.Background()
+    res, err := s.Payments.LoggedIn.Initialize(ctx, "<value>", "<value>", components.PaymentInitializeRequest{
         Cart: components.Cart{
             OrderReference: "order_100",
             OrderDescription: boltgo.String("Order #1234567890"),
@@ -93,9 +93,7 @@ func main() {
                     ID: "X5h6j8uLpVGK",
                 },
         ),
-    }
-    ctx := context.Background()
-    res, err := s.Payments.LoggedIn.Initialize(ctx, xPublishableKey, xMerchantClientID, paymentInitializeRequest)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -115,14 +113,17 @@ func main() {
 | `paymentInitializeRequest`                                                                                                                                                                                          | [components.PaymentInitializeRequest](../../models/components/paymentinitializerequest.md)                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                  | N/A                                                                                                                                                                                                                 |
 | `opts`                                                                                                                                                                                                              | [][operations.Option](../../models/operations/option.md)                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                  | The options for this request.                                                                                                                                                                                       |
 
-
 ### Response
 
 **[*operations.PaymentsInitializeResponse](../../models/operations/paymentsinitializeresponse.md), error**
+
+### Errors
+
 | Error Object                             | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | sdkerrors.PaymentsInitializeResponseBody | 4XX                                      | application/json                         |
 | sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+
 
 ## PerformAction
 
@@ -135,7 +136,6 @@ package main
 
 import(
 	"github.com/BoltApp/bolt-go/models/components"
-	"os"
 	boltgo "github.com/BoltApp/bolt-go"
 	"context"
 	"log"
@@ -144,21 +144,16 @@ import(
 func main() {
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
-            Oauth: boltgo.String(os.Getenv("OAUTH")),
+            Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
+            APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
         }),
     )
-    var id string = "iKv7t5bgt1gg"
 
-    var xPublishableKey string = "<value>"
-
-    var xMerchantClientID string = "<value>"
-
-    paymentActionRequest := components.PaymentActionRequest{
+    ctx := context.Background()
+    res, err := s.Payments.LoggedIn.PerformAction(ctx, "iKv7t5bgt1gg", "<value>", "<value>", components.PaymentActionRequest{
         DotTag: components.PaymentActionRequestTagFinalize,
         RedirectResult: boltgo.String("eyJ0cmFuc"),
-    }
-    ctx := context.Background()
-    res, err := s.Payments.LoggedIn.PerformAction(ctx, id, xPublishableKey, xMerchantClientID, paymentActionRequest)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -179,10 +174,12 @@ func main() {
 | `paymentActionRequest`                                                                                                                                                                                              | [components.PaymentActionRequest](../../models/components/paymentactionrequest.md)                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                  | N/A                                                                                                                                                                                                                 |                                                                                                                                                                                                                     |
 | `opts`                                                                                                                                                                                                              | [][operations.Option](../../models/operations/option.md)                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                  | The options for this request.                                                                                                                                                                                       |                                                                                                                                                                                                                     |
 
-
 ### Response
 
 **[*operations.PaymentsActionResponse](../../models/operations/paymentsactionresponse.md), error**
+
+### Errors
+
 | Error Object                         | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.PaymentsActionResponseBody | 4XX                                  | application/json                     |

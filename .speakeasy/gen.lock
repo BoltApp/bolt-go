@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 6f643f3ad4bcf7e18d91d410f30ec9ee
-  docVersion: 3.2.0
-  speakeasyVersion: 1.344.0
-  generationVersion: 2.376.0
-  releaseVersion: 1.3.0
-  configChecksum: f8d1d5ff41908887566d0a9f7a3ecffe
+  docChecksum: 73a744efb752681baea2c6da3ad7c8b6
+  docVersion: 3.2.1
+  speakeasyVersion: 1.392.1
+  generationVersion: 2.411.9
+  releaseVersion: 1.4.0
+  configChecksum: ea76ad32df3cca92e9fc6207a9ea7daf
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -14,12 +14,12 @@ management:
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.5.0
+    core: 3.5.6
     defaultEnabledRetries: 0.2.0
-    envVarSecurityUsage: 0.2.0
+    envVarSecurityUsage: 0.3.1
     errorUnions: 0.1.0
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
@@ -31,24 +31,229 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.8
+    unions: 2.85.9
 generatedFiles:
+  - .gitattributes
+  - /models/components/account.go
+  - /models/components/accounttestcreationdataoutput.go
+  - /models/components/accounttestphonedata.go
+  - /models/components/addresslisting.go
+  - /models/components/addresslistinginput.go
+  - /models/components/addressreference.go
+  - /models/components/addressreferenceexplicit.go
+  - /models/components/addressreferenceid.go
+  - /models/components/addressreferenceinput.go
+  - /models/components/amount.go
+  - /models/components/authorizationcoderequest.go
+  - /models/components/cart.go
+  - /models/components/cartdiscount.go
+  - /models/components/carterror.go
+  - /models/components/cartitem.go
+  - /models/components/cartshipment.go
+  - /models/components/countrycode.go
+  - /models/components/creditcarderror.go
+  - /models/components/creditcardnetwork.go
+  - /models/components/fielderror.go
+  - /models/components/genericerror.go
+  - /models/components/getaccesstokenresponse.go
+  - /models/components/guestpaymentinitializerequest.go
+  - /models/components/order.go
+  - /models/components/orderresponse.go
+  - /models/components/paymentactionrequest.go
+  - /models/components/paymentinitializerequest.go
+  - /models/components/paymentmethod.go
+  - /models/components/paymentmethodaffirmoutput.go
+  - /models/components/paymentmethodafterpayoutput.go
+  - /models/components/paymentmethodcreditcard.go
+  - /models/components/paymentmethodextended.go
+  - /models/components/paymentmethodinput.go
+  - /models/components/paymentmethodklarnaaccountoutput.go
+  - /models/components/paymentmethodklarnaoutput.go
+  - /models/components/paymentmethodklarnapaynowoutput.go
+  - /models/components/paymentmethodpaypaloutput.go
+  - /models/components/paymentmethodreference.go
+  - /models/components/paymentresponse.go
+  - /models/components/paymentresponsefinalized.go
+  - /models/components/paymentresponsepending.go
+  - /models/components/profile.go
+  - /models/components/profilecreationdata.go
+  - /models/components/refreshtokenrequest.go
+  - /models/components/security.go
+  - /models/components/testcreditcard.go
+  - /models/components/tokenrequest.go
+  - /models/components/transaction.go
+  - /models/components/transactionauthorization.go
+  - /models/operations/accountaddpaymentmethod.go
+  - /models/operations/accountaddresscreate.go
+  - /models/operations/accountaddressdelete.go
+  - /models/operations/accountaddressedit.go
+  - /models/operations/accountget.go
+  - /models/operations/accountpaymentmethoddelete.go
+  - /models/operations/guestpaymentsaction.go
+  - /models/operations/guestpaymentsinitialize.go
+  - /models/operations/oauthgettoken.go
+  - /models/operations/orderscreate.go
+  - /models/operations/paymentsaction.go
+  - /models/operations/paymentsinitialize.go
+  - /models/operations/testingaccountcreate.go
+  - /models/operations/testingaccountphoneget.go
+  - /models/operations/testingcreditcardget.go
+  - /models/sdkerrors/accountaddpaymentmethod.go
+  - /models/sdkerrors/accountaddresscreate.go
+  - /models/sdkerrors/accountaddressdelete.go
+  - /models/sdkerrors/accountaddressedit.go
+  - /models/sdkerrors/accountget.go
+  - /models/sdkerrors/accountpaymentmethoddelete.go
+  - /models/sdkerrors/guestpaymentsaction.go
+  - /models/sdkerrors/guestpaymentsinitialize.go
+  - /models/sdkerrors/oauthgettoken.go
+  - /models/sdkerrors/orderscreate.go
+  - /models/sdkerrors/paymentsaction.go
+  - /models/sdkerrors/paymentsinitialize.go
+  - /models/sdkerrors/testingaccountcreate.go
+  - /models/sdkerrors/testingaccountphoneget.go
+  - /models/sdkerrors/testingcreditcardget.go
+  - CONTRIBUTING.md
+  - USAGE.md
   - account.go
-  - loggedin.go
-  - guest.go
-  - payments.go
-  - orders.go
-  - oauth.go
-  - testing.go
   - boltsdk.go
+  - docs/models/components/account.md
+  - docs/models/components/accounttestcreationdataoutput.md
+  - docs/models/components/accounttestphonedata.md
+  - docs/models/components/action.md
+  - docs/models/components/addresslisting.md
+  - docs/models/components/addressreference.md
+  - docs/models/components/addressreferenceexplicit.md
+  - docs/models/components/addressreferenceexplicittag.md
+  - docs/models/components/addressreferenceid.md
+  - docs/models/components/addressreferenceidtag.md
+  - docs/models/components/amount.md
+  - docs/models/components/authorizationcoderequest.md
+  - docs/models/components/cart.md
+  - docs/models/components/cartdiscount.md
+  - docs/models/components/carterror.md
+  - docs/models/components/carterrortag.md
+  - docs/models/components/cartitem.md
+  - docs/models/components/cartshipment.md
+  - docs/models/components/countrycode.md
+  - docs/models/components/creditcarderror.md
+  - docs/models/components/creditcarderrortag.md
+  - docs/models/components/creditcardnetwork.md
+  - docs/models/components/currency.md
+  - docs/models/components/dottag.md
+  - docs/models/components/emailstate.md
+  - docs/models/components/fielderror.md
+  - docs/models/components/fielderrortag.md
+  - docs/models/components/genericerror.md
+  - docs/models/components/genericerrortag.md
+  - docs/models/components/getaccesstokenresponse.md
+  - docs/models/components/granttype.md
+  - docs/models/components/guestpaymentinitializerequest.md
+  - docs/models/components/order.md
+  - docs/models/components/orderresponse.md
+  - docs/models/components/paymentactionrequest.md
+  - docs/models/components/paymentactionrequesttag.md
+  - docs/models/components/paymentinitializerequest.md
+  - docs/models/components/paymentmethod.md
+  - docs/models/components/paymentmethodaffirmoutput.md
+  - docs/models/components/paymentmethodaffirmtag.md
+  - docs/models/components/paymentmethodafterpayoutput.md
+  - docs/models/components/paymentmethodafterpaytag.md
+  - docs/models/components/paymentmethodcreditcard.md
+  - docs/models/components/paymentmethodextended.md
+  - docs/models/components/paymentmethodklarnaaccountoutput.md
+  - docs/models/components/paymentmethodklarnaaccounttag.md
+  - docs/models/components/paymentmethodklarnaoutput.md
+  - docs/models/components/paymentmethodklarnapaynowoutput.md
+  - docs/models/components/paymentmethodklarnapaynowtag.md
+  - docs/models/components/paymentmethodklarnatag.md
+  - docs/models/components/paymentmethodpaypaloutput.md
+  - docs/models/components/paymentmethodpaypaltag.md
+  - docs/models/components/paymentmethodreference.md
+  - docs/models/components/paymentmethodreferencetag.md
+  - docs/models/components/paymentresponse.md
+  - docs/models/components/paymentresponsefinalized.md
+  - docs/models/components/paymentresponsefinalizedtag.md
+  - docs/models/components/paymentresponsepending.md
+  - docs/models/components/paymentresponsependingstatus.md
+  - docs/models/components/paymentresponsependingtag.md
+  - docs/models/components/phonestate.md
+  - docs/models/components/profile.md
+  - docs/models/components/profilecreationdata.md
+  - docs/models/components/refreshtokenrequest.md
+  - docs/models/components/refreshtokenrequestgranttype.md
+  - docs/models/components/refreshtokenrequestscope.md
+  - docs/models/components/scope.md
+  - docs/models/components/security.md
+  - docs/models/components/status.md
+  - docs/models/components/testcreditcard.md
+  - docs/models/components/tokenrequest.md
+  - docs/models/components/transaction.md
+  - docs/models/components/transactionauthorization.md
+  - docs/models/operations/accountaddpaymentmethodrequest.md
+  - docs/models/operations/accountaddpaymentmethodresponse.md
+  - docs/models/operations/accountaddresscreaterequest.md
+  - docs/models/operations/accountaddresscreateresponse.md
+  - docs/models/operations/accountaddressdeleterequest.md
+  - docs/models/operations/accountaddressdeleteresponse.md
+  - docs/models/operations/accountaddresseditrequest.md
+  - docs/models/operations/accountaddresseditresponse.md
+  - docs/models/operations/accountgetrequest.md
+  - docs/models/operations/accountgetresponse.md
+  - docs/models/operations/accountpaymentmethoddeleterequest.md
+  - docs/models/operations/accountpaymentmethoddeleteresponse.md
+  - docs/models/operations/guestpaymentsactionrequest.md
+  - docs/models/operations/guestpaymentsactionresponse.md
+  - docs/models/operations/guestpaymentsactionsecurity.md
+  - docs/models/operations/guestpaymentsinitializerequest.md
+  - docs/models/operations/guestpaymentsinitializeresponse.md
+  - docs/models/operations/guestpaymentsinitializesecurity.md
+  - docs/models/operations/oauthgettokenrequest.md
+  - docs/models/operations/oauthgettokenresponse.md
+  - docs/models/operations/option.md
+  - docs/models/operations/orderscreaterequest.md
+  - docs/models/operations/orderscreateresponse.md
+  - docs/models/operations/orderscreatesecurity.md
+  - docs/models/operations/paymentsactionrequest.md
+  - docs/models/operations/paymentsactionresponse.md
+  - docs/models/operations/paymentsinitializerequest.md
+  - docs/models/operations/paymentsinitializeresponse.md
+  - docs/models/operations/testingaccountcreaterequest.md
+  - docs/models/operations/testingaccountcreateresponse.md
+  - docs/models/operations/testingaccountcreatesecurity.md
+  - docs/models/operations/testingaccountphonegetrequest.md
+  - docs/models/operations/testingaccountphonegetresponse.md
+  - docs/models/operations/testingaccountphonegetsecurity.md
+  - docs/models/operations/testingcreditcardgetrequestbody.md
+  - docs/models/operations/testingcreditcardgetresponse.md
+  - docs/models/operations/testingcreditcardgetsecurity.md
+  - docs/models/operations/type.md
+  - docs/models/sdkerrors/accountaddpaymentmethodresponsebody.md
+  - docs/models/sdkerrors/accountaddresscreateresponsebody.md
+  - docs/models/sdkerrors/accountaddressdeleteresponsebody.md
+  - docs/models/sdkerrors/accountaddresseditresponsebody.md
+  - docs/models/sdkerrors/accountgetresponsebody.md
+  - docs/models/sdkerrors/accountpaymentmethoddeleteresponsebody.md
+  - docs/models/sdkerrors/guestpaymentsactionresponsebody.md
+  - docs/models/sdkerrors/guestpaymentsinitializeresponsebody.md
+  - docs/models/sdkerrors/oauthgettokenresponsebody.md
+  - docs/models/sdkerrors/orderscreateresponsebody.md
+  - docs/models/sdkerrors/paymentsactionresponsebody.md
+  - docs/models/sdkerrors/paymentsinitializeresponsebody.md
+  - docs/models/sdkerrors/testingaccountcreateresponsebody.md
+  - docs/models/sdkerrors/testingaccountphonegetresponsebody.md
+  - docs/models/sdkerrors/testingcreditcardgetresponsebody.md
+  - docs/sdks/account/README.md
+  - docs/sdks/boltsdk/README.md
+  - docs/sdks/guest/README.md
+  - docs/sdks/loggedin/README.md
+  - docs/sdks/oauth/README.md
+  - docs/sdks/orders/README.md
+  - docs/sdks/payments/README.md
+  - docs/sdks/testing/README.md
   - go.mod
-  - models/sdkerrors/sdkerror.go
-  - retry/config.go
-  - types/bigint.go
-  - types/date.go
-  - types/datetime.go
-  - types/decimal.go
-  - types/pointers.go
+  - guest.go
+  - internal/hooks/hooks.go
   - internal/utils/contenttype.go
   - internal/utils/form.go
   - internal/utils/headers.go
@@ -59,231 +264,560 @@ generatedFiles:
   - internal/utils/retries.go
   - internal/utils/security.go
   - internal/utils/utils.go
-  - /models/operations/accountget.go
-  - /models/operations/accountaddresscreate.go
-  - /models/operations/accountaddressedit.go
-  - /models/operations/accountaddressdelete.go
-  - /models/operations/accountaddpaymentmethod.go
-  - /models/operations/accountpaymentmethoddelete.go
-  - /models/operations/paymentsinitialize.go
-  - /models/operations/paymentsaction.go
-  - /models/operations/guestpaymentsinitialize.go
-  - /models/operations/guestpaymentsaction.go
-  - /models/operations/orderscreate.go
-  - /models/operations/oauthgettoken.go
-  - /models/operations/testingaccountcreate.go
-  - /models/operations/testingaccountphoneget.go
-  - /models/operations/testingcreditcardget.go
-  - /models/components/account.go
-  - /models/components/profile.go
-  - /models/components/paymentmethod.go
-  - /models/components/paymentmethodcreditcard.go
-  - /models/components/creditcardnetwork.go
-  - /models/components/addressreference.go
-  - /models/components/addressreferenceid.go
-  - /models/components/addressreferenceexplicit.go
-  - /models/components/countrycode.go
-  - /models/components/paymentmethodpaypaloutput.go
-  - /models/components/paymentmethodaffirmoutput.go
-  - /models/components/paymentmethodafterpayoutput.go
-  - /models/components/paymentmethodklarnaoutput.go
-  - /models/components/paymentmethodklarnaaccountoutput.go
-  - /models/components/paymentmethodklarnapaynowoutput.go
-  - /models/components/addresslisting.go
-  - /models/components/genericerror.go
-  - /models/components/fielderror.go
-  - /models/components/addresslistinginput.go
-  - /models/components/creditcarderror.go
-  - /models/components/paymentmethodinput.go
-  - /models/components/addressreferenceinput.go
-  - /models/components/paymentresponse.go
-  - /models/components/paymentresponsefinalized.go
-  - /models/components/transaction.go
-  - /models/components/paymentresponsepending.go
-  - /models/components/carterror.go
-  - /models/components/paymentinitializerequest.go
-  - /models/components/paymentmethodextended.go
-  - /models/components/paymentmethodreference.go
-  - /models/components/cart.go
-  - /models/components/amount.go
-  - /models/components/cartitem.go
-  - /models/components/cartdiscount.go
-  - /models/components/cartshipment.go
-  - /models/components/paymentactionrequest.go
-  - /models/components/guestpaymentinitializerequest.go
-  - /models/components/profilecreationdata.go
-  - /models/components/orderresponse.go
-  - /models/components/order.go
-  - /models/components/getaccesstokenresponse.go
-  - /models/components/tokenrequest.go
-  - /models/components/authorizationcoderequest.go
-  - /models/components/refreshtokenrequest.go
-  - /models/components/accounttestcreationdataoutput.go
-  - /models/components/accounttestphonedata.go
-  - /models/components/testcreditcard.go
-  - /models/components/security.go
-  - /models/sdkerrors/accountget.go
-  - /models/sdkerrors/accountaddresscreate.go
-  - /models/sdkerrors/accountaddressedit.go
-  - /models/sdkerrors/accountaddressdelete.go
-  - /models/sdkerrors/accountaddpaymentmethod.go
-  - /models/sdkerrors/accountpaymentmethoddelete.go
-  - /models/sdkerrors/paymentsinitialize.go
-  - /models/sdkerrors/paymentsaction.go
-  - /models/sdkerrors/guestpaymentsinitialize.go
-  - /models/sdkerrors/guestpaymentsaction.go
-  - /models/sdkerrors/orderscreate.go
-  - /models/sdkerrors/oauthgettoken.go
-  - /models/sdkerrors/testingaccountcreate.go
-  - /models/sdkerrors/testingaccountphoneget.go
-  - /models/sdkerrors/testingcreditcardget.go
-  - docs/models/operations/accountgetrequest.md
-  - docs/models/operations/accountgetresponse.md
-  - docs/models/operations/accountaddresscreaterequest.md
-  - docs/models/operations/accountaddresscreateresponse.md
-  - docs/models/operations/accountaddresseditrequest.md
-  - docs/models/operations/accountaddresseditresponse.md
-  - docs/models/operations/accountaddressdeleterequest.md
-  - docs/models/operations/accountaddressdeleteresponse.md
-  - docs/models/operations/accountaddpaymentmethodrequest.md
-  - docs/models/operations/accountaddpaymentmethodresponse.md
-  - docs/models/operations/accountpaymentmethoddeleterequest.md
-  - docs/models/operations/accountpaymentmethoddeleteresponse.md
-  - docs/models/operations/paymentsinitializerequest.md
-  - docs/models/operations/paymentsinitializeresponse.md
-  - docs/models/operations/paymentsactionrequest.md
-  - docs/models/operations/paymentsactionresponse.md
-  - docs/models/operations/guestpaymentsinitializesecurity.md
-  - docs/models/operations/guestpaymentsinitializerequest.md
-  - docs/models/operations/guestpaymentsinitializeresponse.md
-  - docs/models/operations/guestpaymentsactionsecurity.md
-  - docs/models/operations/guestpaymentsactionrequest.md
-  - docs/models/operations/guestpaymentsactionresponse.md
-  - docs/models/operations/orderscreatesecurity.md
-  - docs/models/operations/orderscreaterequest.md
-  - docs/models/operations/orderscreateresponse.md
-  - docs/models/operations/oauthgettokenrequest.md
-  - docs/models/operations/oauthgettokenresponse.md
-  - docs/models/operations/testingaccountcreatesecurity.md
-  - docs/models/operations/testingaccountcreaterequest.md
-  - docs/models/operations/testingaccountcreateresponse.md
-  - docs/models/operations/testingaccountphonegetsecurity.md
-  - docs/models/operations/testingaccountphonegetrequest.md
-  - docs/models/operations/testingaccountphonegetresponse.md
-  - docs/models/operations/testingcreditcardgetsecurity.md
-  - docs/models/operations/type.md
-  - docs/models/operations/testingcreditcardgetrequestbody.md
-  - docs/models/operations/testingcreditcardgetresponse.md
-  - docs/models/components/account.md
-  - docs/models/components/profile.md
-  - docs/models/components/paymentmethod.md
-  - docs/models/components/dottag.md
-  - docs/models/components/paymentmethodcreditcard.md
-  - docs/models/components/creditcardnetwork.md
-  - docs/models/components/addressreference.md
-  - docs/models/components/addressreferenceidtag.md
-  - docs/models/components/addressreferenceid.md
-  - docs/models/components/addressreferenceexplicittag.md
-  - docs/models/components/addressreferenceexplicit.md
-  - docs/models/components/countrycode.md
-  - docs/models/components/paymentmethodpaypaltag.md
-  - docs/models/components/paymentmethodpaypaloutput.md
-  - docs/models/components/paymentmethodaffirmtag.md
-  - docs/models/components/paymentmethodaffirmoutput.md
-  - docs/models/components/paymentmethodafterpaytag.md
-  - docs/models/components/paymentmethodafterpayoutput.md
-  - docs/models/components/paymentmethodklarnatag.md
-  - docs/models/components/paymentmethodklarnaoutput.md
-  - docs/models/components/paymentmethodklarnaaccounttag.md
-  - docs/models/components/paymentmethodklarnaaccountoutput.md
-  - docs/models/components/paymentmethodklarnapaynowtag.md
-  - docs/models/components/paymentmethodklarnapaynowoutput.md
-  - docs/models/components/addresslisting.md
-  - docs/models/components/genericerrortag.md
-  - docs/models/components/genericerror.md
-  - docs/models/components/fielderrortag.md
-  - docs/models/components/fielderror.md
-  - docs/models/components/addresslistinginput.md
-  - docs/models/components/creditcarderrortag.md
-  - docs/models/components/creditcarderror.md
-  - docs/models/components/paymentmethodinput.md
-  - docs/models/components/paymentmethodcreditcardinput.md
-  - docs/models/components/addressreferenceinput.md
-  - docs/models/components/addressreferenceexplicitinput.md
-  - docs/models/components/paymentmethodpaypal.md
-  - docs/models/components/paymentmethodaffirm.md
-  - docs/models/components/paymentmethodafterpay.md
-  - docs/models/components/paymentmethodklarna.md
-  - docs/models/components/paymentmethodklarnaaccount.md
-  - docs/models/components/paymentmethodklarnapaynow.md
-  - docs/models/components/paymentresponse.md
-  - docs/models/components/paymentresponsefinalizedtag.md
-  - docs/models/components/status.md
-  - docs/models/components/paymentresponsefinalized.md
-  - docs/models/components/transaction.md
-  - docs/models/components/paymentresponsependingtag.md
-  - docs/models/components/paymentresponsependingstatus.md
-  - docs/models/components/action.md
-  - docs/models/components/paymentresponsepending.md
-  - docs/models/components/carterrortag.md
-  - docs/models/components/carterror.md
-  - docs/models/components/paymentinitializerequest.md
-  - docs/models/components/paymentmethodextended.md
-  - docs/models/components/paymentmethodreferencetag.md
-  - docs/models/components/paymentmethodreference.md
-  - docs/models/components/cart.md
-  - docs/models/components/currency.md
-  - docs/models/components/amount.md
-  - docs/models/components/cartitem.md
-  - docs/models/components/cartdiscount.md
-  - docs/models/components/cartshipment.md
-  - docs/models/components/paymentactionrequesttag.md
-  - docs/models/components/paymentactionrequest.md
-  - docs/models/components/guestpaymentinitializerequest.md
-  - docs/models/components/profilecreationdata.md
-  - docs/models/components/orderresponse.md
-  - docs/models/components/order.md
-  - docs/models/components/getaccesstokenresponse.md
-  - docs/models/components/tokenrequest.md
-  - docs/models/components/granttype.md
-  - docs/models/components/scope.md
-  - docs/models/components/authorizationcoderequest.md
-  - docs/models/components/refreshtokenrequestgranttype.md
-  - docs/models/components/refreshtokenrequestscope.md
-  - docs/models/components/refreshtokenrequest.md
-  - docs/models/components/emailstate.md
-  - docs/models/components/phonestate.md
-  - docs/models/components/accounttestcreationdataoutput.md
-  - docs/models/components/accounttestcreationdata.md
-  - docs/models/components/accounttestphonedata.md
-  - docs/models/components/testcreditcard.md
-  - docs/models/components/security.md
-  - docs/models/sdkerrors/accountgetresponsebody.md
-  - docs/models/sdkerrors/accountaddresscreateresponsebody.md
-  - docs/models/sdkerrors/accountaddresseditresponsebody.md
-  - docs/models/sdkerrors/accountaddressdeleteresponsebody.md
-  - docs/models/sdkerrors/accountaddpaymentmethodresponsebody.md
-  - docs/models/sdkerrors/accountpaymentmethoddeleteresponsebody.md
-  - docs/models/sdkerrors/paymentsinitializeresponsebody.md
-  - docs/models/sdkerrors/paymentsactionresponsebody.md
-  - docs/models/sdkerrors/guestpaymentsinitializeresponsebody.md
-  - docs/models/sdkerrors/guestpaymentsactionresponsebody.md
-  - docs/models/sdkerrors/orderscreateresponsebody.md
-  - docs/models/sdkerrors/oauthgettokenresponsebody.md
-  - docs/models/sdkerrors/testingaccountcreateresponsebody.md
-  - docs/models/sdkerrors/testingaccountphonegetresponsebody.md
-  - docs/models/sdkerrors/testingcreditcardgetresponsebody.md
-  - docs/sdks/boltsdk/README.md
-  - docs/models/operations/option.md
-  - docs/sdks/account/README.md
-  - docs/sdks/payments/README.md
-  - docs/sdks/loggedin/README.md
-  - docs/sdks/guest/README.md
-  - docs/sdks/orders/README.md
-  - docs/sdks/oauth/README.md
-  - docs/sdks/testing/README.md
-  - USAGE.md
+  - loggedin.go
   - models/operations/options.go
-  - .gitattributes
-  - internal/hooks/hooks.go
-  - CONTRIBUTING.md
+  - models/sdkerrors/sdkerror.go
+  - oauth.go
+  - orders.go
+  - payments.go
+  - retry/config.go
+  - testing.go
+  - types/bigint.go
+  - types/date.go
+  - types/datetime.go
+  - types/decimal.go
+  - types/pointers.go
+examples:
+  accountGet:
+    speakeasy-default-account-get:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      responses:
+        "200":
+          application/json: {"addresses": [], "payment_methods": [], "profile": {"first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+  accountAddressCreate:
+    address-all-fields:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    address-some-fields:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Jean", "last_name": "Blanc", "company": "ACME Corporation", "street_address1": "77 Rue Frédéric Chopin", "street_address2": "c/o Shipping Department", "locality": "Versailles", "postal_code": "78000", "region": "CA", "country_code": "FR", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+    missing-input:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "country_code must be populated", "field": "country_code"}
+    invalid-input:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "country_code format is invalid", "field": "country_code"}
+    invalid-postal-code:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "postal code 94404 is invalid for country CA", "field": "postal_code"}
+    invalid-region:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "region BC is invalid for country US", "field": "region"}
+  accountAddressEdit:
+    address-all-fields:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    address-some-fields:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Jean", "last_name": "Blanc", "company": "ACME Corporation", "street_address1": "77 Rue Frédéric Chopin", "street_address2": "c/o Shipping Department", "locality": "Versailles", "postal_code": "78000", "region": "CA", "country_code": "FR", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    missing-input:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "country_code must be populated", "field": "country_code"}
+    invalid-input:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "country_code format is invalid", "field": "country_code"}
+    invalid-postal-code:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "postal code 94404 is invalid for country CA", "field": "postal_code"}
+    invalid-region:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}
+      responses:
+        "200":
+          application/json: {"id": "D4g3h5tBuVYK9", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199", "is_default": true}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "region BC is invalid for country US", "field": "region"}
+  accountAddressDelete:
+    speakeasy-default-account-address-delete:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      responses:
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+  accountAddPaymentMethod:
+    credit-card-address-reference-id:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "credit_card", "billing_address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2025-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}
+      responses:
+        "200":
+          application/json: {".tag": "klarna"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    credit-card-address-reference-explicit:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "credit_card", "billing_address": {".tag": "explicit", "first_name": "Charlie", "last_name": "Dunn", "company": "ACME Corporation", "street_address1": "535 Mission St", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2025-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}
+      responses:
+        "200":
+          application/json: {".tag": "credit_card", "id": "X5h6j8uLpVGK", "billing_address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "network": "visa", "last4": "1004", "expiration": "2029-03"}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+    missing-input:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "affirm", "return_url": "www.example.com/handle_affirm_success"}
+      responses:
+        "200":
+          application/json: {".tag": "klarna_account"}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "token is required", "field": "token"}
+    invalid-input:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "klarna_paynow", "return_url": "www.example.com/handle_klarna_paynow_success"}
+      responses:
+        "200":
+          application/json: {".tag": "affirm"}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "last4 value 104 is invalid", "field": "last4"}
+    invalid-credit-card:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "credit_card", "billing_address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2029-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}
+      responses:
+        "200":
+          application/json: {".tag": "klarna"}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+  accountPaymentMethodDelete:
+    speakeasy-default-account-payment-method-delete:
+      parameters:
+        path:
+          id: "D4g3h5tBuVYK9"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      responses:
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+  paymentsInitialize:
+    reference:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [{"address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "cost": {"currency": "USD", "units": 10000}, "carrier": "FedEx"}], "discounts": [{"amount": {"currency": "USD", "units": 10000}, "code": "SUMMER10DISCOUNT", "details_url": "https://www.example.com/SUMMER-SALE"}], "items": [{"name": "Bolt Swag Bag", "reference": "item_100", "description": "Large tote with Bolt logo.", "total_amount": {"currency": "USD", "units": 9000}, "unit_price": 1000, "quantity": 9, "image_url": "https://www.example.com/products/123456/images/1.png"}], "total": {"currency": "USD", "units": 9000}, "tax": {"currency": "USD", "units": 100}}, "payment_method": {".tag": "id", "id": "X5h6j8uLpVGK"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    credit_card:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [{"address": {".tag": "explicit", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "cost": {"currency": "USD", "units": 10000}, "carrier": "FedEx"}], "discounts": [{"amount": {"currency": "USD", "units": 10000}, "code": "SUMMER10DISCOUNT", "details_url": "https://www.example.com/SUMMER-SALE"}], "items": [{"name": "Bolt Swag Bag", "reference": "item_100", "description": "Large tote with Bolt logo.", "total_amount": {"currency": "USD", "units": 9000}, "unit_price": 1000, "quantity": 9, "image_url": "https://www.example.com/products/123456/images/1.png"}], "total": {"currency": "USD", "units": 9000}, "tax": {"currency": "USD", "units": 100}}, "payment_method": {".tag": "credit_card", "billing_address": {".tag": "explicit", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2025-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}}
+      responses:
+        "200":
+          application/json: {".tag": "pending", "id": "iKv7t5bgt1gg", "status": "awaiting_user_confirmation", "action": "redirect", "url": "www.example.com/payments/finalize"}
+        4XX:
+          application/json: {".tag": "payment_already_exists", "message": "A payment for this order already exists"}
+    paypal:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [{"address": {".tag": "explicit", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "cost": {"currency": "USD", "units": 10000}, "carrier": "FedEx"}], "discounts": [{"amount": {"currency": "USD", "units": 10000}, "code": "SUMMER10DISCOUNT", "details_url": "https://www.example.com/SUMMER-SALE"}], "items": [{"name": "Bolt Swag Bag", "reference": "item_100", "description": "Large tote with Bolt logo.", "total_amount": {"currency": "USD", "units": 9000}, "unit_price": 1000, "quantity": 9, "image_url": "https://www.example.com/products/123456/images/1.png"}], "total": {"currency": "USD", "units": 9000}, "tax": {"currency": "USD", "units": 100}}, "payment_method": {".tag": "paypal", "success_url": "https://www.example.com/paypal-callback/success", "cancel_url": "https://www.example.com/paypal-callback/cancel"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+    finalized:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "credit_card", "billing_address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2029-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": [{"processor_reference": "123456789XYZ"}]}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+    pending:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "id", "id": "X5h6j8uLpVGK"}}
+      responses:
+        "200":
+          application/json: {".tag": "pending", "id": "iKv7t5bgt1gg", "status": "awaiting_user_confirmation", "action": "redirect", "url": "https://www.paypal.com/checkout/redirect"}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+    missing-input:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "affirm", "return_url": "www.example.com/handle_affirm_success"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "cart is required", "field": "cart"}
+    invalid-cart:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "paypal", "success_url": "https://www.example.com/paypal-callback/success", "cancel_url": "https://www.example.com/paypal-callback/cancel"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "payment_already_exists", "message": "A payment for this order already exists"}
+    invalid-credit-card:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "id", "id": "X5h6j8uLpVGK"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+  paymentsAction:
+    finalized:
+      parameters:
+        path:
+          id: "iKv7t5bgt1gg"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "finalize", "redirect_result": "eyJ0cmFuc"}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": [{"processor_reference": "123456789XYZ"}]}}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+  guestPaymentsInitialize:
+    credit_card:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [{"address": {".tag": "explicit", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "cost": {"currency": "USD", "units": 10000}, "carrier": "FedEx"}], "discounts": [{"amount": {"currency": "USD", "units": 10000}, "code": "SUMMER10DISCOUNT", "details_url": "https://www.example.com/SUMMER-SALE"}], "items": [{"name": "Bolt Swag Bag", "reference": "item_100", "description": "Large tote with Bolt logo.", "total_amount": {"currency": "USD", "units": 9000}, "unit_price": 1000, "quantity": 9, "image_url": "https://www.example.com/products/123456/images/1.png"}], "total": {"currency": "USD", "units": 9000}, "tax": {"currency": "USD", "units": 100}}, "payment_method": {".tag": "credit_card", "billing_address": {".tag": "explicit", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2025-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}}
+      responses:
+        "200":
+          application/json: {".tag": "pending", "id": "iKv7t5bgt1gg", "status": "awaiting_user_confirmation", "action": "redirect", "url": "www.example.com/payments/finalize"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    paypal:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [{"address": {".tag": "explicit", "first_name": "Alice", "last_name": "Baker", "company": "ACME Corporation", "street_address1": "535 Mission St, Ste 1401", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "cost": {"currency": "USD", "units": 10000}, "carrier": "FedEx"}], "discounts": [{"amount": {"currency": "USD", "units": 10000}, "code": "SUMMER10DISCOUNT", "details_url": "https://www.example.com/SUMMER-SALE"}], "items": [{"name": "Bolt Swag Bag", "reference": "item_100", "description": "Large tote with Bolt logo.", "total_amount": {"currency": "USD", "units": 9000}, "unit_price": 1000, "quantity": 9, "image_url": "https://www.example.com/products/123456/images/1.png"}], "total": {"currency": "USD", "units": 9000}, "tax": {"currency": "USD", "units": 100}}, "payment_method": {".tag": "paypal", "success_url": "https://www.example.com/paypal-callback/success", "cancel_url": "https://www.example.com/paypal-callback/cancel"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "payment_already_exists", "message": "A payment for this order already exists"}
+    finalized:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "paypal", "success_url": "https://www.example.com/paypal-callback/success", "cancel_url": "https://www.example.com/paypal-callback/cancel"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": [{"processor_reference": "123456789XYZ"}]}}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+    pending:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "affirm", "return_url": "www.example.com/handle_affirm_success"}}
+      responses:
+        "200":
+          application/json: {".tag": "pending", "id": "iKv7t5bgt1gg", "status": "awaiting_user_confirmation", "action": "redirect", "url": "https://www.paypal.com/checkout/redirect"}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+    missing-input:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "credit_card", "billing_address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2029-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "cart is required", "field": "cart"}
+    invalid-cart:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "affirm", "return_url": "www.example.com/handle_affirm_success"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "payment_already_exists", "message": "A payment for this order already exists"}
+    invalid-credit-card:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"create_account": true, "first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}, "payment_method": {".tag": "credit_card", "billing_address": {".tag": "id", "id": "D4g3h5tBuVYK9"}, "network": "visa", "bin": "411111", "last4": "1004", "expiration": "2029-03", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "declined_invalid_cvv", "message": "The payment was declined because the CVV is not valid"}
+  guestPaymentsAction:
+    speakeasy-default-guest-payments-action:
+      parameters:
+        path:
+          id: "iKv7t5bgt1gg"
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {".tag": "finalize", "redirect_result": "eyJ0cmFuc"}
+      responses:
+        "200":
+          application/json: {".tag": "finalized", "id": "iKv7t5bgt1gg", "status": "success", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+  ordersCreate:
+    reference:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"first_name": "Charlie", "last_name": "Dunn", "email": "charlie@example.com", "phone": "+14085551111"}, "cart": {"order_reference": "instore_20240116-878", "order_description": "Order #878", "display_id": "20240116-878", "shipments": [{"address": {".tag": "explicit", "first_name": "Charlie", "last_name": "Dunn", "company": "ACME Corporation", "street_address1": "535 Mission St", "street_address2": "c/o Shipping Department", "locality": "San Francisco", "postal_code": "94105", "region": "CA", "country_code": "US", "email": "alice@example.com", "phone": "+14155550199"}, "cost": {"currency": "USD", "units": 10000}, "carrier": "FedEx"}], "discounts": [], "items": [{"name": "Red Fidget Spinner", "reference": "sku-984", "description": "Single-packed fidget spinner, red", "total_amount": {"currency": "USD", "units": 1000}, "unit_price": 1000, "quantity": 1, "image_url": "https://www.example.com/products/984/image.png"}], "total": {"currency": "USD", "units": 1000}, "tax": {"currency": "USD", "units": 100}}}
+      responses:
+        "200":
+          application/json: {"id": "iKv7t5bgt1gg", "transaction": {"reference": "OBYG-X1PX-FN55", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+    finalized:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/json: {"profile": {"first_name": "Alice", "last_name": "Baker", "email": "alice@example.com", "phone": "+14155550199"}, "cart": {"order_reference": "order_100", "order_description": "Order #1234567890", "display_id": "215614191", "shipments": [], "discounts": [], "items": [], "total": {"currency": "USD", "units": 900}, "tax": {"currency": "USD", "units": 900}}}
+      responses:
+        "200":
+          application/json: {"id": "3Cxr2keCtxju", "transaction": {"reference": "2ZF2-WZ3J-WD2Y", "authorizations": []}}
+        4XX:
+          application/json: {".tag": "invalid_input_parameter", "message": "We were unable to process your request.", "field": "address.phone"}
+  oauthGetToken:
+    authorization-code:
+      parameters:
+        header:
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/x-www-form-urlencoded: {"grant_type": "authorization_code", "code": "7GSjMRSHs6Ak7C_zvVW6P2IhZOHxMK7HZKW1fMX85ms", "client_id": "8fd9diIy59sj.IraJdeIgmdsO.fd233434fg2c616cgo932aa6e1e4fc627a9385045gr395222a127gi93c595rg4", "client_secret": "23ee7ec7301779eaff451d7c6f6cba322499e3c0ec752f800c72a8f99217e3a8", "scope": ["bolt.account.manage", "bolt.account.view", "openid"], "state": "xyzABC123"}
+      responses:
+        "200":
+          application/json: {"id_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MTcwNTY1MTczMSwiZmlyc3RfbmFtZSI6IkFsaWNlIiwiaXNzIjoiaHR0cDovL2FwaS5ib2x0LmNvbSIsImxhc3RfbmFtZSI6IkJha2VyIiwicGhvbmVfbnVtYmVyIjoiKzE0MTU1NTUwMTk5IiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3MDU2NDg0MjF9.Ir0aKx40zfNCZol1DnqchFx9ciHlyZY9y10mndEjOBHhpHif8-7aZl2UoJVs_0Hj-5ArEouUD6n-y1SJD0Wns-gDMoA0Etoc5dT_0zt0Kw5T8FvJWbyKyyGSDEwPFVADIRxDPMpVoHx0C0nwr_GudnIX7YG6p2HCsoGm2C04ZxKpifSixB3-xNB6k9u1ESWh0KjMCYzBQ2x9wbQ_S6kFtio075PFYcZ3iRQz8oD15NsZDd2czzZkRnGTGlpG0sAvScLXMvDDOWBIu-4wvOEOT7avunJQ_rOCYUlyJe7JGh0QllpeJNau8kx-4YGMeFTkeGM_hPIKsRF1e6o_rWp5CMJnmJDPme-zlJxWodyaHNed5XW-4DR7blv_PFOJNrRvymRoTOd74LIpS21GRCNYrphj7N6-TsSfO9hMQ9ehxrgNAryWbVtTM_3VvWyzX-SRa7BcRkS97sokxc04s3cbXra3x6brE3uL1yoOWNf8GDZNkv1uUAnrOZcTuLacrPjkQgOPb-chMiWS1L0Zd1wX3rqpeCyEswsGKxRRkpgwoBaVVQmLB9m51B6SXEvURTcy2Hx8KzgfXQ_-uC-KrniQxWzYms8A1lypKXkEcyMD2E4Q7EB4UeD2qZAk4tZo611uHegaHaEM7EQyFN3nxvibaqFpXzdxVmOCX0_wQr1nDNA", "access_token": "KCqordmSK6_lpkaXaXfGD8LwnKMGGOYy4Ju2IaBXpJI.CzOF7QOmGGQEgIzBjxOEh1FbRdDpzf9zbm9eHrCZ6zw", "expires_in": 3600, "refresh_token": "4hJYNO4GHvALZoocXoLenfNeFy1RR5ZT6G5JYrFbvkI.Q_PqV0lIszCNoN-85EwD-2nYZOVEepVgJSolx-Jbzrs", "refresh_token_scope": "bolt.account.view", "scope": "bolt.account.manage openid", "token_type": "bearer"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+    refresh-token:
+      parameters:
+        header:
+          X-Merchant-Client-Id: "<value>"
+      requestBody:
+        application/x-www-form-urlencoded: {"grant_type": "refresh_token", "refresh_token": "4hJYNO4GHvALZoocXoLenfNeFy1RR5ZT6G5JYrFbvkI.Q_PqV0lIszCNoN-85EwD-2nYZOVEepVgJSolx-Jbzrs", "client_id": "8fd9diIy59sj.IraJdeIgmdsO.fd233434fg2c616cgo932aa6e1e4fc627a9385045gr395222a127gi93c595rg4", "client_secret": "23ee7ec7301779eaff451d7c6f6cba322499e3c0ec752f800c72a8f99217e3a8", "scope": ["bolt.account.view"], "state": "xyzABC123"}
+      responses:
+        "200":
+          application/json: {"id_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MTcwNTY1MTczMSwiZmlyc3RfbmFtZSI6IkFsaWNlIiwiaXNzIjoiaHR0cDovL2FwaS5ib2x0LmNvbSIsImxhc3RfbmFtZSI6IkJha2VyIiwicGhvbmVfbnVtYmVyIjoiKzE0MTU1NTUwMTk5IiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3MDU2NDg0MjF9.Ir0aKx40zfNCZol1DnqchFx9ciHlyZY9y10mndEjOBHhpHif8-7aZl2UoJVs_0Hj-5ArEouUD6n-y1SJD0Wns-gDMoA0Etoc5dT_0zt0Kw5T8FvJWbyKyyGSDEwPFVADIRxDPMpVoHx0C0nwr_GudnIX7YG6p2HCsoGm2C04ZxKpifSixB3-xNB6k9u1ESWh0KjMCYzBQ2x9wbQ_S6kFtio075PFYcZ3iRQz8oD15NsZDd2czzZkRnGTGlpG0sAvScLXMvDDOWBIu-4wvOEOT7avunJQ_rOCYUlyJe7JGh0QllpeJNau8kx-4YGMeFTkeGM_hPIKsRF1e6o_rWp5CMJnmJDPme-zlJxWodyaHNed5XW-4DR7blv_PFOJNrRvymRoTOd74LIpS21GRCNYrphj7N6-TsSfO9hMQ9ehxrgNAryWbVtTM_3VvWyzX-SRa7BcRkS97sokxc04s3cbXra3x6brE3uL1yoOWNf8GDZNkv1uUAnrOZcTuLacrPjkQgOPb-chMiWS1L0Zd1wX3rqpeCyEswsGKxRRkpgwoBaVVQmLB9m51B6SXEvURTcy2Hx8KzgfXQ_-uC-KrniQxWzYms8A1lypKXkEcyMD2E4Q7EB4UeD2qZAk4tZo611uHegaHaEM7EQyFN3nxvibaqFpXzdxVmOCX0_wQr1nDNA", "access_token": "KCqordmSK6_lpkaXaXfGD8LwnKMGGOYy4Ju2IaBXpJI.CzOF7QOmGGQEgIzBjxOEh1FbRdDpzf9zbm9eHrCZ6zw", "expires_in": 3600, "refresh_token": "4hJYNO4GHvALZoocXoLenfNeFy1RR5ZT6G5JYrFbvkI.Q_PqV0lIszCNoN-85EwD-2nYZOVEepVgJSolx-Jbzrs", "refresh_token_scope": "bolt.account.view", "scope": "bolt.account.manage openid", "token_type": "bearer"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+  testingAccountCreate:
+    speakeasy-default-testing-account-create:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+      requestBody:
+        application/json: {"email_state": "unverified", "phone_state": "verified", "is_migrated": true, "has_address": true, "has_credit_card": true}
+      responses:
+        "200":
+          application/json: {"email": "alice@example.com", "email_state": "unverified", "phone": "+14155550199", "phone_state": "verified", "otp_code": "123456", "oauth_code": "7GSjMRSHs6Ak7C_zvVW6P2IhZOHxMK7HZKW1fMX85ms"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+  testingAccountPhoneGet:
+    speakeasy-default-testing-account-phone-get:
+      parameters:
+        header:
+          X-Publishable-Key: "<value>"
+      responses:
+        "200":
+          application/json: {"phone": "+14155550199"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}
+  testingCreditCardGet:
+    speakeasy-default-testing-credit-card-get:
+      requestBody:
+        application/json: {"type": "approve"}
+      responses:
+        "200":
+          application/json: {"network": "visa", "bin": "411111", "last4": "1004", "expiration": "2023-10-31:T06:00:00Z", "token": "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0"}
+        4XX:
+          application/json: {".tag": "unprocessable_request", "message": "We were unable to process your request."}

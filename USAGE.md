@@ -7,20 +7,18 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 		log.Fatal(err)
 	}

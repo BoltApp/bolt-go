@@ -6,9 +6,30 @@
     </a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Bolt API Reference: A comprehensive Bolt API reference for interacting with Accounts, Payments, Orders and more.
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/BoltApp/bolt-go
 ```
@@ -27,20 +48,18 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -112,20 +131,18 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/sdkerrors"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 
 		var e *sdkerrors.AccountGetResponseBody
@@ -166,21 +183,19 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithServerIndex(0),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -207,21 +222,19 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithServerURL("https://{environment}.bolt.com/v3"),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -283,20 +296,18 @@ import (
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -319,20 +330,15 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
 	s := boltgo.New()
-	security := operations.GuestPaymentsInitializeSecurity{
-		APIKey: os.Getenv("API_KEY"),
-	}
 
-	var xPublishableKey string = "<value>"
-
-	var xMerchantClientID string = "<value>"
-
-	guestPaymentInitializeRequest := components.GuestPaymentInitializeRequest{
+	ctx := context.Background()
+	res, err := s.Payments.Guest.Initialize(ctx, operations.GuestPaymentsInitializeSecurity{
+		APIKey: "<YOUR_API_KEY_HERE>",
+	}, "<value>", "<value>", components.GuestPaymentInitializeRequest{
 		Profile: components.ProfileCreationData{
 			CreateAccount: true,
 			FirstName:     "Alice",
@@ -346,10 +352,20 @@ func main() {
 			DisplayID:        boltgo.String("215614191"),
 			Shipments: []components.CartShipment{
 				components.CartShipment{
-					Address: components.CreateAddressReferenceInputAddressReferenceID(
-						components.AddressReferenceID{
-							DotTag: components.AddressReferenceIDTagID,
-							ID:     "D4g3h5tBuVYK9",
+					Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+						components.AddressReferenceExplicitInput{
+							DotTag:         components.AddressReferenceExplicitTagExplicit,
+							FirstName:      "Alice",
+							LastName:       "Baker",
+							Company:        boltgo.String("ACME Corporation"),
+							StreetAddress1: "535 Mission St, Ste 1401",
+							StreetAddress2: boltgo.String("c/o Shipping Department"),
+							Locality:       "San Francisco",
+							PostalCode:     "94105",
+							Region:         boltgo.String("CA"),
+							CountryCode:    components.CountryCodeUs,
+							Email:          boltgo.String("alice@example.com"),
+							Phone:          boltgo.String("+14155550199"),
 						},
 					),
 					Cost: &components.Amount{
@@ -395,10 +411,20 @@ func main() {
 		PaymentMethod: components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
 			components.PaymentMethodCreditCardInput{
 				DotTag: components.DotTagCreditCard,
-				BillingAddress: components.CreateAddressReferenceInputAddressReferenceID(
-					components.AddressReferenceID{
-						DotTag: components.AddressReferenceIDTagID,
-						ID:     "D4g3h5tBuVYK9",
+				BillingAddress: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+					components.AddressReferenceExplicitInput{
+						DotTag:         components.AddressReferenceExplicitTagExplicit,
+						FirstName:      "Alice",
+						LastName:       "Baker",
+						Company:        boltgo.String("ACME Corporation"),
+						StreetAddress1: "535 Mission St, Ste 1401",
+						StreetAddress2: boltgo.String("c/o Shipping Department"),
+						Locality:       "San Francisco",
+						PostalCode:     "94105",
+						Region:         boltgo.String("CA"),
+						CountryCode:    components.CountryCodeUs,
+						Email:          boltgo.String("alice@example.com"),
+						Phone:          boltgo.String("+14155550199"),
 					},
 				),
 				Network:    components.CreditCardNetworkVisa,
@@ -408,9 +434,7 @@ func main() {
 				Token:      "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
 			},
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Payments.Guest.Initialize(ctx, security, xPublishableKey, xMerchantClientID, guestPaymentInitializeRequest)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -444,20 +468,18 @@ import (
 	"github.com/BoltApp/bolt-go/retry"
 	"log"
 	"models/operations"
-	"os"
 )
 
 func main() {
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID, operations.WithRetries(
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>", operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -488,7 +510,6 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/retry"
 	"log"
-	"os"
 )
 
 func main() {
@@ -505,14 +526,13 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		boltgo.WithSecurity(components.Security{
-			Oauth: boltgo.String(os.Getenv("OAUTH")),
+			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
+			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
 		}),
 	)
-	var xPublishableKey string = "<value>"
 
-	var xMerchantClientID string = "<value>"
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, xPublishableKey, xMerchantClientID)
+	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
 	if err != nil {
 		log.Fatal(err)
 	}

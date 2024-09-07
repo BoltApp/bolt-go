@@ -4,8 +4,8 @@
 ## Overview
 
 Use the OAuth API to enable your ecommerce server to make API calls on behalf of a Bolt logged-in shopper.
-
 <https://help.bolt.com/products/accounts/direct-api/oauth-guide/>
+
 ### Available Operations
 
 * [GetToken](#gettoken) - Get OAuth token
@@ -21,16 +21,16 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/components"
 	"context"
+	"github.com/BoltApp/bolt-go/models/components"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-    var xMerchantClientID string = "<value>"
 
-    var tokenRequest components.TokenRequest = components.CreateTokenRequestAuthorizationCodeRequest(
+    ctx := context.Background()
+    res, err := s.OAuth.GetToken(ctx, "<value>", components.CreateTokenRequestAuthorizationCodeRequest(
             components.AuthorizationCodeRequest{
                 GrantType: components.GrantTypeAuthorizationCode,
                 Code: "7GSjMRSHs6Ak7C_zvVW6P2IhZOHxMK7HZKW1fMX85ms",
@@ -43,9 +43,7 @@ func main() {
                 },
                 State: boltgo.String("xyzABC123"),
             },
-    )
-    ctx := context.Background()
-    res, err := s.OAuth.GetToken(ctx, xMerchantClientID, tokenRequest)
+    ))
     if err != nil {
         log.Fatal(err)
     }
@@ -64,10 +62,12 @@ func main() {
 | `tokenRequest`                                                                                                                                                                                                      | [components.TokenRequest](../../models/components/tokenrequest.md)                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                  | N/A                                                                                                                                                                                                                 |
 | `opts`                                                                                                                                                                                                              | [][operations.Option](../../models/operations/option.md)                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                  | The options for this request.                                                                                                                                                                                       |
 
-
 ### Response
 
 **[*operations.OauthGetTokenResponse](../../models/operations/oauthgettokenresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.OauthGetTokenResponseBody | 4XX                                 | application/json                    |

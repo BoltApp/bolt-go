@@ -22,30 +22,25 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/operations"
-	"os"
-	"github.com/BoltApp/bolt-go/models/components"
 	"context"
+	"github.com/BoltApp/bolt-go/models/operations"
+	"github.com/BoltApp/bolt-go/models/components"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-    security := operations.TestingAccountCreateSecurity{
-            APIKey: os.Getenv("API_KEY"),
-        }
 
-    var xPublishableKey string = "<value>"
-
-    accountTestCreationData := components.AccountTestCreationData{
+    ctx := context.Background()
+    res, err := s.Testing.CreateAccount(ctx, operations.TestingAccountCreateSecurity{
+        APIKey: "<YOUR_API_KEY_HERE>",
+    }, "<value>", components.AccountTestCreationData{
         EmailState: components.EmailStateUnverified,
         PhoneState: components.PhoneStateVerified,
         IsMigrated: boltgo.Bool(true),
         HasAddress: boltgo.Bool(true),
         HasCreditCard: boltgo.Bool(true),
-    }
-    ctx := context.Background()
-    res, err := s.Testing.CreateAccount(ctx, security, xPublishableKey, accountTestCreationData)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -65,14 +60,17 @@ func main() {
 | `accountTestCreationData`                                                                          | [components.AccountTestCreationData](../../models/components/accounttestcreationdata.md)           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
 | `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.TestingAccountCreateResponse](../../models/operations/testingaccountcreateresponse.md), error**
+
+### Errors
+
 | Error Object                               | Status Code                                | Content Type                               |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | sdkerrors.TestingAccountCreateResponseBody | 4XX                                        | application/json                           |
 | sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+
 
 ## TestingAccountPhoneGet
 
@@ -85,21 +83,18 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/operations"
-	"os"
 	"context"
+	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-    security := operations.TestingAccountPhoneGetSecurity{
-            APIKey: os.Getenv("API_KEY"),
-        }
 
-    var xPublishableKey string = "<value>"
     ctx := context.Background()
-    res, err := s.Testing.TestingAccountPhoneGet(ctx, security, xPublishableKey)
+    res, err := s.Testing.TestingAccountPhoneGet(ctx, operations.TestingAccountPhoneGetSecurity{
+        APIKey: "<YOUR_API_KEY_HERE>",
+    }, "<value>")
     if err != nil {
         log.Fatal(err)
     }
@@ -118,14 +113,17 @@ func main() {
 | `xPublishableKey`                                                                                      | *string*                                                                                               | :heavy_check_mark:                                                                                     | The publicly shareable identifier used to identify your Bolt merchant division.                        |
 | `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.TestingAccountPhoneGetResponse](../../models/operations/testingaccountphonegetresponse.md), error**
+
+### Errors
+
 | Error Object                                 | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | sdkerrors.TestingAccountPhoneGetResponseBody | 4XX                                          | application/json                             |
 | sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
 
 ## GetCreditCard
 
@@ -138,23 +136,20 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/operations"
-	"os"
 	"context"
+	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
     s := boltgo.New()
-    request := operations.TestingCreditCardGetRequestBody{
-        Type: operations.TypeApprove,
-    }
 
-    security := operations.TestingCreditCardGetSecurity{
-            APIKey: os.Getenv("API_KEY"),
-        }
     ctx := context.Background()
-    res, err := s.Testing.GetCreditCard(ctx, request, security)
+    res, err := s.Testing.GetCreditCard(ctx, operations.TestingCreditCardGetRequestBody{
+        Type: operations.TypeApprove,
+    }, operations.TestingCreditCardGetSecurity{
+        APIKey: "<YOUR_API_KEY_HERE>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -173,10 +168,12 @@ func main() {
 | `security`                                                                                               | [operations.TestingCreditCardGetSecurity](../../models/operations/testingcreditcardgetsecurity.md)       | :heavy_check_mark:                                                                                       | The security requirements to use for the request.                                                        |
 | `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.TestingCreditCardGetResponse](../../models/operations/testingcreditcardgetresponse.md), error**
+
+### Errors
+
 | Error Object                               | Status Code                                | Content Type                               |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | sdkerrors.TestingCreditCardGetResponseBody | 4XX                                        | application/json                           |
