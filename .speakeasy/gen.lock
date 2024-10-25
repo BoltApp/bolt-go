@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 73a744efb752681baea2c6da3ad7c8b6
-  docVersion: 3.2.1
-  speakeasyVersion: 1.392.1
-  generationVersion: 2.411.9
-  releaseVersion: 1.4.0
-  configChecksum: ea76ad32df3cca92e9fc6207a9ea7daf
+  docChecksum: 6b967904253d6815f3bda7e2e43b08d3
+  docVersion: 3.2.3
+  speakeasyVersion: 1.421.2
+  generationVersion: 2.438.15
+  releaseVersion: 1.4.1
+  configChecksum: 737e04fbce29082c7955dac326517f0e
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -14,7 +14,7 @@ management:
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.5.6
+    core: 3.5.13
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.1
     errorUnions: 0.1.0
@@ -118,15 +118,19 @@ generatedFiles:
   - account.go
   - boltsdk.go
   - docs/models/components/account.md
+  - docs/models/components/accounttestcreationdata.md
   - docs/models/components/accounttestcreationdataoutput.md
   - docs/models/components/accounttestphonedata.md
   - docs/models/components/action.md
   - docs/models/components/addresslisting.md
+  - docs/models/components/addresslistinginput.md
   - docs/models/components/addressreference.md
   - docs/models/components/addressreferenceexplicit.md
+  - docs/models/components/addressreferenceexplicitinput.md
   - docs/models/components/addressreferenceexplicittag.md
   - docs/models/components/addressreferenceid.md
   - docs/models/components/addressreferenceidtag.md
+  - docs/models/components/addressreferenceinput.md
   - docs/models/components/amount.md
   - docs/models/components/authorizationcoderequest.md
   - docs/models/components/cart.md
@@ -155,18 +159,26 @@ generatedFiles:
   - docs/models/components/paymentactionrequesttag.md
   - docs/models/components/paymentinitializerequest.md
   - docs/models/components/paymentmethod.md
+  - docs/models/components/paymentmethodaffirm.md
   - docs/models/components/paymentmethodaffirmoutput.md
   - docs/models/components/paymentmethodaffirmtag.md
+  - docs/models/components/paymentmethodafterpay.md
   - docs/models/components/paymentmethodafterpayoutput.md
   - docs/models/components/paymentmethodafterpaytag.md
   - docs/models/components/paymentmethodcreditcard.md
+  - docs/models/components/paymentmethodcreditcardinput.md
   - docs/models/components/paymentmethodextended.md
+  - docs/models/components/paymentmethodinput.md
+  - docs/models/components/paymentmethodklarna.md
+  - docs/models/components/paymentmethodklarnaaccount.md
   - docs/models/components/paymentmethodklarnaaccountoutput.md
   - docs/models/components/paymentmethodklarnaaccounttag.md
   - docs/models/components/paymentmethodklarnaoutput.md
+  - docs/models/components/paymentmethodklarnapaynow.md
   - docs/models/components/paymentmethodklarnapaynowoutput.md
   - docs/models/components/paymentmethodklarnapaynowtag.md
   - docs/models/components/paymentmethodklarnatag.md
+  - docs/models/components/paymentmethodpaypal.md
   - docs/models/components/paymentmethodpaypaloutput.md
   - docs/models/components/paymentmethodpaypaltag.md
   - docs/models/components/paymentmethodreference.md

@@ -3,9 +3,9 @@
 package components
 
 type Account struct {
-	// A list of addresses associated with this account.
+	// A list of addresses associated with this account. These can be considered the "shipping addresses". The account's visible addresses are filtered according to the configured shipping destinations in your Bolt merchant dashboard. If no account addresses are available, use the billing address of the selected payment method.
 	Addresses []AddressListing `json:"addresses"`
-	// A list of payment methods associated with this account.
+	// A list of payment methods associated with this account. The account's visible payment methods are filtered to include only cards that are chargeable.
 	PaymentMethods []PaymentMethod `json:"payment_methods"`
 	// An account's identifying information.
 	Profile *Profile `json:"profile,omitempty"`

@@ -45,22 +45,22 @@ func main() {
             DisplayID: boltgo.String("20240116-878"),
             Shipments: []components.CartShipment{
                 components.CartShipment{
-                    Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
-                            components.AddressReferenceExplicitInput{
-                                DotTag: components.AddressReferenceExplicitTagExplicit,
-                                FirstName: "Charlie",
-                                LastName: "Dunn",
-                                Company: boltgo.String("ACME Corporation"),
-                                StreetAddress1: "535 Mission St",
-                                StreetAddress2: boltgo.String("c/o Shipping Department"),
-                                Locality: "San Francisco",
-                                PostalCode: "94105",
-                                Region: boltgo.String("CA"),
-                                CountryCode: components.CountryCodeUs,
-                                Email: boltgo.String("alice@example.com"),
-                                Phone: boltgo.String("+14155550199"),
-                            },
-                    ),
+                    Address: boltgo.Pointer(components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+                        components.AddressReferenceExplicitInput{
+                            DotTag: components.AddressReferenceExplicitTagExplicit,
+                            FirstName: "Charlie",
+                            LastName: "Dunn",
+                            Company: boltgo.String("ACME Corporation"),
+                            StreetAddress1: "535 Mission St",
+                            StreetAddress2: boltgo.String("c/o Shipping Department"),
+                            Locality: "San Francisco",
+                            PostalCode: "94105",
+                            Region: boltgo.String("CA"),
+                            CountryCode: components.CountryCodeUs,
+                            Email: boltgo.String("alice@example.com"),
+                            Phone: boltgo.String("+14155550199"),
+                        },
+                    )),
                     Cost: &components.Amount{
                         Currency: components.CurrencyUsd,
                         Units: 10000,
@@ -128,7 +128,7 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.OrdersCreateResponseBody | 4XX                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+| sdkerrors.SDKError                 | 5XX                                | \*/\*                              |

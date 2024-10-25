@@ -41,12 +41,12 @@ func main() {
             DisplayID: boltgo.String("215614191"),
             Shipments: []components.CartShipment{
                 components.CartShipment{
-                    Address: components.CreateAddressReferenceInputAddressReferenceID(
-                            components.AddressReferenceID{
-                                DotTag: components.AddressReferenceIDTagID,
-                                ID: "D4g3h5tBuVYK9",
-                            },
-                    ),
+                    Address: boltgo.Pointer(components.CreateAddressReferenceInputAddressReferenceID(
+                        components.AddressReferenceID{
+                            DotTag: components.AddressReferenceIDTagID,
+                            ID: "D4g3h5tBuVYK9",
+                        },
+                    )),
                     Cost: &components.Amount{
                         Currency: components.CurrencyUsd,
                         Units: 10000,
@@ -88,10 +88,10 @@ func main() {
             },
         },
         PaymentMethod: components.CreatePaymentMethodExtendedPaymentMethodReference(
-                components.PaymentMethodReference{
-                    DotTag: components.PaymentMethodReferenceTagID,
-                    ID: "X5h6j8uLpVGK",
-                },
+            components.PaymentMethodReference{
+                DotTag: components.PaymentMethodReferenceTagID,
+                ID: "X5h6j8uLpVGK",
+            },
         ),
     })
     if err != nil {
@@ -119,11 +119,10 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
+| Error Type                               | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | sdkerrors.PaymentsInitializeResponseBody | 4XX                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
-
+| sdkerrors.SDKError                       | 5XX                                      | \*/\*                                    |
 
 ## PerformAction
 
@@ -180,7 +179,7 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.PaymentsActionResponseBody | 4XX                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+| sdkerrors.SDKError                   | 5XX                                  | \*/\*                                |

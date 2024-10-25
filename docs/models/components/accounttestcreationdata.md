@@ -1,0 +1,12 @@
+# AccountTestCreationData
+
+
+## Fields
+
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    | Example                                                        |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `EmailState`                                                   | [components.EmailState](../../models/components/emailstate.md) | :heavy_check_mark:                                             | N/A                                                            | unverified                                                     |
+| `PhoneState`                                                   | [components.PhoneState](../../models/components/phonestate.md) | :heavy_check_mark:                                             | N/A                                                            | verified                                                       |
+| `IsMigrated`                                                   | **bool*                                                        | :heavy_minus_sign:                                             | N/A                                                            | true                                                           |
+| `HasAddress`                                                   | **bool*                                                        | :heavy_minus_sign:                                             | N/A                                                            | true                                                           |
+| `HasCreditCard`                                                | **bool*                                                        | :heavy_minus_sign:                                             | N/A                                                            | true                                                           |

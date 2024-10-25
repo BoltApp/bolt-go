@@ -66,11 +66,10 @@ func main() {
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
+| Error Type                                 | Status Code                                | Content Type                               |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | sdkerrors.TestingAccountCreateResponseBody | 4XX                                        | application/json                           |
-| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
-
+| sdkerrors.SDKError                         | 5XX                                        | \*/\*                                      |
 
 ## TestingAccountPhoneGet
 
@@ -119,11 +118,10 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | sdkerrors.TestingAccountPhoneGetResponseBody | 4XX                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
-
+| sdkerrors.SDKError                           | 5XX                                          | \*/\*                                        |
 
 ## GetCreditCard
 
@@ -174,7 +172,7 @@ func main() {
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
+| Error Type                                 | Status Code                                | Content Type                               |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | sdkerrors.TestingCreditCardGetResponseBody | 4XX                                        | application/json                           |
-| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+| sdkerrors.SDKError                         | 5XX                                        | \*/\*                                      |

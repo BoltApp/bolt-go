@@ -45,22 +45,22 @@ func main() {
             DisplayID: boltgo.String("215614191"),
             Shipments: []components.CartShipment{
                 components.CartShipment{
-                    Address: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
-                            components.AddressReferenceExplicitInput{
-                                DotTag: components.AddressReferenceExplicitTagExplicit,
-                                FirstName: "Alice",
-                                LastName: "Baker",
-                                Company: boltgo.String("ACME Corporation"),
-                                StreetAddress1: "535 Mission St, Ste 1401",
-                                StreetAddress2: boltgo.String("c/o Shipping Department"),
-                                Locality: "San Francisco",
-                                PostalCode: "94105",
-                                Region: boltgo.String("CA"),
-                                CountryCode: components.CountryCodeUs,
-                                Email: boltgo.String("alice@example.com"),
-                                Phone: boltgo.String("+14155550199"),
-                            },
-                    ),
+                    Address: boltgo.Pointer(components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+                        components.AddressReferenceExplicitInput{
+                            DotTag: components.AddressReferenceExplicitTagExplicit,
+                            FirstName: "Alice",
+                            LastName: "Baker",
+                            Company: boltgo.String("ACME Corporation"),
+                            StreetAddress1: "535 Mission St, Ste 1401",
+                            StreetAddress2: boltgo.String("c/o Shipping Department"),
+                            Locality: "San Francisco",
+                            PostalCode: "94105",
+                            Region: boltgo.String("CA"),
+                            CountryCode: components.CountryCodeUs,
+                            Email: boltgo.String("alice@example.com"),
+                            Phone: boltgo.String("+14155550199"),
+                        },
+                    )),
                     Cost: &components.Amount{
                         Currency: components.CurrencyUsd,
                         Units: 10000,
@@ -102,30 +102,30 @@ func main() {
             },
         },
         PaymentMethod: components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
-                components.PaymentMethodCreditCardInput{
-                    DotTag: components.DotTagCreditCard,
-                    BillingAddress: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
-                            components.AddressReferenceExplicitInput{
-                                DotTag: components.AddressReferenceExplicitTagExplicit,
-                                FirstName: "Alice",
-                                LastName: "Baker",
-                                Company: boltgo.String("ACME Corporation"),
-                                StreetAddress1: "535 Mission St, Ste 1401",
-                                StreetAddress2: boltgo.String("c/o Shipping Department"),
-                                Locality: "San Francisco",
-                                PostalCode: "94105",
-                                Region: boltgo.String("CA"),
-                                CountryCode: components.CountryCodeUs,
-                                Email: boltgo.String("alice@example.com"),
-                                Phone: boltgo.String("+14155550199"),
-                            },
-                    ),
-                    Network: components.CreditCardNetworkVisa,
-                    Bin: "411111",
-                    Last4: "1004",
-                    Expiration: "2025-03",
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-                },
+            components.PaymentMethodCreditCardInput{
+                DotTag: components.DotTagCreditCard,
+                BillingAddress: components.CreateAddressReferenceInputAddressReferenceExplicitInput(
+                    components.AddressReferenceExplicitInput{
+                        DotTag: components.AddressReferenceExplicitTagExplicit,
+                        FirstName: "Alice",
+                        LastName: "Baker",
+                        Company: boltgo.String("ACME Corporation"),
+                        StreetAddress1: "535 Mission St, Ste 1401",
+                        StreetAddress2: boltgo.String("c/o Shipping Department"),
+                        Locality: "San Francisco",
+                        PostalCode: "94105",
+                        Region: boltgo.String("CA"),
+                        CountryCode: components.CountryCodeUs,
+                        Email: boltgo.String("alice@example.com"),
+                        Phone: boltgo.String("+14155550199"),
+                    },
+                ),
+                Network: components.CreditCardNetworkVisa,
+                Bin: "411111",
+                Last4: "1004",
+                Expiration: "2025-03",
+                Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
+            },
         ),
     })
     if err != nil {
@@ -154,11 +154,10 @@ func main() {
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
+| Error Type                                    | Status Code                                   | Content Type                                  |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
 | sdkerrors.GuestPaymentsInitializeResponseBody | 4XX                                           | application/json                              |
-| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
-
+| sdkerrors.SDKError                            | 5XX                                           | \*/\*                                         |
 
 ## PerformAction
 
@@ -214,7 +213,7 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | sdkerrors.GuestPaymentsActionResponseBody | 4XX                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| sdkerrors.SDKError                        | 5XX                                       | \*/\*                                     |
