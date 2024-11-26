@@ -4,6 +4,8 @@ package components
 
 type TransactionAuthorization struct {
 	ProcessorReference *string `json:"processor_reference,omitempty"`
+	// Raw authorization response from the payment processor
+	ProcessorResponse *ProcessorResponse `json:"processor_response,omitempty"`
 }
 
 func (o *TransactionAuthorization) GetProcessorReference() *string {
@@ -11,4 +13,11 @@ func (o *TransactionAuthorization) GetProcessorReference() *string {
 		return nil
 	}
 	return o.ProcessorReference
+}
+
+func (o *TransactionAuthorization) GetProcessorResponse() *ProcessorResponse {
+	if o == nil {
+		return nil
+	}
+	return o.ProcessorResponse
 }

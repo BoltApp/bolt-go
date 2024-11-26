@@ -11,7 +11,7 @@ import (
 	"github.com/BoltApp/bolt-go/models/components"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"github.com/BoltApp/bolt-go/models/sdkerrors"
-	"github.com/cenkalti/backoff/v4"
+	"github.com/BoltApp/bolt-go/retry"
 	"net/http"
 	"net/url"
 )
@@ -120,7 +120,11 @@ func (s *Orders) OrdersCreate(ctx context.Context, security operations.OrdersCre
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

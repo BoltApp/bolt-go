@@ -12,3 +12,7 @@ targets:
     bolt-go-sdk:
         target: go
         source: bolt-go-api
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/bolt/boltpublicapi/bolt-go-api-code-samples
+            blocking: false

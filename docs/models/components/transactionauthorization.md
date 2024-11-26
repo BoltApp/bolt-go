@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field                | Type                 | Required             | Description          | Example              |
-| -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
-| `ProcessorReference` | **string*            | :heavy_minus_sign:   | N/A                  | 123456789XYZ         |
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `ProcessorReference`                                                          | **string*                                                                     | :heavy_minus_sign:                                                            | N/A                                                                           | 123456789XYZ                                                                  |
+| `ProcessorResponse`                                                           | [*components.ProcessorResponse](../../models/components/processorresponse.md) | :heavy_minus_sign:                                                            | Raw authorization response from the payment processor                         |                                                                               |

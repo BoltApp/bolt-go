@@ -23,7 +23,6 @@ Bolt API Reference: A comprehensive Bolt API reference for interacting with Acco
 * [Server Selection](#server-selection)
 * [Custom HTTP Client](#custom-http-client)
 * [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -126,10 +125,10 @@ By Default, an API error will return `sdkerrors.SDKError`. When custom error res
 
 For example, the `GetDetails` function may return the following errors:
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| sdkerrors.AccountGetResponseBody | 4XX                              | application/json                 |
-| sdkerrors.SDKError               | 5XX                              | \*/\*                            |
+| Error Type                       | Status Code | Content Type     |
+| -------------------------------- | ----------- | ---------------- |
+| sdkerrors.AccountGetResponseBody | 4XX         | application/json |
+| sdkerrors.SDKError               | 5XX         | \*/\*            |
 
 ### Example
 
@@ -177,55 +176,14 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
+### Server Variables
 
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://{environment}.bolt.com/v3` | `environment` (default is `api-sandbox`) |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	boltgo "github.com/BoltApp/bolt-go"
-	"github.com/BoltApp/bolt-go/models/components"
-	"log"
-)
-
-func main() {
-	s := boltgo.New(
-		boltgo.WithServerIndex(0),
-		boltgo.WithSecurity(components.Security{
-			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
-			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
-		}),
-	)
-
-	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Account != nil {
-		// handle response
-	}
-}
-
-```
-
-#### Variables
-
-Some of the server options above contain variables. If you want to set the values of those variables, the following options are provided for doing so:
- * `WithEnvironment boltgo.ServerEnvironment`
+The default server `https://{environment}.bolt.com/v3` contains variables and is set to `https://api-sandbox.bolt.com/v3` by default. To override default values, the following options are available when initializing the SDK client instance:
+ * `WithEnvironment(environment ServerEnvironment)`
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
@@ -238,7 +196,7 @@ import (
 
 func main() {
 	s := boltgo.New(
-		boltgo.WithServerURL("https://{environment}.bolt.com/v3"),
+		boltgo.WithServerURL("https://api-sandbox.bolt.com/v3"),
 		boltgo.WithSecurity(components.Security{
 			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
 			APIKey: boltgo.String("<YOUR_API_KEY_HERE>"),
@@ -294,10 +252,10 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security schemes globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `Oauth`      | oauth2       | OAuth2 token |
-| `APIKey`     | apiKey       | API key      |
+| Name     | Type   | Scheme       |
+| -------- | ------ | ------------ |
+| `Oauth`  | oauth2 | OAuth2 token |
+| `APIKey` | apiKey | API key      |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```go
@@ -457,12 +415,6 @@ func main() {
 
 ```
 <!-- End Authentication [security] -->
-
-<!-- Start Special Types [types] -->
-## Special Types
-
-
-<!-- End Special Types [types] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
