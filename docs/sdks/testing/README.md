@@ -22,9 +22,9 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
-	"github.com/BoltApp/bolt-go/models/components"
 	"log"
 )
 
@@ -134,8 +134,8 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
-	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
+	"context"
 	"log"
 )
 

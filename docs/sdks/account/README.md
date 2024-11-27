@@ -24,8 +24,8 @@ Retrieve a shopper's account details, such as addresses and payment information.
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
@@ -79,8 +79,8 @@ Add an address to the shopper's account
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
@@ -147,8 +147,8 @@ Edit an existing address on the shopper's account. This does not edit addresses 
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
@@ -216,8 +216,8 @@ Delete an existing address. Deleting an address does not invalidate or remove th
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
@@ -272,8 +272,8 @@ Add a payment method to a shopper's Bolt Account Wallet. For security purposes, 
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
@@ -343,8 +343,8 @@ Delete an existing payment method. Deleting a payment method does not invalidate
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )

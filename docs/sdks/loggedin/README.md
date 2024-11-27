@@ -19,8 +19,8 @@ Initialize a Bolt logged-in shopper's intent to pay for a cart, using the specif
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )
@@ -134,8 +134,8 @@ Finalize a pending payment being made by a Bolt logged-in shopper. Upon receipt 
 package main
 
 import(
-	"github.com/BoltApp/bolt-go/models/components"
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"log"
 )

@@ -19,9 +19,9 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
-	"github.com/BoltApp/bolt-go/models/components"
 	"log"
 )
 
@@ -50,15 +50,11 @@ func main() {
                             DotTag: components.AddressReferenceExplicitTagExplicit,
                             FirstName: "Alice",
                             LastName: "Baker",
-                            Company: boltgo.String("ACME Corporation"),
                             StreetAddress1: "535 Mission St, Ste 1401",
-                            StreetAddress2: boltgo.String("c/o Shipping Department"),
                             Locality: "San Francisco",
                             PostalCode: "94105",
                             Region: boltgo.String("CA"),
                             CountryCode: components.CountryCodeUs,
-                            Email: boltgo.String("alice@example.com"),
-                            Phone: boltgo.String("+14155550199"),
                         },
                     )),
                     Cost: &components.Amount{
@@ -170,9 +166,9 @@ package main
 
 import(
 	boltgo "github.com/BoltApp/bolt-go"
+	"github.com/BoltApp/bolt-go/models/components"
 	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
-	"github.com/BoltApp/bolt-go/models/components"
 	"log"
 )
 
