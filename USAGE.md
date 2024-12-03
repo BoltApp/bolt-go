@@ -18,7 +18,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
 	}

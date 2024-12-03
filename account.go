@@ -29,7 +29,7 @@ func newAccount(sdkConfig sdkConfiguration) *Account {
 
 // GetDetails - Retrieve account details
 // Retrieve a shopper's account details, such as addresses and payment information. The account's details are filtered to be relevant to your merchant account, and some fields may be missing for some accounts. See the schema for details.
-func (s *Account) GetDetails(ctx context.Context, xPublishableKey string, xMerchantClientID string, opts ...operations.Option) (*operations.AccountGetResponse, error) {
+func (s *Account) GetDetails(ctx context.Context, xPublishableKey string, xMerchantClientID *string, opts ...operations.Option) (*operations.AccountGetResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "accountGet",
@@ -236,7 +236,7 @@ func (s *Account) GetDetails(ctx context.Context, xPublishableKey string, xMerch
 
 // AddAddress - Add an address
 // Add an address to the shopper's account
-func (s *Account) AddAddress(ctx context.Context, xPublishableKey string, xMerchantClientID string, addressListing components.AddressListingInput, opts ...operations.Option) (*operations.AccountAddressCreateResponse, error) {
+func (s *Account) AddAddress(ctx context.Context, xPublishableKey string, addressListing components.AddressListingInput, xMerchantClientID *string, opts ...operations.Option) (*operations.AccountAddressCreateResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "accountAddressCreate",
@@ -450,7 +450,7 @@ func (s *Account) AddAddress(ctx context.Context, xPublishableKey string, xMerch
 
 // UpdateAddress - Edit an existing address
 // Edit an existing address on the shopper's account. This does not edit addresses that are already associated with other resources, such as transactions or shipments.
-func (s *Account) UpdateAddress(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, addressListing components.AddressListingInput, opts ...operations.Option) (*operations.AccountAddressEditResponse, error) {
+func (s *Account) UpdateAddress(ctx context.Context, id string, xPublishableKey string, addressListing components.AddressListingInput, xMerchantClientID *string, opts ...operations.Option) (*operations.AccountAddressEditResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "accountAddressEdit",
@@ -665,7 +665,7 @@ func (s *Account) UpdateAddress(ctx context.Context, id string, xPublishableKey 
 
 // DeleteAddress - Delete an existing address
 // Delete an existing address. Deleting an address does not invalidate or remove the address from transactions or shipments that are associated with it.
-func (s *Account) DeleteAddress(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, opts ...operations.Option) (*operations.AccountAddressDeleteResponse, error) {
+func (s *Account) DeleteAddress(ctx context.Context, id string, xPublishableKey string, xMerchantClientID *string, opts ...operations.Option) (*operations.AccountAddressDeleteResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "accountAddressDelete",
@@ -854,7 +854,7 @@ func (s *Account) DeleteAddress(ctx context.Context, id string, xPublishableKey 
 
 // AddPaymentMethod - Add a payment method
 // Add a payment method to a shopper's Bolt Account Wallet. For security purposes, this request must come from your backend. <br/> **Note**: Before using this API, the credit card details must be tokenized by Bolt's credit card tokenization service. Please review our [Bolt Payment Field Component](https://help.bolt.com/products/ignite/api-implementation/#enhance-payments) or [Install the Bolt Tokenizer](https://help.bolt.com/developers/references/bolt-tokenizer) documentation.
-func (s *Account) AddPaymentMethod(ctx context.Context, xPublishableKey string, xMerchantClientID string, paymentMethod components.PaymentMethodInput, opts ...operations.Option) (*operations.AccountAddPaymentMethodResponse, error) {
+func (s *Account) AddPaymentMethod(ctx context.Context, xPublishableKey string, paymentMethod components.PaymentMethodInput, xMerchantClientID *string, opts ...operations.Option) (*operations.AccountAddPaymentMethodResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "accountAddPaymentMethod",
@@ -1068,7 +1068,7 @@ func (s *Account) AddPaymentMethod(ctx context.Context, xPublishableKey string, 
 
 // DeletePaymentMethod - Delete an existing payment method
 // Delete an existing payment method. Deleting a payment method does not invalidate or remove it from transactions or orders that are associated with it.
-func (s *Account) DeletePaymentMethod(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, opts ...operations.Option) (*operations.AccountPaymentMethodDeleteResponse, error) {
+func (s *Account) DeletePaymentMethod(ctx context.Context, id string, xPublishableKey string, xMerchantClientID *string, opts ...operations.Option) (*operations.AccountPaymentMethodDeleteResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "accountPaymentMethodDelete",

@@ -14,15 +14,20 @@ Bolt API Reference: A comprehensive Bolt API reference for interacting with Acco
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Bolt Go SDK](#bolt-go-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Retries](#retries)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -58,7 +63,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -153,7 +158,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 
 		var e *sdkerrors.AccountGetResponseBody
@@ -204,7 +209,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -277,7 +282,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -308,7 +313,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Payments.Guest.Initialize(ctx, operations.GuestPaymentsInitializeSecurity{
 		APIKey: "<YOUR_API_KEY_HERE>",
-	}, "<value>", "<value>", components.GuestPaymentInitializeRequest{
+	}, "<value>", components.GuestPaymentInitializeRequest{
 		Profile: components.ProfileCreationData{
 			CreateAccount: true,
 			FirstName:     "Alice",
@@ -400,7 +405,7 @@ func main() {
 				Token:      "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
 			},
 		),
-	})
+	}, boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -439,7 +444,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>", operations.WithRetries(
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"), operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -492,7 +497,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.GetDetails(ctx, "<value>", "<value>")
+	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
 	}

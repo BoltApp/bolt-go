@@ -31,7 +31,7 @@ func newOAuth(sdkConfig sdkConfiguration) *OAuth {
 
 // GetToken - Get OAuth token
 // Retrieve a new or refresh an existing OAuth token.
-func (s *OAuth) GetToken(ctx context.Context, xMerchantClientID string, tokenRequest components.TokenRequest, opts ...operations.Option) (*operations.OauthGetTokenResponse, error) {
+func (s *OAuth) GetToken(ctx context.Context, tokenRequest components.TokenRequest, xMerchantClientID *string, opts ...operations.Option) (*operations.OauthGetTokenResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "oauthGetToken",

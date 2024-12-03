@@ -28,7 +28,7 @@ func newGuest(sdkConfig sdkConfiguration) *Guest {
 
 // Initialize a Bolt payment for guest shoppers
 // Initialize a Bolt guest shopper's intent to pay for a cart, using the specified payment method. Payments must be finalized before indicating the payment result to the shopper. Some payment methods will finalize automatically after initialization. For these payments, they will transition directly to "finalized" and the response from Initialize Payment will contain a finalized payment.
-func (s *Guest) Initialize(ctx context.Context, security operations.GuestPaymentsInitializeSecurity, xPublishableKey string, xMerchantClientID string, guestPaymentInitializeRequest components.GuestPaymentInitializeRequest, opts ...operations.Option) (*operations.GuestPaymentsInitializeResponse, error) {
+func (s *Guest) Initialize(ctx context.Context, security operations.GuestPaymentsInitializeSecurity, xPublishableKey string, guestPaymentInitializeRequest components.GuestPaymentInitializeRequest, xMerchantClientID *string, opts ...operations.Option) (*operations.GuestPaymentsInitializeResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "guestPaymentsInitialize",
@@ -242,7 +242,7 @@ func (s *Guest) Initialize(ctx context.Context, security operations.GuestPayment
 
 // PerformAction - Finalize a pending guest payment
 // Finalize a pending payment being made by a Bolt guest shopper. Upon receipt of a finalized payment result, payment success should be communicated to the shopper.
-func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaymentsActionSecurity, id string, xPublishableKey string, xMerchantClientID string, paymentActionRequest components.PaymentActionRequest, opts ...operations.Option) (*operations.GuestPaymentsActionResponse, error) {
+func (s *Guest) PerformAction(ctx context.Context, security operations.GuestPaymentsActionSecurity, id string, xPublishableKey string, paymentActionRequest components.PaymentActionRequest, xMerchantClientID *string, opts ...operations.Option) (*operations.GuestPaymentsActionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "guestPaymentsAction",

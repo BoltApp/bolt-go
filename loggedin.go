@@ -28,7 +28,7 @@ func newLoggedIn(sdkConfig sdkConfiguration) *LoggedIn {
 
 // Initialize a Bolt payment for logged in shoppers
 // Initialize a Bolt logged-in shopper's intent to pay for a cart, using the specified payment method. Payments must be finalized before indicating the payment result to the shopper. Some payment methods will finalize automatically after initialization. For these payments, they will transition directly to "finalized" and the response from Initialize Payment will contain a finalized payment.
-func (s *LoggedIn) Initialize(ctx context.Context, xPublishableKey string, xMerchantClientID string, paymentInitializeRequest components.PaymentInitializeRequest, opts ...operations.Option) (*operations.PaymentsInitializeResponse, error) {
+func (s *LoggedIn) Initialize(ctx context.Context, xPublishableKey string, paymentInitializeRequest components.PaymentInitializeRequest, xMerchantClientID *string, opts ...operations.Option) (*operations.PaymentsInitializeResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "paymentsInitialize",
@@ -242,7 +242,7 @@ func (s *LoggedIn) Initialize(ctx context.Context, xPublishableKey string, xMerc
 
 // PerformAction - Finalize a pending payment
 // Finalize a pending payment being made by a Bolt logged-in shopper. Upon receipt of a finalized payment result, payment success should be communicated to the shopper.
-func (s *LoggedIn) PerformAction(ctx context.Context, id string, xPublishableKey string, xMerchantClientID string, paymentActionRequest components.PaymentActionRequest, opts ...operations.Option) (*operations.PaymentsActionResponse, error) {
+func (s *LoggedIn) PerformAction(ctx context.Context, id string, xPublishableKey string, paymentActionRequest components.PaymentActionRequest, xMerchantClientID *string, opts ...operations.Option) (*operations.PaymentsActionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "paymentsAction",
