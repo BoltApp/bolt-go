@@ -24,13 +24,15 @@ Retrieve a shopper's account details, such as addresses and payment information.
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -38,7 +40,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
     if err != nil {
         log.Fatal(err)
@@ -79,13 +80,15 @@ Add an address to the shopper's account
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -93,7 +96,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, "<value>", components.AddressListingInput{
         FirstName: "Alice",
         LastName: "Baker",
@@ -147,13 +149,15 @@ Edit an existing address on the shopper's account. This does not edit addresses 
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -161,7 +165,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Account.UpdateAddress(ctx, "D4g3h5tBuVYK9", "<value>", components.AddressListingInput{
         FirstName: "Alice",
         LastName: "Baker",
@@ -216,13 +219,15 @@ Delete an existing address. Deleting an address does not invalidate or remove th
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -230,7 +235,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Account.DeleteAddress(ctx, "D4g3h5tBuVYK9", "<value>", boltgo.String("<value>"))
     if err != nil {
         log.Fatal(err)
@@ -272,13 +276,15 @@ Add a payment method to a shopper's Bolt Account Wallet. For security purposes, 
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -286,7 +292,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Account.AddPaymentMethod(ctx, "<value>", components.CreatePaymentMethodInputPaymentMethodCreditCardInput(
         components.PaymentMethodCreditCardInput{
             DotTag: components.DotTagCreditCard,
@@ -343,13 +348,15 @@ Delete an existing payment method. Deleting a payment method does not invalidate
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -357,7 +364,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, "D4g3h5tBuVYK9", "<value>", boltgo.String("<value>"))
     if err != nil {
         log.Fatal(err)

@@ -21,17 +21,18 @@ Create a Bolt shopper account for testing purposes.
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.Testing.CreateAccount(ctx, operations.TestingAccountCreateSecurity{
         APIKey: "<YOUR_API_KEY_HERE>",
     }, "<value>", components.AccountTestCreationData{
@@ -81,16 +82,17 @@ Get a random, fictitious phone number that is not assigned to any existing Bolt 
 package main
 
 import(
-	boltgo "github.com/BoltApp/bolt-go"
 	"context"
+	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.Testing.TestingAccountPhoneGet(ctx, operations.TestingAccountPhoneGetSecurity{
         APIKey: "<YOUR_API_KEY_HERE>",
     }, "<value>")
@@ -133,16 +135,17 @@ Retrieve a test credit card that can be used to process payments in your Bolt te
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.Testing.GetCreditCard(ctx, operations.TestingCreditCardGetRequestBody{
         Type: operations.TypeApprove,
     }, operations.TestingCreditCardGetSecurity{

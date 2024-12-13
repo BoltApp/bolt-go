@@ -18,17 +18,18 @@ Initialize a Bolt guest shopper's intent to pay for a cart, using the specified 
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.Payments.Guest.Initialize(ctx, operations.GuestPaymentsInitializeSecurity{
         APIKey: "<YOUR_API_KEY_HERE>",
     }, "<value>", components.GuestPaymentInitializeRequest{
@@ -165,17 +166,18 @@ Finalize a pending payment being made by a Bolt guest shopper. Upon receipt of a
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.Payments.Guest.PerformAction(ctx, operations.GuestPaymentsActionSecurity{
         APIKey: "<YOUR_API_KEY_HERE>",
     }, "iKv7t5bgt1gg", "<value>", components.PaymentActionRequest{

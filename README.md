@@ -55,6 +55,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
 			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -62,7 +64,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
@@ -150,6 +151,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
 			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -157,7 +160,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 
@@ -200,6 +202,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithServerURL("https://api-sandbox.bolt.com/v3"),
 		boltgo.WithSecurity(components.Security{
@@ -208,7 +212,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
@@ -274,6 +277,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
 			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -281,7 +286,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)
@@ -308,9 +312,10 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New()
 
-	ctx := context.Background()
 	res, err := s.Payments.Guest.Initialize(ctx, operations.GuestPaymentsInitializeSecurity{
 		APIKey: "<YOUR_API_KEY_HERE>",
 	}, "<value>", components.GuestPaymentInitializeRequest{
@@ -436,6 +441,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
 			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -443,7 +450,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"), operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -478,6 +484,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithRetryConfig(
 			retry.Config{
@@ -496,7 +504,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)

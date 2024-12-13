@@ -19,17 +19,18 @@ Create an order that was prepared outside the Bolt ecosystem. Some Bolt-powered 
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"github.com/BoltApp/bolt-go/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.Orders.OrdersCreate(ctx, operations.OrdersCreateSecurity{
         APIKey: "<YOUR_API_KEY_HERE>",
     }, "<value>", components.Order{

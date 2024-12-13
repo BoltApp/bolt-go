@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := boltgo.New(
 		boltgo.WithSecurity(components.Security{
 			Oauth:  boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -17,7 +19,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Account.GetDetails(ctx, "<value>", boltgo.String("<value>"))
 	if err != nil {
 		log.Fatal(err)

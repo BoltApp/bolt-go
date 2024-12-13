@@ -20,16 +20,17 @@ Retrieve a new or refresh an existing OAuth token.
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New()
 
-    ctx := context.Background()
     res, err := s.OAuth.GetToken(ctx, components.CreateTokenRequestAuthorizationCodeRequest(
         components.AuthorizationCodeRequest{
             GrantType: components.GrantTypeAuthorizationCode,

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 269b4377-e36b-42c4-9e18-aa74d5f13d72
 management:
-  docChecksum: 7d78aded4da1f2a8608472aeee6f28f1
-  docVersion: 3.3.0
-  speakeasyVersion: 1.449.0
-  generationVersion: 2.467.4
-  releaseVersion: 1.5.0
-  configChecksum: 988f1810cdfa71cb784100517cac9b78
+  docChecksum: 2b4023b1963941d7d087b102ba3565e5
+  docVersion: 3.3.1
+  speakeasyVersion: 1.454.2
+  generationVersion: 2.477.4
+  releaseVersion: 1.5.1
+  configChecksum: 4ff630d29919dbb462871bda61665520
   repoURL: https://github.com/BoltApp/bolt-go.git
   repoSubDirectory: .
   installationURL: https://github.com/BoltApp/bolt-go
@@ -14,7 +14,7 @@ management:
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.5.17
+    core: 3.5.18
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.2
     errorUnions: 0.1.0

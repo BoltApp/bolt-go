@@ -19,13 +19,15 @@ Initialize a Bolt logged-in shopper's intent to pay for a cart, using the specif
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -33,7 +35,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Payments.LoggedIn.Initialize(ctx, "<value>", components.PaymentInitializeRequest{
         Cart: components.Cart{
             OrderReference: "order_100",
@@ -134,13 +135,15 @@ Finalize a pending payment being made by a Bolt logged-in shopper. Upon receipt 
 package main
 
 import(
+	"context"
 	boltgo "github.com/BoltApp/bolt-go"
 	"github.com/BoltApp/bolt-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := boltgo.New(
         boltgo.WithSecurity(components.Security{
             Oauth: boltgo.String("<YOUR_OAUTH_HERE>"),
@@ -148,7 +151,6 @@ func main() {
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Payments.LoggedIn.PerformAction(ctx, "iKv7t5bgt1gg", "<value>", components.PaymentActionRequest{
         DotTag: components.PaymentActionRequestTagFinalize,
         RedirectResult: boltgo.String("eyJ0cmFuc"),
