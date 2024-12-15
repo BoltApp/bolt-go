@@ -87,6 +87,10 @@ func (s *OAuth) GetToken(ctx context.Context, tokenRequest components.TokenReque
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {

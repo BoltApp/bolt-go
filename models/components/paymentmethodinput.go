@@ -22,13 +22,13 @@ const (
 )
 
 type PaymentMethodInput struct {
-	PaymentMethodCreditCardInput *PaymentMethodCreditCardInput
-	PaymentMethodPaypal          *PaymentMethodPaypal
-	PaymentMethodAffirm          *PaymentMethodAffirm
-	PaymentMethodAfterpay        *PaymentMethodAfterpay
-	PaymentMethodKlarna          *PaymentMethodKlarna
-	PaymentMethodKlarnaAccount   *PaymentMethodKlarnaAccount
-	PaymentMethodKlarnaPaynow    *PaymentMethodKlarnaPaynow
+	PaymentMethodCreditCardInput *PaymentMethodCreditCardInput `queryParam:"inline"`
+	PaymentMethodPaypal          *PaymentMethodPaypal          `queryParam:"inline"`
+	PaymentMethodAffirm          *PaymentMethodAffirm          `queryParam:"inline"`
+	PaymentMethodAfterpay        *PaymentMethodAfterpay        `queryParam:"inline"`
+	PaymentMethodKlarna          *PaymentMethodKlarna          `queryParam:"inline"`
+	PaymentMethodKlarnaAccount   *PaymentMethodKlarnaAccount   `queryParam:"inline"`
+	PaymentMethodKlarnaPaynow    *PaymentMethodKlarnaPaynow    `queryParam:"inline"`
 
 	Type PaymentMethodInputType
 }

@@ -16,8 +16,8 @@ const (
 )
 
 type TokenRequest struct {
-	AuthorizationCodeRequest *AuthorizationCodeRequest
-	RefreshTokenRequest      *RefreshTokenRequest
+	AuthorizationCodeRequest *AuthorizationCodeRequest `queryParam:"inline"`
+	RefreshTokenRequest      *RefreshTokenRequest      `queryParam:"inline"`
 
 	Type TokenRequestType
 }

@@ -20,8 +20,8 @@ const (
 
 // AccountAddressCreateResponseBody - The address is invalid and cannot be added, or some other error has occurred
 type AccountAddressCreateResponseBody struct {
-	GenericError *components.GenericError
-	FieldError   *components.FieldError
+	GenericError *components.GenericError `queryParam:"inline"`
+	FieldError   *components.FieldError   `queryParam:"inline"`
 
 	Type AccountAddressCreateResponseBodyType
 

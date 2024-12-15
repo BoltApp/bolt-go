@@ -17,8 +17,8 @@ const (
 )
 
 type AddressReferenceInput struct {
-	AddressReferenceID            *AddressReferenceID
-	AddressReferenceExplicitInput *AddressReferenceExplicitInput
+	AddressReferenceID            *AddressReferenceID            `queryParam:"inline"`
+	AddressReferenceExplicitInput *AddressReferenceExplicitInput `queryParam:"inline"`
 
 	Type AddressReferenceInputType
 }

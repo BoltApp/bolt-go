@@ -22,10 +22,10 @@ const (
 
 // GuestPaymentsInitializeResponseBody - The payment operation cannot complete
 type GuestPaymentsInitializeResponseBody struct {
-	GenericError    *components.GenericError
-	FieldError      *components.FieldError
-	CartError       *components.CartError
-	CreditCardError *components.CreditCardError
+	GenericError    *components.GenericError    `queryParam:"inline"`
+	FieldError      *components.FieldError      `queryParam:"inline"`
+	CartError       *components.CartError       `queryParam:"inline"`
+	CreditCardError *components.CreditCardError `queryParam:"inline"`
 
 	Type GuestPaymentsInitializeResponseBodyType
 

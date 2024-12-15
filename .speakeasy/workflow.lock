@@ -1,21 +1,21 @@
-speakeasyVersion: 1.454.2
+speakeasyVersion: 1.455.3
 sources:
     bolt-go-api:
         sourceNamespace: bolt-go-api
-        sourceRevisionDigest: sha256:bbdde444ce4480b53d0e45bbc1265605433c63513439641f024b14f8dca86773
-        sourceBlobDigest: sha256:d050e954f5ebd17f1c86efac05d4e8d7845f4dcff06c12c16b022d3e5b3efd75
+        sourceRevisionDigest: sha256:2dfaa9386b195ecd8c40f8ad978cb0fdb65630eebba654f6dac46705b1a3ba73
+        sourceBlobDigest: sha256:8cd600ffafc592ddcbc48697169b225361eea1676e5f8395cd6b3297d4a426f1
         tags:
             - latest
-            - speakeasy-sdk-regen-1734048780
+            - speakeasy-sdk-regen-1734221659
             - 3.3.1
 targets:
     bolt-go-sdk:
         source: bolt-go-api
         sourceNamespace: bolt-go-api
-        sourceRevisionDigest: sha256:bbdde444ce4480b53d0e45bbc1265605433c63513439641f024b14f8dca86773
-        sourceBlobDigest: sha256:d050e954f5ebd17f1c86efac05d4e8d7845f4dcff06c12c16b022d3e5b3efd75
+        sourceRevisionDigest: sha256:2dfaa9386b195ecd8c40f8ad978cb0fdb65630eebba654f6dac46705b1a3ba73
+        sourceBlobDigest: sha256:8cd600ffafc592ddcbc48697169b225361eea1676e5f8395cd6b3297d4a426f1
         codeSamplesNamespace: bolt-go-api-code-samples
-        codeSamplesRevisionDigest: sha256:626ed0547d7bee84774e773aa5eeda1139b4f75a635b458cccc8b97518fa581b
+        codeSamplesRevisionDigest: sha256:b4388cd8b1ec80ae04404204147dc38dcdb4fe07cb50b0c56e8db5a739ece81e
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

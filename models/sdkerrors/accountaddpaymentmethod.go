@@ -21,9 +21,9 @@ const (
 
 // AccountAddPaymentMethodResponseBody - The payment method is invalid and cannot be added, or some other error has occurred
 type AccountAddPaymentMethodResponseBody struct {
-	GenericError    *components.GenericError
-	FieldError      *components.FieldError
-	CreditCardError *components.CreditCardError
+	GenericError    *components.GenericError    `queryParam:"inline"`
+	FieldError      *components.FieldError      `queryParam:"inline"`
+	CreditCardError *components.CreditCardError `queryParam:"inline"`
 
 	Type AccountAddPaymentMethodResponseBodyType
 

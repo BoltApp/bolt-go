@@ -17,8 +17,8 @@ const (
 )
 
 type PaymentResponse struct {
-	PaymentResponseFinalized *PaymentResponseFinalized
-	PaymentResponsePending   *PaymentResponsePending
+	PaymentResponseFinalized *PaymentResponseFinalized `queryParam:"inline"`
+	PaymentResponsePending   *PaymentResponsePending   `queryParam:"inline"`
 
 	Type PaymentResponseType
 }

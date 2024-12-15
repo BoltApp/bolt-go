@@ -20,8 +20,8 @@ const (
 
 // OrdersCreateResponseBody - An error has occurred, and further details are contained in the response
 type OrdersCreateResponseBody struct {
-	GenericError *components.GenericError
-	FieldError   *components.FieldError
+	GenericError *components.GenericError `queryParam:"inline"`
+	FieldError   *components.FieldError   `queryParam:"inline"`
 
 	Type OrdersCreateResponseBodyType
 
